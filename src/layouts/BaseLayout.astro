@@ -1,0 +1,99 @@
+---
+import "@/styles/global.css";
+import Nav from "@/components/Nav.astro";
+import Footer from "@/components/Footer.astro";
+import RingCanvas from "@/components/islands/RingCanvas.tsx";
+import { strings } from "@/i18n";
+
+export interface Props {
+  title: string;
+  description: string;
+  /** Dev-only routes pass false. Full SEO treatment lands in phase 3. */
+  indexable?: boolean;
+  canvas?: boolean;
+}
+
+const { title, description, indexable = true, canvas = true } = Astro.props;
+const t = strings("en");
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+---
+
+<!doctype html>
+<html lang="en-CA">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title} — {t.siteName}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    {!indexable && <meta name="robots" content="noindex, nofollow" />}
+    <meta name="generator" content={Astro.generator} />
+  </head>
+
+  <body class="min-h-dvh">
+    <a
+      href="#main"
+      class="label sr-only rounded-full bg-ink px-6 py-3 text-paper focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50"
+    >
+      {t.nav.skipToContent}
+    </a>
+
+    {canvas && <RingCanvas client:idle />}
+
+    <Nav />
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <Footer />
+
+    <script>
+      // The section reveal.
+      //
+      // `js-reveal` is set on <html> only once this script runs, and only when
+      // motion is welcome. Until then `.reveal` elements have no opacity rule
+      // at all, so the initial HTML is fully visible — a non-JS client, a
+      // crawler and a failed script all see the page rather than a stack of
+      // invisible sections. That is the inversion the reference site gets
+      // wrong with its client-typed <h1>.
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const targets = document.querySelectorAll(".reveal");
+
+      if (!reduced && targets.length > 0 && "IntersectionObserver" in window) {
+        document.documentElement.classList.add("js-reveal");
+
+        let delivered = false;
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            delivered = true;
+            for (const entry of entries) {
+              if (!entry.isIntersecting) continue;
+              entry.target.classList.add("is-in");
+              observer.unobserve(entry.target);
+            }
+          },
+          { rootMargin: "0px 0px -10% 0px", threshold: 0.1 },
+        );
+
+        for (const target of targets) observer.observe(target);
+
+        // The safety valve. An IntersectionObserver normally delivers a first
+        // callback for every observed target almost immediately, intersecting
+        // or not. Some environments never deliver one — a page rendered to an
+        // offscreen surface, a headless capture, a browser that has decided
+        // this document is not being displayed. Without this, `js-reveal`
+        // would hold every section at opacity 0 forever and the page would be
+        // blank. Hiding content behind an animation that might not run is the
+        // failure this whole inversion exists to avoid, so if nothing has
+        // reported in two seconds, drop the mechanism and show the page.
+        setTimeout(() => {
+          if (delivered) return;
+          observer.disconnect();
+          document.documentElement.classList.remove("js-reveal");
+        }, 2000);
+      }
+    </script>
+  </body>
+</html>

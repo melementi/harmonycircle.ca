@@ -1,0 +1,97 @@
+---
+import Ring from "./Ring.astro";
+
+/**
+ * Pill, mono uppercase label, ring suffix, coloured drop shadow on hover.
+ *
+ * Renders `<a>` when given `href` and `<button>` otherwise, so a link never
+ * pretends to be a button or the reverse.
+ *
+ * Minimum target is 44x44 even at `size="sm"`. WCAG 2.1 only asks that at AAA,
+ * but this is a community site whose audience skews older and less confident
+ * with a trackpad, and the cost of honouring it is nothing.
+ */
+export interface Props {
+  variant?: "primary" | "accent" | "outline" | "ghost";
+  size?: "sm" | "md";
+  href?: string;
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
+  glow?: boolean;
+  class?: string;
+  [key: string]: unknown;
+}
+
+const {
+  variant = "primary",
+  size = "md",
+  href,
+  type = "button",
+  disabled = false,
+  glow = false,
+  class: className = "",
+  ...rest
+} = Astro.props;
+
+const Tag = href ? "a" : "button";
+
+const base =
+  "group relative inline-flex items-center justify-center gap-3 overflow-hidden rounded-full " +
+  "label min-h-11 transition-[color,background-color,border-color,box-shadow] duration-300 " +
+  "disabled:pointer-events-none disabled:opacity-40 aria-disabled:pointer-events-none aria-disabled:opacity-40";
+
+const sizes = {
+  sm: "px-5 py-2.5",
+  md: "px-7 py-3.5",
+};
+
+const variants = {
+  primary:
+    "bg-ink text-paper hover:shadow-[0_0_50px_-12px_rgb(15_59_60_/_0.55)]",
+  accent:
+    "bg-accent text-white hover:shadow-[0_0_50px_-12px_rgb(181_77_44_/_0.55)]",
+  outline:
+    "border border-ink/25 text-ink hover:border-ink hover:bg-ink hover:text-paper",
+  ghost: "text-ink/70 hover:text-ink",
+};
+
+// A ring on a solid button inherits the label colour, which is always legible
+// against that button. On a transparent button it is accent on paper, 4.63:1.
+const ringTone = variant === "primary" || variant === "accent" ? "current" : "accent";
+
+// Solid buttons get the sheen. Outlined ones do not — there is nothing for it
+// to sweep across.
+const solid = variant === "primary" || variant === "accent";
+---
+
+<Tag
+  class:list={[base, sizes[size], variants[variant], glow && "animate-glow-pulse", className]}
+  href={href}
+  type={href ? undefined : type}
+  disabled={href ? undefined : disabled}
+  aria-disabled={href && disabled ? "true" : undefined}
+  {...rest}
+>
+  {
+    solid && (
+      <span
+        aria-hidden="true"
+        class="pointer-events-none absolute inset-y-0 -left-full w-1/2 bg-white/15 group-hover:animate-shimmer-sweep"
+      />
+    )
+  }
+
+  <span class="relative">
+    <slot />
+  </span>
+
+  <span class="relative grid size-3 shrink-0 place-items-center" aria-hidden="true">
+    <Ring size="sm" variant="outline" tone={ringTone} class="col-start-1 row-start-1" />
+    <Ring
+      size="sm"
+      variant="solid"
+      tone={ringTone}
+      class="col-start-1 row-start-1 scale-50 opacity-0 transition duration-300 group-hover:scale-100 group-hover:opacity-100"
+    />
+  </span>
+</Tag>

@@ -1,0 +1,424 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Accordion from "@/components/Accordion.astro";
+import Button from "@/components/Button.astro";
+import Card from "@/components/Card.astro";
+import Marquee from "@/components/Marquee.astro";
+import Prose from "@/components/Prose.astro";
+import Ring from "@/components/Ring.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+import StatRow from "@/components/StatRow.astro";
+
+export const prerender = true;
+
+const ringSizes = ["xs", "sm", "md", "lg", "xl"] as const;
+const ringVariants = ["outline", "solid", "dual", "dotted"] as const;
+const buttonVariants = ["primary", "accent", "outline", "ghost"] as const;
+
+const swatches = [
+  { name: "ink", hex: "#0f3b3c", note: "10.99:1 on paper", class: "bg-ink" },
+  { name: "accent", hex: "#b54d2c", note: "4.63:1 on paper / 2.37:1 on ink", class: "bg-accent" },
+  { name: "paper", hex: "#f6f2ea", note: "10.99:1 on ink", class: "bg-paper" },
+];
+
+// The class has to be written out in full. Tailwind scans source text for
+// candidates and cannot see a class assembled at runtime from a fragment.
+const inkRamp = [
+  { step: "ink", cls: "text-ink", ratio: "10.99", ok: true },
+  { step: "ink/80", cls: "text-ink/80", ratio: "6.19", ok: true },
+  { step: "ink/70", cls: "text-ink/70", ratio: "4.68", ok: true },
+  { step: "ink/60", cls: "text-ink/60", ratio: "3.58", ok: false },
+  { step: "ink/50", cls: "text-ink/50", ratio: "2.76", ok: false },
+];
+
+const paperRamp = [
+  { step: "paper", cls: "text-paper", ratio: "10.99", ok: true },
+  { step: "paper/80", cls: "text-paper/80", ratio: "7.60", ok: true },
+  { step: "paper/70", cls: "text-paper/70", ratio: "6.23", ok: true },
+  { step: "paper/60", cls: "text-paper/60", ratio: "5.02", ok: true },
+  { step: "paper/50", cls: "text-paper/50", ratio: "3.98", ok: false },
+];
+
+const partners = ["ConnecTR", "London Public Library", "Western University", "City of London", "Anadolu Kültür"];
+---
+
+<BaseLayout
+  title="Styleguide"
+  description="Every component in every state. Development only."
+  indexable={false}
+>
+  <!-- ===================================================================== -->
+  <section class="mx-auto max-w-[1440px] px-6 py-20 md:px-10 lg:px-16">
+    <SectionHeader
+      number="00"
+      eyebrow="Styleguide"
+      title="Every part."
+      titleAccent="Every state."
+      as="h1"
+      size="display-1"
+      lede="Development only. Excluded from the sitemap and noindexed. Contrast figures are measured, not estimated."
+    />
+  </section>
+
+  <!-- Colour ============================================================== -->
+  <section class="rule mx-auto max-w-[1440px] px-6 py-20 md:px-10 lg:px-16">
+    <SectionHeader number="01" eyebrow="Colour" title="Three hexes." />
+
+    <div class="mt-12 grid gap-6 md:grid-cols-3">
+      {
+        swatches.map((s) => (
+          <div class="flex flex-col gap-3">
+            <div class:list={["h-32 border border-ink/15", s.class]} />
+            <p class="label text-ink">{s.name}</p>
+            <p class="label text-ink/70">{s.hex}</p>
+            <p class="text-sm text-ink/70">{s.note}</p>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="mt-16 grid gap-12 md:grid-cols-2">
+      <div>
+        <h3 class="label text-ink/70">Ink on paper</h3>
+        <ul class="mt-4 flex flex-col gap-2">
+          {
+            inkRamp.map((r) => (
+              <li class="flex items-baseline justify-between gap-4 border-b border-ink/10 pb-2">
+                <span class:list={["text-base", r.cls]}>{r.step} — body sample</span>
+                <span class="label shrink-0 text-ink/70">
+                  {r.ratio} {r.ok ? "PASS" : "LARGE ONLY"}
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div class="on-ink bg-ink p-8">
+        <h3 class="label text-paper/70">Paper on ink</h3>
+        <ul class="mt-4 flex flex-col gap-2">
+          {
+            paperRamp.map((r) => (
+              <li class="flex items-baseline justify-between gap-4 border-b border-paper/15 pb-2">
+                <span class:list={["text-base", r.cls]}>{r.step} — body sample</span>
+                <span class="label shrink-0 text-paper/70">
+                  {r.ratio} {r.ok ? "PASS" : "LARGE ONLY"}
+                </span>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="mt-6 text-sm text-paper/70" style="max-inline-size:52ch">
+          Accent on ink measures 2.37:1 and fails every threshold. On this ground it is
+          ornament only — never a word, never a state.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Type ================================================================ -->
+  <section class="rule mx-auto max-w-[1440px] px-6 py-20 md:px-10 lg:px-16">
+    <SectionHeader number="02" eyebrow="Type" title="Two registers." />
+
+    <div class="mt-12 flex flex-col gap-10">
+      <div>
+        <p class="label text-ink/70">display-1 — clamp(2.75rem, 11vw, 7rem)</p>
+        <p class="display-1 mt-3">A circle of<br /><span class="text-accent">neighbours.</span></p>
+      </div>
+      <div>
+        <p class="label text-ink/70">display-2 — clamp(2rem, 6.5vw, 4.5rem)</p>
+        <p class="display-2 mt-3">What we do.</p>
+      </div>
+      <div>
+        <p class="label text-ink/70">display-3 — clamp(1.375rem, 3vw, 2rem)</p>
+        <p class="display-3 mt-3">Language classes.</p>
+      </div>
+      <div>
+        <p class="label text-ink/70">label — 10px mono, 0.25em</p>
+        <p class="label mt-3 text-ink">(03) People &middot; 12 Programs &middot; Est. 2019</p>
+      </div>
+      <div>
+        <p class="label text-ink/70">body — 65ch measure, ink/80</p>
+        <p class="body-copy mt-3">
+          Harmony Circle runs language classes, a weekly community kitchen and a newcomer
+          settlement clinic out of a rented hall in east London. Everything we do is built by
+          volunteers who arrived the same way, and every programme is open to <a
+            href="/get-involved">anyone who walks in</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ring ================================================================ -->
+  <section class="rule mx-auto max-w-[1440px] px-6 py-20 md:px-10 lg:px-16">
+    <SectionHeader
+      number="03"
+      eyebrow="Ornament"
+      title="The ring."
+      lede="Five sizes, four variants, four tones. Built once, used everywhere. The reference site's rotated square never appears."
+    />
+
+    <div class="mt-12 overflow-x-auto">
+      <table class="w-full min-w-[520px] border-collapse">
+        <thead>
+          <tr class="border-b border-ink/15">
+            <th class="label py-3 text-left text-ink/70">variant</th>
+            {ringSizes.map((s) => <th class="label py-3 text-left text-ink/70">{s}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {
+            ringVariants.map((v) => (
+              <tr class="border-b border-ink/10">
+                <td class="label py-5 text-ink">{v}</td>
+                {ringSizes.map((s) => (
+                  <td class="py-5">
+                    <Ring size={s} variant={v} tone="accent" />
+                  </td>
+                ))}
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <div class="mt-10 flex flex-wrap items-center gap-8">
+      <span class="label text-ink/70">tones</span>
+      <span class="flex items-center gap-3"><Ring size="lg" tone="accent" /><span class="label text-ink">accent</span></span>
+      <span class="flex items-center gap-3"><Ring size="lg" tone="ink" /><span class="label text-ink">ink</span></span>
+      <span class="on-ink flex items-center gap-3 bg-ink px-4 py-3"><Ring size="lg" tone="paper" /><span class="label text-paper">paper</span></span>
+      <span class="flex items-center gap-3 text-accent"><Ring size="lg" tone="current" /><span class="label">current</span></span>
+    </div>
+  </section>
+
+  <!-- Button ============================================================== -->
+  <section class="rule mx-auto max-w-[1440px] px-6 py-20 md:px-10 lg:px-16">
+    <SectionHeader
+      number="04"
+      eyebrow="Buttons"
+      title="Pill. Mono."
+      titleAccent="Ring suffix."
+      lede="Hover fills the ring and throws a coloured shadow. Focus is a 2px accent outline at 2px offset. Minimum target 44×44 at every size."
+    />
+
+    <div class="mt-12 flex flex-col gap-10">
+      <div class="flex flex-col gap-4">
+        <p class="label text-ink/70">size md — rest</p>
+        <div class="flex flex-wrap gap-4">
+          {buttonVariants.map((v) => <Button variant={v}>{v}</Button>)}
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <p class="label text-ink/70">size sm</p>
+        <div class="flex flex-wrap gap-4">
+          {buttonVariants.map((v) => <Button variant={v} size="sm">{v}</Button>)}
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <p class="label text-ink/70">disabled</p>
+        <div class="flex flex-wrap gap-4">
+          {buttonVariants.map((v) => <Button variant={v} disabled>{v}</Button>)}
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-4">
+        <p class="label text-ink/70">as link (renders &lt;a&gt;) &middot; glow (donate CTA only)</p>
+        <div class="flex flex-wrap gap-4">
+          <Button href="/donate" variant="primary">Anchor</Button>
+          <Button href="/donate" variant="accent" glow>Donate</Button>
+        </div>
+      </div>
+
+      <div class="on-ink flex flex-col gap-4 bg-ink p-8">
+        <p class="label text-paper/70">on ink</p>
+        <div class="flex flex-wrap gap-4">
+          <Button variant="accent">Accent</Button>
+          <Button
+            variant="outline"
+            class="border-paper/30 text-paper hover:border-paper hover:bg-paper hover:text-ink"
+          >
+            Outline
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SectionHeader + StatRow ============================================= -->
+  <section class="rule mx-auto max-w-[1440px] px-6 py-20 md:px-10 lg:px-16">
+    <SectionHeader
+      number="05"
+      eyebrow="Composition"
+      title="Header."
+      titleAccent="Stats."
+    />
+
+    <div class="mt-12 flex flex-col gap-16">
+      <SectionHeader title="No eyebrow." size="display-3" as="h3" />
+
+      <SectionHeader
+        eyebrow="With action"
+        title="Header with a slot."
+        size="display-3"
+        as="h3"
+      >
+        <div><Button href="/programs" variant="outline" size="sm">View all</Button></div>
+      </SectionHeader>
+
+      <div>
+        <p class="label mb-6 text-ink/70">StatRow — four</p>
+        <StatRow
+          items={[
+            { value: "{{N}}", label: "Members" },
+            { value: "{{N}}", label: "Programs" },
+            { value: "{{N}}", label: "Volunteers" },
+            { value: "{{YEAR}}", label: "Founded" },
+          ]}
+        />
+      </div>
+
+      <div class="on-ink bg-ink p-8">
+        <p class="label mb-6 text-paper/70">StatRow — two, on ink</p>
+        <StatRow
+          onInk
+          items={[
+            { value: "{{N}}", label: "Weekly attendance" },
+            { value: "{{N}}", label: "Languages spoken" },
+          ]}
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Card ================================================================ -->
+  <section class="rule mx-auto max-w-[1440px] px-6 py-20 md:px-10 lg:px-16">
+    <SectionHeader
+      number="06"
+      eyebrow="Cards"
+      title="Traced borders."
+      lede="Hover draws the border in accent, four staggered edges rather than a colour swap."
+    />
+
+    <div class="mt-12 grid gap-6 md:grid-cols-3">
+      <Card title="Plain card" eyebrow="No link">
+        A card with no href. Nothing is clickable and the title is not an anchor.
+      </Card>
+      <Card title="Linked card" eyebrow="Program" href="/programs" meta="Tuesdays · 18:00">
+        The title carries the anchor and a pseudo-element stretches it over the card, so the
+        accessible name is the title rather than the whole block.
+      </Card>
+      <Card title="With meta" eyebrow="Event" meta="{{DATE}}">
+        Meta sits at the bottom in micro-label, pushed down so cards in a row line up.
+      </Card>
+    </div>
+
+    <div class="on-ink mt-6 grid gap-6 bg-ink p-8 md:grid-cols-2">
+      <Card onInk title="On ink" eyebrow="Inverted" meta="paper/60">
+        The same card on the dark ground. Borders move to paper/15 and body copy to paper/80.
+      </Card>
+      <Card onInk title="Linked on ink" eyebrow="Inverted" href="/events">
+        Accent still traces the border on hover, which is ornament and therefore allowed here.
+      </Card>
+    </div>
+  </section>
+
+  <!-- Accordion =========================================================== -->
+  <section class="rule mx-auto max-w-[1440px] px-6 py-20 md:px-10 lg:px-16">
+    <SectionHeader
+      number="07"
+      eyebrow="Accordion"
+      title="Native details."
+      lede="No island. Keyboard operation, expanded state and no-JS behaviour all come from the element."
+    />
+
+    <div class="mt-12 grid gap-16 lg:grid-cols-2">
+      <div>
+        <Accordion question="Closed by default">
+          The marker is a plain ring. Opening cross-fades it to a ring inside a ring — no icon
+          swap, nothing reflows.
+        </Accordion>
+        <Accordion question="Open by default" open>
+          This one carries the `open` attribute, so it is expanded in the initial HTML.
+        </Accordion>
+        <Accordion question="A third, to show the stack">
+          Each is an independent `details`. Nothing closes a sibling, because a set of
+          questions is not a set of radio buttons.
+        </Accordion>
+      </div>
+
+      <div class="on-ink bg-ink p-8">
+        <Accordion onInk question="On ink, closed">
+          Paper/80 body, paper/15 rule, paper ring.
+        </Accordion>
+        <Accordion onInk question="On ink, open" open>
+          The ring marker uses paper here rather than accent, because the marker is the only
+          thing distinguishing the two states visually.
+        </Accordion>
+      </div>
+    </div>
+  </section>
+
+  <!-- Marquee ============================================================= -->
+  <section class="rule py-20">
+    <div class="mx-auto max-w-[1440px] px-6 md:px-10 lg:px-16">
+      <SectionHeader
+        number="08"
+        eyebrow="Marquee"
+        title="Duplicated track."
+        lede="One list rendered twice and translated -50%. The duplicate is aria-hidden. Under reduced motion it stops and becomes scrollable."
+      />
+    </div>
+
+    <div class="mt-12 flex flex-col gap-8">
+      <Marquee label="Partner organisations">
+        {partners.map((p) => (
+          <li class="label flex items-center gap-3 whitespace-nowrap text-ink/70">
+            <Ring size="xs" tone="accent" />
+            {p}
+          </li>
+        ))}
+      </Marquee>
+
+      <Marquee reverse label="Partner organisations, reverse">
+        {partners.map((p) => (
+          <li class="label flex items-center gap-3 whitespace-nowrap text-ink/70">
+            <Ring size="xs" variant="dotted" tone="accent" />
+            {p}
+          </li>
+        ))}
+      </Marquee>
+    </div>
+  </section>
+
+  <!-- Prose + reveal ====================================================== -->
+  <section class="rule mx-auto max-w-[1440px] px-6 py-20 md:px-10 lg:px-16">
+    <SectionHeader number="09" eyebrow="Prose" title="Long form." />
+
+    <Prose class="mt-12">
+      <h2>A heading inside prose</h2>
+      <p>
+        Article bodies render through this component. There is no typography plugin, because
+        the system has two registers and a body treatment and a plugin would introduce a third
+        set of sizes nobody chose. Links are <a href="/about">underlined</a>, because colour
+        alone must never be the only signal.
+      </p>
+      <ul>
+        <li>List markers are accent.</li>
+        <li>The measure is capped at 65ch.</li>
+        <li><strong>Strong</strong> lifts to full-strength ink.</li>
+      </ul>
+      <blockquote>A quotation, marked by an accent rule rather than a tint block.</blockquote>
+    </Prose>
+
+    <div class="reveal mt-16 border border-ink/15 p-8">
+      <p class="label text-ink/70">.reveal</p>
+      <p class="mt-3 text-base text-ink/80">
+        This block fades up on scroll. It is fully visible in the initial HTML — the opacity
+        rule only applies once the observer script has confirmed it will run.
+      </p>
+    </div>
+  </section>
+</BaseLayout>

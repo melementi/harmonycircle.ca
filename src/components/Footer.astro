@@ -1,0 +1,82 @@
+---
+import Ring from "./Ring.astro";
+import { strings } from "@/i18n";
+
+const t = strings("en");
+const year = new Date().getFullYear();
+
+const explore = [
+  { href: "/about", label: t.nav.about },
+  { href: "/programs", label: t.nav.programs },
+  { href: "/events", label: t.nav.events },
+  { href: "/news", label: t.nav.news },
+];
+
+const connect = [
+  { href: "/get-involved", label: t.nav.getInvolved },
+  { href: "/partners", label: t.nav.partners },
+  { href: "/contact", label: t.nav.contact },
+  { href: "/donate", label: t.nav.donate },
+];
+
+const legal = [
+  { href: "/privacy-policy", label: t.footer.privacy },
+  { href: "/accessibility", label: t.footer.accessibility },
+];
+---
+
+<footer class="on-ink bg-ink text-paper">
+  <div class="mx-auto max-w-[1440px] px-6 py-16 md:px-10 md:py-20 lg:px-16">
+    <div class="grid gap-12 lg:grid-cols-[2fr_1fr_1fr_1fr]">
+      <div class="flex flex-col gap-6">
+        <div class="flex items-center gap-3">
+          <Ring size="lg" variant="dual" tone="paper" />
+          <span class="label text-paper">{t.footer.heading}</span>
+        </div>
+        <p class="text-base leading-relaxed text-paper/80" style="max-inline-size:38ch">
+          {t.tagline}
+        </p>
+
+        {/* Never invented. docs/LAUNCH-BLOCKERS.md carries every one of these. */}
+        <address class="flex flex-col gap-1 text-sm not-italic text-paper/70">
+          <span>{"{{STREET_ADDRESS}}"}</span>
+          <span>{"{{PHONE}}"}</span>
+          <span>{"{{EMAIL_GENERAL}}"}</span>
+        </address>
+      </div>
+
+      {
+        [
+          { title: t.footer.explore, items: explore },
+          { title: t.footer.connect, items: connect },
+          { title: t.footer.legal, items: legal },
+        ].map((column) => (
+          <nav aria-label={column.title} class="flex flex-col gap-4">
+            <h2 class="label text-paper/60">{column.title}</h2>
+            <ul class="flex flex-col gap-3">
+              {column.items.map((item) => (
+                <li>
+                  <a
+                    href={item.href}
+                    class="text-base text-paper/80 transition-colors hover:text-paper"
+                  >
+                    {item.label}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+        ))
+      }
+    </div>
+
+    <div class="mt-16 flex flex-col gap-4 border-t border-paper/15 pt-8 md:flex-row md:items-start md:justify-between">
+      <p class="text-sm text-paper/60" style="max-inline-size:60ch">
+        {t.footer.landAcknowledgement}
+      </p>
+      <p class="label shrink-0 text-paper/60">
+        &copy; {year} {t.siteName}. {t.footer.rights}
+      </p>
+    </div>
+  </div>
+</footer>

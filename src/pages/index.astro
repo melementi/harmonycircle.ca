@@ -1,0 +1,28 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import Button from "@/components/Button.astro";
+import SectionHeader from "@/components/SectionHeader.astro";
+
+export const prerender = true;
+---
+
+<BaseLayout
+  title="Home"
+  description="Harmony Circle is a Turkish community foundation in London, Ontario."
+>
+  <section class="mx-auto max-w-[1440px] px-6 py-24 md:px-10 lg:px-16">
+    <SectionHeader
+      number="01"
+      eyebrow="Placeholder"
+      title="A circle of"
+      titleAccent="neighbours."
+      as="h1"
+      size="display-1"
+      lede="Phase 1 scaffolding. The home page is built in phase 2 with written placeholder copy."
+    >
+      <div class="flex flex-wrap gap-4">
+        <Button href="/styleguide" variant="primary">Styleguide</Button>
+      </div>
+    </SectionHeader>
+  </section>
+</BaseLayout>

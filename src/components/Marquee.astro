@@ -1,0 +1,40 @@
+---
+/**
+ * The standard duplicated-track CSS ticker: one list, rendered twice, translated
+ * -50%. No library.
+ *
+ * The duplicate is `aria-hidden`, so a screen reader hears the list once.
+ *
+ * Under `prefers-reduced-motion` the animation collapses (global rule in
+ * global.css) and the track becomes horizontally scrollable, so the logos stay
+ * reachable rather than freezing half off-screen.
+ */
+export interface Props {
+  reverse?: boolean;
+  label: string;
+  class?: string;
+}
+
+const { reverse = false, label, class: className = "" } = Astro.props;
+const animation = reverse ? "animate-marquee-reverse" : "animate-marquee";
+---
+
+<div
+  class:list={[
+    "relative flex overflow-hidden motion-reduce:overflow-x-auto",
+    // Fade the edges into the ground rather than cutting the logos off. This is
+    // a mask, not a gradient surface — the one gradient the system allows.
+    "[mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]",
+    "motion-reduce:[mask-image:none]",
+    className,
+  ]}
+  role="group"
+  aria-label={label}
+>
+  <ul class:list={["flex shrink-0 items-center gap-16 pr-16", animation]}>
+    <slot />
+  </ul>
+  <ul class:list={["flex shrink-0 items-center gap-16 pr-16", animation]} aria-hidden="true">
+    <slot />
+  </ul>
+</div>

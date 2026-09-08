@@ -1,0 +1,291 @@
+/* ---------------------------------------------------------------------------
+ * Harmony Circle — the whole colour system.
+ *
+ * Three brand hexes live in the @theme block below and nowhere else in the
+ * codebase. Everything else is opacity math on them. Re-skinning the site is
+ * editing three lines here.
+ *
+ * Measured WCAG 2.x contrast, the numbers the floors in docs/DESIGN-SYSTEM.md
+ * §1.4 come from:
+ *
+ *   ink   on paper   10.99   paper on ink     10.99
+ *   ink/80 on paper    6.19   paper/80 on ink   7.60   ← body copy
+ *   ink/70 on paper    4.68   paper/70 on ink   6.23   ← floor for any text
+ *   ink/60 on paper    3.58   paper/50 on ink   3.98   ← ≥24px display only
+ *   accent on paper    4.63   white on accent   5.17
+ *   accent on ink      2.37   ← fails everything. Accent is decorative only on
+ *                               ink surfaces. No opacity step fixes this;
+ *                               accent/70 on ink blends toward ink and is worse.
+ *
+ * The brief's #c75b39 measured 3.77 on paper and could not carry body text or
+ * the 10px labels, so the accent is darkened. docs/DESIGN-SYSTEM.md §1.2.
+ * ------------------------------------------------------------------------- */
+
+@import "@fontsource-variable/inter/wght.css";
+@import "@fontsource-variable/jetbrains-mono/wght.css";
+@import "tailwindcss";
+
+@theme {
+  /* ---- the only three brand values in the codebase ---- */
+  --color-ink: #0f3b3c;
+  --color-accent: #b54d2c;
+  --color-paper: #f6f2ea;
+
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, monospace;
+
+  --radius: 0.5rem;
+
+  --animate-fade-up: fade-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-marquee-reverse: marquee-reverse 40s linear infinite;
+  --animate-ring-expand: ring-expand 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+  --animate-glow-pulse: glow-pulse 2.4s ease-in-out infinite;
+  --animate-shimmer-sweep: shimmer-sweep 0.9s ease-out;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes marquee {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes marquee-reverse {
+    from {
+      transform: translateX(-50%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+  @keyframes shimmer-sweep {
+    from {
+      transform: translateX(-100%) skewX(-12deg);
+    }
+    to {
+      transform: translateX(200%) skewX(-12deg);
+    }
+  }
+  @keyframes glow-pulse {
+    0%,
+    100% {
+      box-shadow: 0 0 0 0 rgb(181 77 44 / 0.45);
+    }
+    50% {
+      box-shadow: 0 0 40px -8px rgb(181 77 44 / 0.6);
+    }
+  }
+  @keyframes ring-expand {
+    from {
+      opacity: 0;
+      transform: scale(0.6);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  @keyframes trace-top {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+  @keyframes trace-right {
+    from {
+      transform: scaleY(0);
+    }
+    to {
+      transform: scaleY(1);
+    }
+  }
+  @keyframes trace-bottom {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+  @keyframes trace-left {
+    from {
+      transform: scaleY(0);
+    }
+    to {
+      transform: scaleY(1);
+    }
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * shadcn/ui token contract, so shadcn-style components drop in later without a
+ * translation layer. One :root block. There is deliberately no `.dark` block —
+ * the reference site ships a dead one with no toggle and zero `dark:`
+ * utilities compiled, which is teardown §6's "dead theme CSS".
+ *
+ * --destructive is the one value not derived from the three brand hexes. It is
+ * a safety signal in the admin panel, admin-only, and never appears on a
+ * public page.
+ * ------------------------------------------------------------------------- */
+:root {
+  --background: var(--color-paper);
+  --foreground: var(--color-ink);
+  --card: #ffffff;
+  --card-foreground: var(--color-ink);
+  --popover: #ffffff;
+  --popover-foreground: var(--color-ink);
+  --primary: var(--color-ink);
+  --primary-foreground: var(--color-paper);
+  --secondary: #ebe6da;
+  --secondary-foreground: var(--color-ink);
+  --muted: #ebe6da;
+  --muted-foreground: #547270; /* = ink/70 on paper, 4.68:1 */
+  --accent: var(--color-accent);
+  --accent-foreground: #ffffff; /* 5.17:1 */
+  --destructive: #a11d1d;
+  --destructive-foreground: #ffffff;
+  --border: color-mix(in srgb, var(--color-ink) 15%, transparent);
+  --input: color-mix(in srgb, var(--color-ink) 20%, transparent);
+  --ring: var(--color-accent);
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: #ffffff;
+  }
+
+  /* One focus treatment everywhere. Accent is 4.63:1 against paper, well over
+   * the 3:1 SC 1.4.11 asks of a focus indicator. On ink surfaces it switches
+   * to paper, because accent on ink is 2.37:1. */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+  .on-ink :focus-visible,
+  .on-ink:focus-visible {
+    outline-color: var(--color-paper);
+  }
+
+  /* Anything that is not display or micro-label is body, and body has one
+   * treatment. Measure is capped where it matters, not globally. */
+  p,
+  li {
+    text-wrap: pretty;
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+}
+
+@layer components {
+  /* --- register one: display ------------------------------------------- */
+  .display-1 {
+    @apply font-black uppercase tracking-tighter leading-[0.85];
+    font-size: clamp(2.75rem, 11vw, 7rem);
+  }
+  .display-2 {
+    @apply font-black uppercase tracking-tighter leading-[0.85];
+    font-size: clamp(2rem, 6.5vw, 4.5rem);
+  }
+  /* tracking-tighter reads as optical correction at display-1 and as a mistake
+   * at this size, so display-3 tightens less. */
+  .display-3 {
+    @apply font-black uppercase tracking-tight leading-[0.95];
+    font-size: clamp(1.375rem, 3vw, 2rem);
+  }
+
+  /* --- register two: micro-label ---------------------------------------- */
+  .label {
+    @apply font-mono uppercase tracking-[0.25em];
+    font-size: 0.625rem;
+  }
+
+  /* --- everything else is body ------------------------------------------ */
+  .body-copy {
+    @apply text-base leading-relaxed text-ink/80 md:text-lg;
+    max-inline-size: 65ch;
+  }
+
+  /* Links in running copy are underlined, because colour alone must not be the
+   * only signal (SC 1.4.1). */
+  .body-copy a {
+    @apply text-accent underline decoration-ink/25 underline-offset-4;
+  }
+  .body-copy a:hover {
+    @apply decoration-accent;
+  }
+
+  /* --- the section reveal ----------------------------------------------- */
+  /* Content is visible in the initial HTML. `js-reveal` is set on <html> by the
+   * observer script only once it knows it will run, so a non-JS client and a
+   * crawler see the page, never a stack of invisible sections. */
+  .js-reveal .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+      opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+      transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+  .js-reveal .reveal.is-in {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* --- hairline section rule -------------------------------------------- */
+  .rule {
+    @apply border-t border-ink/10;
+  }
+  .on-ink .rule {
+    @apply border-paper/15;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+ * Reduced motion. Global, and it is the last word — every animation and
+ * transition above collapses. The marquee additionally pauses and becomes a
+ * scrollable row so its contents stay reachable (Marquee.astro).
+ * ------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .js-reveal .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

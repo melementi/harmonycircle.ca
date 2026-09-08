@@ -1,0 +1,16 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "harmonycircle",
+  // The adapter's unified entrypoint, which serves both `wrangler dev` and the
+  // deployed Worker. Pointing this at `dist/_worker.js/index.js` is the pre-v13
+  // form and breaks the build, because the file does not exist yet when the
+  // Cloudflare Vite plugin resolves the config.
+  "main": "@astrojs/cloudflare/entrypoints/server",
+  "compatibility_date": "2026-09-07",
+  "compatibility_flags": ["nodejs_compat", "global_fetch_strictly_public"],
+  "assets": {
+    "binding": "ASSETS",
+    "directory": "./dist"
+  },
+  "observability": { "enabled": true }
+}

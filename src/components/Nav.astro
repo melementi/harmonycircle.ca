@@ -1,0 +1,71 @@
+---
+import MobileNav from "./islands/MobileNav.tsx";
+import Button from "./Button.astro";
+import Ring from "./Ring.astro";
+import { strings } from "@/i18n";
+
+const t = strings("en");
+const path = Astro.url.pathname;
+
+const links = [
+  { href: "/about", label: t.nav.about },
+  { href: "/programs", label: t.nav.programs },
+  { href: "/events", label: t.nav.events },
+  { href: "/get-involved", label: t.nav.getInvolved },
+  { href: "/news", label: t.nav.news },
+  { href: "/partners", label: t.nav.partners },
+  { href: "/contact", label: t.nav.contact },
+];
+---
+
+<header class="sticky top-0 z-40 border-b border-ink/10 bg-paper/85 backdrop-blur-sm">
+  <div class="mx-auto flex max-w-[1440px] items-center justify-between gap-3 px-6 py-4 md:gap-8 md:px-10 lg:px-16">
+    <a href="/" class="flex items-center gap-3" aria-label={`${t.siteName} — ${t.nav.home}`}>
+      <Ring size="lg" variant="dual" tone="accent" />
+      <span class="label whitespace-nowrap text-ink">{t.siteName}</span>
+    </a>
+
+    <nav aria-label={t.nav.label} class="hidden lg:block">
+      <ul class="flex items-center gap-8">
+        {
+          links.map((link) => {
+            const current = path === link.href || path.startsWith(`${link.href}/`);
+            return (
+              <li>
+                <a
+                  href={link.href}
+                  aria-current={current ? "page" : undefined}
+                  class:list={[
+                    "label flex items-center gap-2 py-2 transition-colors",
+                    current ? "text-ink" : "text-ink/70 hover:text-ink",
+                  ]}
+                >
+                  <Ring
+                    size="xs"
+                    variant="solid"
+                    tone="accent"
+                    class={current ? "" : "invisible"}
+                  />
+                  {link.label}
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </nav>
+
+    <div class="flex items-center gap-2">
+      <Button href="/donate" variant="accent" size="sm">{t.nav.donate}</Button>
+
+      <MobileNav
+        client:idle
+        links={[{ href: "/", label: t.nav.home }, ...links]}
+        currentPath={path}
+        openLabel={t.nav.openMenu}
+        closeLabel={t.nav.closeMenu}
+        donateLabel={t.nav.donate}
+      />
+    </div>
+  </div>
+</header>

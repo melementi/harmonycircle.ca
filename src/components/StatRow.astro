@@ -1,0 +1,28 @@
+---
+/**
+ * Number in display type, label in micro-label, hairline dividers. Two columns
+ * on mobile because four 10px labels side by side at 390px is unreadable.
+ */
+export interface Props {
+  items: { value: string; label: string }[];
+  onInk?: boolean;
+  class?: string;
+}
+
+const { items, onInk = false, class: className = "" } = Astro.props;
+
+const divide = onInk ? "divide-paper/15" : "divide-ink/10";
+const valueTone = onInk ? "text-paper" : "text-ink";
+const labelTone = onInk ? "text-paper/70" : "text-ink/70";
+---
+
+<dl class:list={["grid grid-cols-2 divide-y md:grid-cols-4 md:divide-y-0", divide, "divide-x", className]}>
+  {
+    items.map((item) => (
+      <div class="flex flex-col gap-2 px-4 py-6 first:pl-0 md:px-8">
+        <dd class:list={["display-3", valueTone]}>{item.value}</dd>
+        <dt class:list={["label", labelTone]}>{item.label}</dt>
+      </div>
+    ))
+  }
+</dl>

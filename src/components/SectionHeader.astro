@@ -1,0 +1,65 @@
+---
+import Ring from "./Ring.astro";
+
+/**
+ * Numbered eyebrow, display headline, optional lede. The editorial convention
+ * the reference site uses and the thing that stops a page reading as a SaaS
+ * template.
+ *
+ * The headline is one to three words ending in a full stop, its second line in
+ * accent — except on ink, where accent measures 2.37:1 and the second line
+ * falls back to paper/50 (3.98:1, legal because display type is large text).
+ */
+export interface Props {
+  number?: string;
+  eyebrow?: string;
+  title: string;
+  titleAccent?: string;
+  lede?: string;
+  as?: "h1" | "h2" | "h3";
+  size?: "display-1" | "display-2" | "display-3";
+  onInk?: boolean;
+  class?: string;
+}
+
+const {
+  number,
+  eyebrow,
+  title,
+  titleAccent,
+  lede,
+  as: Tag = "h2",
+  size = "display-2",
+  onInk = false,
+  class: className = "",
+} = Astro.props;
+
+const accentLineClass = onInk ? "text-paper/50" : "text-accent";
+---
+
+<div class:list={["flex flex-col gap-6", className]}>
+  {
+    (number || eyebrow) && (
+      <p class="label flex items-center gap-3">
+        <Ring size="xs" variant="dotted" tone={onInk ? "paper" : "accent"} />
+        {number && <span class={onInk ? "text-paper/70" : "text-accent"}>({number})</span>}
+        {eyebrow && <span class={onInk ? "text-paper/70" : "text-ink/70"}>{eyebrow}</span>}
+      </p>
+    )
+  }
+
+  <Tag class:list={[size, onInk ? "text-paper" : "text-ink"]}>
+    {title}
+    {titleAccent && <><br /><span class={accentLineClass}>{titleAccent}</span></>}
+  </Tag>
+
+  {
+    lede && (
+      <p class:list={["text-base leading-relaxed md:text-lg", onInk ? "text-paper/80" : "text-ink/80"]} style="max-inline-size:45ch">
+        {lede}
+      </p>
+    )
+  }
+
+  <slot />
+</div>

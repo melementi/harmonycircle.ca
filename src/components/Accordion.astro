@@ -1,0 +1,57 @@
+---
+import Ring from "./Ring.astro";
+
+/**
+ * Native `<details>`/`<summary>`.
+ *
+ * Not a React island, and not a div with a click handler: the element already
+ * gives keyboard operation, the expanded/collapsed state exposed to assistive
+ * tech, and correct behaviour with zero JavaScript. The ring marker is pure CSS
+ * on `[open]`. The reference site's FAQ does the same thing and it is one of
+ * the things it gets right.
+ */
+export interface Props {
+  question: string;
+  open?: boolean;
+  onInk?: boolean;
+  class?: string;
+}
+
+const { question, open = false, onInk = false, class: className = "" } = Astro.props;
+
+const border = onInk ? "border-paper/15" : "border-ink/10";
+const titleTone = onInk ? "text-paper" : "text-ink";
+const bodyTone = onInk ? "text-paper/80" : "text-ink/80";
+---
+
+<details open={open} class:list={["group border-b", border, className]}>
+  <summary
+    class:list={[
+      "flex cursor-pointer items-center justify-between gap-6 py-5 list-none [&::-webkit-details-marker]:hidden",
+      titleTone,
+    ]}
+  >
+    <span class="text-base font-medium md:text-lg">{question}</span>
+
+    {/* Closed: a plain ring. Open: a ring inside a ring. Two stacked SVGs
+        cross-fading, so there is no icon swap and nothing to reflow. */}
+    <span class="grid size-4 shrink-0 place-items-center" aria-hidden="true">
+      <Ring
+        size="md"
+        variant="outline"
+        tone={onInk ? "paper" : "accent"}
+        class="col-start-1 row-start-1 transition-opacity duration-300 group-open:opacity-0"
+      />
+      <Ring
+        size="md"
+        variant="dual"
+        tone={onInk ? "paper" : "accent"}
+        class="col-start-1 row-start-1 opacity-0 transition-opacity duration-300 group-open:opacity-100"
+      />
+    </span>
+  </summary>
+
+  <div class:list={["pb-6 text-base leading-relaxed", bodyTone]} style="max-inline-size:65ch">
+    <slot />
+  </div>
+</details>

@@ -1,0 +1,83 @@
+---
+/**
+ * The ornament.
+ *
+ * ConnecTR's entire ornament language is one `rotate-45` red square, used as
+ * bullets, button suffixes, accordion chevrons and section markers. Ours is a
+ * ring, in the same places, for the same reasons — it matches the name and it
+ * makes the two sites tell apart at a glance while keeping identical grammar.
+ *
+ * Built once, used everywhere. Never hand-roll a circle.
+ *
+ * Decorative by default: `aria-hidden`, `focusable="false"`. Pass `label` only
+ * when the ring itself carries meaning, and even then the meaning must also be
+ * carried by something else (`aria-current`, visible text) — never by the ring
+ * alone.
+ *
+ * On ink surfaces accent measures 2.37:1, so an accent ring there is ornament
+ * and nothing more. Anything meaningful on ink uses tone="paper".
+ */
+export interface Props {
+  size?: "xs" | "sm" | "md" | "lg" | "xl";
+  variant?: "outline" | "solid" | "dual" | "dotted";
+  tone?: "accent" | "ink" | "paper" | "current";
+  label?: string;
+  class?: string;
+}
+
+const {
+  size = "sm",
+  variant = "outline",
+  tone = "accent",
+  label,
+  class: className = "",
+} = Astro.props;
+
+/** Rendered box, px. */
+const PX = { xs: 8, sm: 12, md: 16, lg: 24, xl: 40 } as const;
+/** Rendered stroke, px. Heavier rings can afford a heavier line. */
+const STROKE_PX = { xs: 1, sm: 1, md: 1.5, lg: 2, xl: 2 } as const;
+
+const px = PX[size];
+// The viewBox is a constant 24 units, so the stroke has to be scaled back up
+// to survive the shrink to `px`.
+const stroke = (STROKE_PX[size] * 24) / px;
+const r = 12 - stroke / 2;
+
+const toneClass = {
+  accent: "text-accent",
+  ink: "text-ink",
+  paper: "text-paper",
+  current: "",
+}[tone];
+
+const a11y = label
+  ? ({ role: "img" as const, "aria-label": label })
+  : ({ "aria-hidden": "true" as const });
+---
+
+<svg
+  width={px}
+  height={px}
+  viewBox="0 0 24 24"
+  fill="none"
+  focusable="false"
+  class:list={["inline-block shrink-0 align-middle", toneClass, className]}
+  {...a11y}
+>
+  {variant === "solid" && <circle cx="12" cy="12" r="12" fill="currentColor" />}
+
+  {
+    variant !== "solid" && (
+      <circle cx="12" cy="12" r={r} stroke="currentColor" stroke-width={stroke} />
+    )
+  }
+
+  {
+    variant === "dual" && (
+      <circle cx="12" cy="12" r={r * 0.4} stroke="currentColor" stroke-width={stroke} />
+    )
+  }
+
+  {variant === "dotted" && <circle cx="12" cy="12" r={r * 0.32} fill="currentColor" />}
+</svg>
