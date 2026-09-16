@@ -2,3 +2,8 @@ dist
 .astro
 node_modules
 package-lock.json
+
+# Machine-assembled. brief.html carries a minified JSON island that the page
+# reads back to republish itself; reformatting it is churn at best.
+docs/content-brief/brief.html
+docs/content-brief/fields.json

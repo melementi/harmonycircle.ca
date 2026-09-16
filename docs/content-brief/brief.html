@@ -1,0 +1,1713 @@
+<title>Harmony Circle Content Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400..900&family=JetBrains+Mono:wght@400;500;700&display=swap">
+<style id="hc-style">
+/* ===========================================================================
+   Harmony Circle — content brief.
+   The three brand hexes are the project's, resolved out of Tailwind so this
+   page stands alone. Nothing here introduces a fourth colour: every other
+   value is one of the three at an opacity step.
+   =========================================================================== */
+:root{
+  --ink:#0f3b3c;
+  --accent:#b54d2c;
+  --paper:#f6f2ea;
+
+  --ink-90:rgba(15,59,60,.90);
+  --ink-80:rgba(15,59,60,.80);
+  --ink-70:rgba(15,59,60,.70);
+  --ink-55:rgba(15,59,60,.55);
+  --ink-40:rgba(15,59,60,.40);
+  --ink-25:rgba(15,59,60,.25);
+  --ink-15:rgba(15,59,60,.15);
+  --ink-10:rgba(15,59,60,.10);
+  --ink-06:rgba(15,59,60,.06);
+
+  --paper-80:rgba(246,242,234,.80);
+  --paper-70:rgba(246,242,234,.70);
+  --paper-60:rgba(246,242,234,.60);
+  --paper-50:rgba(246,242,234,.50);
+  --paper-15:rgba(246,242,234,.15);
+  --paper-08:rgba(246,242,234,.08);
+
+  --accent-70:rgba(181,77,44,.70);
+  --accent-30:rgba(181,77,44,.30);
+  --accent-12:rgba(181,77,44,.12);
+
+  --sans:"Inter","Inter Variable",ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"JetBrains Mono","JetBrains Mono Variable",ui-monospace,"SFMono-Regular",Menlo,monospace;
+
+  --shell:56px;      /* editor toolbar height */
+  --dock:0px;        /* inspector height, set by script */
+  --ease:cubic-bezier(.16,1,.3,1);
+  color-scheme:light;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+
+/* This page commits to one visual world — the brand's warm-bone ground. It is
+   the site being previewed, so it does not follow the viewer's theme; every
+   colour is painted explicitly so it holds on either host ground. */
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:16px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-wrap:break-word;
+}
+::selection{background:var(--accent);color:#fff}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.on-ink :focus-visible,.on-ink:focus-visible{outline-color:var(--paper)}
+img{max-width:100%}
+p,li{text-wrap:pretty}
+h1,h2,h3{text-wrap:balance;margin:0}
+button{font:inherit;color:inherit}
+
+/* --- register one: display ------------------------------------------------ */
+.display-1{font-weight:900;text-transform:uppercase;letter-spacing:-.05em;line-height:.85;font-size:clamp(2.75rem,11vw,7rem)}
+.display-2{font-weight:900;text-transform:uppercase;letter-spacing:-.05em;line-height:.85;font-size:clamp(2rem,6.5vw,4.5rem)}
+.display-3{font-weight:900;text-transform:uppercase;letter-spacing:-.025em;line-height:.95;font-size:clamp(1.375rem,3vw,2rem)}
+
+/* --- register two: micro-label -------------------------------------------- */
+.label{font-family:var(--mono);text-transform:uppercase;letter-spacing:.25em;font-size:.625rem;line-height:1.6}
+
+/* --- everything else is body ---------------------------------------------- */
+.lede{font-size:1rem;line-height:1.625;color:var(--ink-80);max-inline-size:45ch}
+@media(min-width:768px){.lede{font-size:1.125rem}}
+.body-copy{font-size:1rem;line-height:1.625;color:var(--ink-80);max-inline-size:65ch}
+@media(min-width:768px){.body-copy{font-size:1.125rem}}
+.on-ink .lede,.on-ink .body-copy{color:var(--paper-80)}
+
+/* --- the ring ------------------------------------------------------------- */
+.ring{display:inline-block;flex-shrink:0;vertical-align:middle}
+.ring--accent{color:var(--accent)}
+.ring--ink{color:var(--ink)}
+.ring--paper{color:var(--paper)}
+
+/* --- layout --------------------------------------------------------------- */
+.wrap{max-width:1440px;margin-inline:auto;padding-inline:24px}
+@media(min-width:768px){.wrap{padding-inline:40px}}
+@media(min-width:1024px){.wrap{padding-inline:64px}}
+.section{border-top:1px solid var(--ink-10);padding-block:80px}
+@media(min-width:768px){.section{padding-block:112px}}
+@media(min-width:1024px){.section{padding-block:128px}}
+.section:first-of-type{border-top:0}
+.on-ink .section{border-top-color:var(--paper-15)}
+.stack{display:flex;flex-direction:column;gap:24px}
+.stack-sm{display:flex;flex-direction:column;gap:12px}
+.stack-lg{display:flex;flex-direction:column;gap:48px}
+
+/* ===========================================================================
+   Site chrome — Nav, Footer, and the component library, rebuilt in plain CSS
+   from src/components/*.astro so this page stands alone.
+   =========================================================================== */
+.sitenav{position:sticky;top:var(--shell);z-index:30;border-bottom:1px solid var(--ink-10);background:rgba(246,242,234,.85);backdrop-filter:blur(6px)}
+.sitenav__in{display:flex;align-items:center;justify-content:space-between;gap:12px}
+@media(min-width:768px){.sitenav__in{gap:32px}}
+.sitenav .wrap{padding-block:16px}
+.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+.brand .label{white-space:nowrap}
+.sitenav__links{display:none}
+@media(min-width:1100px){.sitenav__links{display:block}}
+.sitenav__links ul{display:flex;align-items:center;gap:32px;list-style:none;margin:0;padding:0}
+.sitenav__links a{display:flex;align-items:center;gap:8px;padding-block:8px;text-decoration:none;color:var(--ink-70);transition:color .2s}
+.sitenav__links a:hover{color:var(--ink)}
+.sitenav__links a[aria-current="page"]{color:var(--ink)}
+.sitenav__links .ring{visibility:hidden}
+.sitenav__links a[aria-current="page"] .ring{visibility:visible}
+
+/* --- buttons -------------------------------------------------------------- */
+.btn{
+  position:relative;display:inline-flex;align-items:center;justify-content:center;gap:12px;
+  overflow:hidden;border-radius:999px;border:0;cursor:pointer;text-decoration:none;
+  font-family:var(--mono);text-transform:uppercase;letter-spacing:.25em;font-size:.625rem;
+  min-height:44px;padding:14px 28px;
+  transition:color .3s,background-color .3s,border-color .3s,box-shadow .3s;
+}
+.btn--sm{padding:10px 20px}
+.btn--primary{background:var(--ink);color:var(--paper)}
+.btn--primary:hover{box-shadow:0 0 50px -12px rgba(15,59,60,.55)}
+.btn--accent{background:var(--accent);color:#fff}
+.btn--accent:hover{box-shadow:0 0 50px -12px rgba(181,77,44,.55)}
+.btn--outline{background:transparent;border:1px solid var(--ink-25);color:var(--ink)}
+.btn--outline:hover{border-color:var(--ink);background:var(--ink);color:var(--paper)}
+.btn--ghost{background:transparent;color:var(--ink-70)}
+.btn--ghost:hover{color:var(--ink)}
+.btn__sheen{position:absolute;inset-block:0;left:-100%;width:50%;background:rgba(255,255,255,.15);pointer-events:none}
+.btn:hover .btn__sheen{animation:shimmer-sweep .9s ease-out}
+.btn:disabled{opacity:.4;pointer-events:none}
+.btn-row{display:flex;flex-wrap:wrap;gap:16px}
+
+@keyframes shimmer-sweep{from{transform:translateX(-100%) skewX(-12deg)}to{transform:translateX(200%) skewX(-12deg)}}
+@keyframes glow-pulse{0%,100%{box-shadow:0 0 0 0 rgba(181,77,44,.45)}50%{box-shadow:0 0 40px -8px rgba(181,77,44,.6)}}
+@keyframes marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes ring-expand{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+@keyframes fade-up{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+/* --- section header ------------------------------------------------------- */
+.sechead{display:flex;flex-direction:column;gap:24px}
+.eyebrow{display:flex;align-items:center;gap:12px;margin:0;flex-wrap:wrap}
+.eyebrow__num{color:var(--accent)}
+.eyebrow__text{color:var(--ink-70)}
+.on-ink .eyebrow__num{color:var(--paper-70)}
+.on-ink .eyebrow__text{color:var(--paper-70)}
+.accent-line{color:var(--accent);display:block}
+.on-ink .accent-line{color:var(--paper-50)}
+.on-ink .display-1,.on-ink .display-2,.on-ink .display-3{color:var(--paper)}
+
+/* --- card ----------------------------------------------------------------- */
+.card{position:relative;display:flex;flex-direction:column;gap:16px;border:1px solid var(--ink-15);padding:24px;transition:border-color .3s}
+@media(min-width:768px){.card{padding:32px}}
+.on-ink .card{border-color:var(--paper-15)}
+.card__trace{position:absolute;inset:0;pointer-events:none}
+.card__trace span{position:absolute;background:var(--accent);transition:transform .3s}
+.card__trace .t{inset-inline:0;top:0;height:1px;transform:scaleX(0);transform-origin:left}
+.card__trace .r{inset-block:0;right:0;width:1px;transform:scaleY(0);transform-origin:top;transition-delay:.1s}
+.card__trace .b{inset-inline:0;bottom:0;height:1px;transform:scaleX(0);transform-origin:right;transition-delay:.2s}
+.card__trace .l{inset-block:0;left:0;width:1px;transform:scaleY(0);transform-origin:bottom;transition-delay:.3s}
+.card:hover .card__trace .t,.card:hover .card__trace .b{transform:scaleX(1)}
+.card:hover .card__trace .r,.card:hover .card__trace .l{transform:scaleY(1)}
+.card__eyebrow{display:flex;align-items:center;gap:8px;color:var(--ink-70);margin:0}
+.on-ink .card__eyebrow{color:var(--paper-60)}
+.card__body{font-size:1rem;line-height:1.625;color:var(--ink-80)}
+.on-ink .card__body{color:var(--paper-80)}
+.card__meta{margin-top:auto;color:var(--ink-70)}
+.on-ink .card__meta{color:var(--paper-60)}
+.grid{display:grid;gap:24px}
+@media(min-width:768px){.grid{gap:32px}.grid--2{grid-template-columns:repeat(2,1fr)}.grid--3{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1024px){.grid--4{grid-template-columns:repeat(4,1fr)}}
+@media(min-width:768px) and (max-width:1023px){.grid--4{grid-template-columns:repeat(2,1fr)}}
+.split{display:grid;gap:32px}
+@media(min-width:1024px){.split{grid-template-columns:5fr 7fr;gap:64px}}
+
+/* --- stat row ------------------------------------------------------------- */
+.statrow{display:grid;grid-template-columns:repeat(2,1fr);margin:0}
+@media(min-width:768px){.statrow{grid-template-columns:repeat(4,1fr)}}
+.statrow>div{display:flex;flex-direction:column;gap:8px;padding:24px 16px;border-left:1px solid var(--ink-10);border-top:1px solid var(--ink-10)}
+@media(min-width:768px){.statrow>div{padding-inline:32px;border-top:0}}
+.statrow>div:first-child{border-left:0;padding-left:0}
+@media(max-width:767px){.statrow>div:nth-child(odd){border-left:0;padding-left:0}.statrow>div:nth-child(-n+2){border-top:0}}
+.statrow dd{margin:0}
+.statrow dt{color:var(--ink-70)}
+.on-ink .statrow>div{border-color:var(--paper-15)}
+.on-ink .statrow dt{color:var(--paper-70)}
+
+/* --- accordion ------------------------------------------------------------ */
+.acc{border-bottom:1px solid var(--ink-10)}
+.acc>summary{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-block:20px;cursor:pointer;list-style:none;font-size:1rem;font-weight:500}
+@media(min-width:768px){.acc>summary{font-size:1.125rem}}
+.acc>summary::-webkit-details-marker{display:none}
+.acc__mark{display:grid;place-items:center;width:16px;height:16px;flex-shrink:0}
+.acc__mark .ring{grid-area:1/1;transition:opacity .3s}
+.acc:not([open]) .acc__mark .ring--dual{opacity:0}
+.acc[open] .acc__mark .ring--outline{opacity:0}
+.acc__body{padding-bottom:24px;color:var(--ink-80);max-inline-size:65ch}
+
+/* --- marquee -------------------------------------------------------------- */
+.marquee{position:relative;display:flex;overflow:hidden;-webkit-mask-image:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(to right,transparent,#000 8%,#000 92%,transparent)}
+.marquee ul{display:flex;flex-shrink:0;align-items:center;gap:64px;padding:0 64px 0 0;margin:0;list-style:none;animation:marquee 40s linear infinite}
+.marquee li{white-space:nowrap;color:var(--ink-70)}
+
+/* --- footer --------------------------------------------------------------- */
+.sitefoot{background:var(--ink);color:var(--paper)}
+.sitefoot .wrap{padding-block:64px}
+@media(min-width:768px){.sitefoot .wrap{padding-block:80px}}
+.foot__grid{display:grid;gap:48px}
+@media(min-width:1024px){.foot__grid{grid-template-columns:2fr 1fr 1fr 1fr}}
+.foot__col{display:flex;flex-direction:column;gap:16px}
+.foot__col h2{color:var(--paper-60);font-size:.625rem}
+.foot__col ul{display:flex;flex-direction:column;gap:12px;list-style:none;margin:0;padding:0}
+.foot__col a{color:var(--paper-80);text-decoration:none}
+.foot__col a:hover{color:var(--paper)}
+.foot__addr{display:flex;flex-direction:column;gap:4px;font-style:normal;font-size:.875rem;color:var(--paper-70)}
+.foot__base{margin-top:64px;padding-top:32px;border-top:1px solid var(--paper-15);display:flex;flex-direction:column;gap:16px}
+@media(min-width:768px){.foot__base{flex-direction:row;justify-content:space-between;align-items:flex-start}}
+.foot__base p{margin:0;color:var(--paper-60);font-size:.875rem}
+.foot__base .label{font-size:.625rem;flex-shrink:0}
+
+/* ===========================================================================
+   The editing layer. Deliberately reads as tooling laid over the site: ink
+   chrome top and bottom, the warm ground between them untouched, so what the
+   client scrolls through is the page as it will ship.
+   =========================================================================== */
+.shell{
+  position:fixed;top:0;left:0;right:0;z-index:60;
+  background:var(--ink);color:var(--paper);
+  border-bottom:1px solid var(--paper-15);
+}
+.shell__bar{display:flex;align-items:center;gap:16px;height:var(--shell);padding-inline:16px;max-width:1440px;margin-inline:auto}
+@media(min-width:1024px){.shell__bar{padding-inline:24px}}
+.shell__brand{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.shell__brand .label{color:var(--paper);white-space:nowrap}
+.shell__brand .shell__sub{color:var(--paper-60);display:none}
+@media(min-width:900px){.shell__brand .shell__sub{display:inline}}
+.shell__spacer{flex:1 1 auto}
+.shell__actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
+
+.tbtn{
+  display:inline-flex;align-items:center;gap:8px;min-height:36px;padding:0 14px;
+  border-radius:999px;border:1px solid var(--paper-15);background:transparent;color:var(--paper-80);
+  font-family:var(--mono);text-transform:uppercase;letter-spacing:.18em;font-size:.625rem;cursor:pointer;
+  transition:background-color .2s,color .2s,border-color .2s;white-space:nowrap;
+}
+.tbtn:hover{background:var(--paper-08);color:var(--paper)}
+.tbtn[aria-pressed="true"]{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.tbtn--accent{background:var(--accent);border-color:var(--accent);color:#fff}
+.tbtn--accent:hover{background:var(--accent);color:#fff;box-shadow:0 0 40px -10px rgba(181,77,44,.8)}
+.tbtn--accent[data-dirty="true"]{animation:glow-pulse 2.4s ease-in-out infinite}
+.tbtn:disabled{opacity:.4;cursor:default}
+.tbtn__icon{width:14px;height:14px;flex-shrink:0}
+
+.seg{display:flex;border:1px solid var(--paper-15);border-radius:999px;overflow:hidden}
+.seg .tbtn{border:0;border-radius:0;min-height:34px}
+
+/* progress */
+.prog{display:none;align-items:center;gap:10px;flex-shrink:0}
+@media(min-width:760px){.prog{display:flex}}
+.prog__dial{width:26px;height:26px;flex-shrink:0;transform:rotate(-90deg)}
+.prog__track{stroke:var(--paper-15)}
+.prog__arc{stroke:var(--accent);transition:stroke-dashoffset .4s var(--ease)}
+.prog__txt{font-family:var(--mono);font-size:.625rem;letter-spacing:.18em;color:var(--paper-70);white-space:nowrap;font-variant-numeric:tabular-nums}
+
+/* page tabs */
+.tabs{border-top:1px solid var(--paper-15);background:var(--ink)}
+.tabs__scroll{display:flex;gap:2px;overflow-x:auto;scrollbar-width:thin;max-width:1440px;margin-inline:auto;padding:0 12px}
+@media(min-width:1024px){.tabs__scroll{padding-inline:20px}}
+.tab{
+  display:flex;align-items:center;gap:8px;padding:10px 12px;background:transparent;border:0;cursor:pointer;
+  font-family:var(--mono);text-transform:uppercase;letter-spacing:.18em;font-size:.625rem;color:var(--paper-60);
+  border-bottom:2px solid transparent;white-space:nowrap;transition:color .2s,border-color .2s;
+}
+.tab:hover{color:var(--paper)}
+.tab[aria-selected="true"]{color:var(--paper);border-bottom-color:var(--accent)}
+.tab__count{font-variant-numeric:tabular-nums;color:var(--paper-50)}
+.tab[aria-selected="true"] .tab__count{color:var(--paper-70)}
+.tab__done{color:var(--accent)}
+
+/* page offset for the fixed shell */
+.stage{padding-top:calc(var(--shell) + 41px);padding-bottom:var(--dock)}
+
+/* --- the editable field --------------------------------------------------- */
+.f{position:relative;display:block}
+.f__chip{
+  display:none;align-items:center;gap:6px;margin-bottom:6px;
+  font-family:var(--mono);text-transform:uppercase;letter-spacing:.2em;font-size:.5625rem;color:var(--ink-55);
+}
+.on-ink .f__chip{color:var(--paper-60)}
+.f__chip b{font-weight:400}
+.f__chip .tagl{color:var(--accent);font-weight:500}
+.on-ink .f__chip .tagl{color:var(--paper)}
+[data-mode="fill"] .f__chip{display:flex}
+
+.e{
+  display:block;min-height:1em;border-radius:3px;
+  transition:outline-color .2s,background-color .2s;
+  outline:1px solid transparent;outline-offset:4px;
+}
+[data-mode="fill"] .e{outline-color:var(--ink-15);cursor:text}
+[data-mode="fill"] .e:hover{background:var(--accent-12);outline-color:var(--ink-25)}
+[data-mode="fill"] .e.is-empty{outline-style:dashed;outline-color:var(--ink-25)}
+[data-mode="fill"] .e.is-legal{outline-color:var(--accent-30)}
+[data-mode="fill"] .e.is-legal.is-empty{outline-color:var(--accent-70)}
+.e:focus{outline:2px solid var(--accent)!important;outline-offset:4px;background:transparent!important}
+[data-mode="fill"] .on-ink .e{outline-color:var(--paper-15)}
+[data-mode="fill"] .on-ink .e:hover{background:var(--paper-08);outline-color:var(--paper-50)}
+.e.is-empty::before{content:attr(data-ph);color:var(--ink-40);pointer-events:none}
+.on-ink .e.is-empty::before{color:var(--paper-50)}
+.e.is-empty.e--display::before{color:var(--ink-25)}
+.on-ink .e.is-empty.e--display::before{color:var(--paper-50)}
+/* Preview hides the scaffolding but keeps unfilled slots legible, so the page
+   still reads as a page rather than collapsing into gaps. */
+[data-mode="preview"] .e{outline:none}
+[data-mode="preview"] .e.is-empty::before{color:var(--ink-25)}
+
+/* --- repeatable groups ---------------------------------------------------- */
+.rep{display:flex;flex-direction:column;gap:24px}
+.rep__item{position:relative}
+.rep__tools{display:none;justify-content:flex-end;gap:6px;margin-bottom:8px}
+[data-mode="fill"] .rep__tools{display:flex}
+.minib{
+  display:inline-flex;align-items:center;gap:6px;min-height:30px;padding:0 10px;border-radius:999px;
+  border:1px solid var(--ink-15);background:transparent;color:var(--ink-70);cursor:pointer;
+  font-family:var(--mono);text-transform:uppercase;letter-spacing:.18em;font-size:.5625rem;transition:all .2s;
+}
+.minib:hover{border-color:var(--accent);color:var(--accent)}
+.minib:disabled{opacity:.35;pointer-events:none}
+.on-ink .minib{border-color:var(--paper-15);color:var(--paper-70)}
+.on-ink .minib:hover{border-color:var(--paper);color:var(--paper)}
+.rep__add{display:none;align-self:flex-start}
+[data-mode="fill"] .rep__add{display:inline-flex}
+
+/* --- the inspector dock --------------------------------------------------- */
+.dock{
+  position:fixed;left:0;right:0;bottom:0;z-index:55;
+  background:var(--ink);color:var(--paper);border-top:1px solid var(--paper-15);
+  transform:translateY(100%);transition:transform .3s var(--ease);
+}
+.dock.is-open{transform:none}
+.dock__in{max-width:1440px;margin-inline:auto;padding:14px 16px;display:flex;gap:16px;align-items:flex-start}
+@media(min-width:1024px){.dock__in{padding-inline:24px}}
+.dock__body{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:4px}
+.dock__label{display:flex;align-items:center;gap:8px;flex-wrap:wrap;color:var(--paper);font-family:var(--mono);text-transform:uppercase;letter-spacing:.2em;font-size:.625rem}
+.dock__help{margin:0;color:var(--paper-80);font-size:.875rem;line-height:1.5;max-inline-size:80ch}
+.dock__shape{margin:0;color:var(--paper-60);font-size:.8125rem;line-height:1.5}
+.dock__shape b{font-weight:500;color:var(--paper-80)}
+.dock__side{display:flex;flex-direction:column;align-items:flex-end;gap:6px;flex-shrink:0}
+.dock__count{font-family:var(--mono);font-size:.625rem;letter-spacing:.15em;color:var(--paper-60);font-variant-numeric:tabular-nums}
+.dock__count.is-over{color:#ffb4a0}
+.dock__close{background:transparent;border:0;color:var(--paper-60);cursor:pointer;padding:4px;line-height:0}
+.dock__close:hover{color:var(--paper)}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:2px 8px;border-radius:999px;font-family:var(--mono);font-size:.5625rem;letter-spacing:.18em;text-transform:uppercase}
+.pill--legal{background:var(--accent);color:#fff}
+.pill--req{border:1px solid var(--paper-15);color:var(--paper-70)}
+
+/* --- intro / handoff panels ----------------------------------------------- */
+.panel{border:1px solid var(--ink-15);padding:24px;display:flex;flex-direction:column;gap:16px;background:rgba(255,255,255,.45)}
+@media(min-width:768px){.panel{padding:32px}}
+.panel--ink{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.panel h3{margin:0}
+.notelist{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:12px}
+.notelist li{display:flex;gap:12px;align-items:flex-start;font-size:.9375rem;line-height:1.55;color:var(--ink-80)}
+.panel--ink .notelist li{color:var(--paper-80)}
+.notelist .ring{margin-top:6px}
+
+/* toast */
+.toast{
+  position:fixed;left:50%;bottom:24px;transform:translate(-50%,140%);z-index:70;
+  background:var(--ink);color:var(--paper);border:1px solid var(--paper-15);
+  padding:12px 20px;border-radius:999px;font-family:var(--mono);font-size:.625rem;
+  letter-spacing:.2em;text-transform:uppercase;transition:transform .35s var(--ease);
+  max-width:calc(100vw - 32px);text-align:center;
+}
+.toast.is-up{transform:translate(-50%,0)}
+
+.sr{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+  .marquee ul{animation-play-state:paused}
+  .marquee{overflow-x:auto;-webkit-mask-image:none;mask-image:none}
+}
+
+/* --- classes the renderer builds ------------------------------------------ */
+.stage{padding-top:var(--shell-total,97px)}
+.sitenav{top:var(--shell-total,97px)}
+
+.sechead__title .e{display:block}
+.card__title{margin:0}
+.card__title .e{display:block}
+.purpose{margin:0;color:var(--ink-70);font-size:.9375rem;line-height:1.55;max-inline-size:58ch}
+.on-ink .purpose{color:var(--paper-70)}
+
+.repblock{position:relative;border:1px solid var(--ink-15);padding:20px;display:flex;flex-direction:column;gap:20px;background:rgba(255,255,255,.35)}
+@media(min-width:768px){.repblock{padding:28px}}
+.repblock__head{padding-bottom:16px;border-bottom:1px solid var(--ink-10)}
+.repblock__head .display-2{font-size:clamp(1.5rem,3.4vw,2.25rem)}
+.rep>.rep{gap:20px}
+
+.minigrid{display:grid;gap:16px 24px}
+@media(min-width:640px){.minigrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:1180px){.minigrid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+
+.contactgrid{gap:20px}
+@media(min-width:900px){.contactgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px 40px}}
+
+.strip{display:flex;flex-wrap:wrap;gap:16px}
+.strip__item{border:1px solid var(--ink-15);padding:16px 18px;display:flex;flex-direction:column;gap:10px;min-width:220px;flex:1 1 240px;background:rgba(255,255,255,.35)}
+
+.e--short{font-size:1rem;line-height:1.55;color:var(--ink-90)}
+.on-ink .e--short{color:var(--paper)}
+[data-mode="fill"] .e--short,[data-mode="fill"] .lede.e,[data-mode="fill"] .body-copy.e{min-height:1.6em}
+.f--inline{display:inline-flex;align-items:center}
+.f--inline .f__chip{display:none!important}
+.f--inline .e{color:var(--ink-70)}
+.on-ink .f--inline .e{color:var(--paper-70)}
+
+/* a button's wording is edited inside the button, so the button itself must
+   not swallow the caret */
+.btn .e{color:inherit;outline-offset:2px;min-width:4ch}
+[data-mode="fill"] .btn .e{outline-color:rgba(255,255,255,.45)}
+[data-mode="fill"] .btn--outline .e{outline-color:var(--ink-25)}
+.btn .e.is-empty::before{color:inherit;opacity:.6}
+
+/* choice fields are a real select — a dropdown is the honest control for a
+   fixed set of answers, and it is the one place the client cannot mistype */
+.sel{
+  appearance:none;-webkit-appearance:none;
+  font-family:var(--mono);font-size:.6875rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink);background:#fff;border:1px solid var(--ink-25);border-radius:3px;
+  padding:11px 34px 11px 12px;min-height:44px;width:100%;max-width:44ch;cursor:pointer;
+  background-image:linear-gradient(45deg,transparent 50%,var(--accent) 50%),linear-gradient(135deg,var(--accent) 50%,transparent 50%);
+  background-position:calc(100% - 17px) 50%,calc(100% - 12px) 50%;
+  background-size:5px 5px,5px 5px;background-repeat:no-repeat;
+}
+.sel.is-empty{color:var(--ink-55);border-style:dashed;border-color:var(--accent-70)}
+.on-ink .sel{background-color:rgba(255,255,255,.94)}
+
+.tok{font-family:var(--mono);font-size:.6875rem;letter-spacing:.08em;color:var(--paper-50)}
+
+/* the site footer at the foot of the stage mirrors the Site-wide answers and
+   is deliberately not editable here — one question, one place to answer it */
+.sitefoot .e{pointer-events:none}
+
+/* An empty headline slot holds a label-sized prompt, not a seven-rem one.
+   The moment a word is typed the field snaps to its real display size, which
+   is the point of editing in the page rather than in a form: the client sees
+   a headline that is too long as a headline that is too long. */
+.e--display.is-empty{
+  font-family:var(--mono);font-size:.6875rem;font-weight:500;line-height:1.9;
+  letter-spacing:.2em;text-transform:uppercase;
+}
+.accent-line.is-empty::before{color:var(--accent-70)}
+.on-ink .accent-line.is-empty::before{color:var(--paper-50)}
+
+.section--intro{padding-block:44px}
+@media(min-width:768px){.section--intro{padding-block:56px}}
+.section--intro .display-2{font-size:clamp(1.75rem,4.5vw,3rem)}
+
+/* The two headline lines are separate answers, so in fill mode they need air
+   between them for their own labels. In preview they close back up into the
+   single headline they actually are. */
+[data-mode="fill"] .sechead__title,[data-mode="fill"] .card__title{display:flex;flex-direction:column;gap:10px}
+
+/* At phone width the toolbar becomes two rows: identity and Save on top, the
+   mode switch full width underneath. The shell's height is measured at
+   runtime, so the sticky site header follows it down. */
+@media(max-width:640px){
+  .shell__bar{height:auto;min-height:0;padding-block:10px;flex-wrap:wrap;row-gap:10px;gap:10px}
+  .shell__spacer{display:none}
+  .shell__brand{order:1;min-width:0}
+  .shell__actions{order:2;margin-left:auto}
+  .seg{order:3;flex:1 1 100%}
+  .seg .tbtn{flex:1 1 0;justify-content:center}
+  .dock__in{flex-direction:column;gap:10px;padding-block:12px}
+  .dock__side{flex-direction:row;align-items:center;align-self:stretch;justify-content:space-between}
+}
+
+</style>
+
+<div id="root">
+  <noscript>This brief needs JavaScript switched on. If you cannot enable it, email your developer and they will send a plain document instead.</noscript>
+</div>
+
+<script id="hc-schema" type="application/json">[{"key":"site","label":"Site-wide","route":"every page","blurb":"The name, contact block and small print that repeat in the header and footer of every page. Start here — several other pages lean on these answers.","sections":[{"id":"identity","number":"01","eyebrow":"Identity","purpose":"The name and one-line description that sit beside the circle mark on every page.","layout":"header","fields":[{"id":"org-name","label":"Name people know you by","help":"The short everyday name of the organisation, spelled exactly as you want it to appear everywhere on the site. It sits beside the circle mark at the top of every page and again in the footer, so it has to fit on one line on a phone. Two or three words. No 'Inc.', no 'Foundation of...' unless that is genuinely what people call you.","kind":"short","max":30,"req":true,"legal":false,"token":"","ph":"2 to 3 words, no legal suffix"},{"id":"tagline","label":"One-line description of the organisation","help":"A single sentence that sits under your name in the footer of every page, and is also the sentence Google and Facebook show when someone shares your site. Say who you are and where you are, in about 10 to 14 words, ending in a full stop. Plain and warm, not slogan-y. Do not use the words 'charity', 'registered charity', 'tax-deductible' or 'donations are receipted' here unless a lawyer has approved that exact sentence.","kind":"short","max":90,"req":true,"legal":false,"token":"","ph":"one sentence, 10 to 14 words, ending in a full stop"},{"id":"legal-entity-name","label":"Full registered legal name","help":"Your complete legal name exactly as it appears on your incorporation or registration paperwork. It is used in the copyright line and in the privacy and accessibility pages. Copy it character for character off the document — please do not retype it from memory, and do not tidy up the punctuation. We will never guess this one.","kind":"short","max":120,"req":true,"legal":true,"token":"{{LEGAL_ENTITY_NAME}}","ph":""}],"repeat":null,"ink":false},{"id":"reach","number":"02","eyebrow":"Reach us","purpose":"The address, phone and email in the footer and on the contact page. Every one of these is a launch blocker — the site cannot go live with a guess in any of them.","layout":"contact","fields":[{"id":"has-public-space","label":"Do you have a place the public can visit?","help":"Answer this first, because it changes what we print. If you have no space open to the public, we will not show a street address or opening hours anywhere on the site, and the contact page will lead with the form instead of a map.","kind":"choice","max":0,"req":true,"legal":true,"token":"{{STREET_ADDRESS}}","ph":"","choices":["Yes — a space the public can visit during set hours","Yes — but by appointment only","No — we have no public space"]},{"id":"street-address","label":"Street address in London, Ontario","help":"The address exactly as Canada Post would write it, including unit number and postal code, only if you answered yes above. Copy it from a document you already have. Leave blank if there is no public space — we will never write a placeholder address, because a wrong address sends people to a stranger's door.","kind":"longtext","max":160,"req":false,"legal":true,"token":"{{STREET_ADDRESS}}","ph":""},{"id":"mailing-address","label":"Mailing address, if letters go somewhere else","help":"Only fill this in if post should go to a different address from the one above — a PO box or a director's business address, for example. Leave blank if they are the same.","kind":"longtext","max":160,"req":false,"legal":true,"token":"{{MAILING_ADDRESS}}","ph":""},{"id":"phone","label":"Phone number for the public","help":"A number someone will actually answer or that has a voicemail greeting in place. Write it the way you want it printed. Leave blank if you would rather people only reach you by email — an unanswered number is worse than no number.","kind":"phone","max":24,"req":false,"legal":true,"token":"{{PHONE}}","ph":""},{"id":"email-general","label":"General enquiries email address","help":"The address for ordinary questions from the public. Use a shared mailbox the organisation controls rather than one person's personal account, so it survives a volunteer moving on. Check it before you send it to us — this address is printed on every page.","kind":"email","max":80,"req":true,"legal":true,"token":"{{EMAIL_GENERAL}}","ph":""},{"id":"email-accessibility","label":"Email for accessibility problems","help":"Ontario's accessibility rules require a route for someone to report a barrier on the site or at your events, and to ask for information in another format. It can be the same address as above, but someone has to commit to reading it and replying. Tell us which address to publish.","kind":"email","max":80,"req":true,"legal":true,"token":"{{EMAIL_ACCESSIBILITY}}","ph":""},{"id":"hours","label":"Opening hours","help":"Only if the public can visit. One line per day or per group of days, in the order you want them read. Say what happens on statutory holidays. Leave blank if you have no public space or if hours change too often to publish — out-of-date hours generate angry phone calls.","kind":"longtext","max":240,"req":false,"legal":true,"token":"{{HOURS}}","ph":""}],"repeat":null,"ink":false},{"id":"social","number":"03","eyebrow":"Follow","purpose":"Links to your accounts, shown in the footer.","layout":"list","fields":[{"id":"social-platform","label":"Which platform","help":"Pick one platform per entry, and add an entry only for an account you genuinely keep up to date. A page last posted to two years ago makes the organisation look closed.","kind":"choice","max":0,"req":true,"legal":true,"token":"{{SOCIAL_LINKS}}","ph":"","choices":["Facebook","Instagram","LinkedIn","YouTube","WhatsApp","X","TikTok"]},{"id":"social-url","label":"Full web address of the account","help":"Open the account in a browser and copy the address straight out of the address bar — the whole thing, starting with https://. Do not type it from memory and do not give us just the handle; a mistyped link sends your community to somebody else's page. We will not guess these.","kind":"url","max":200,"req":true,"legal":true,"token":"{{SOCIAL_LINKS}}","ph":""}],"repeat":{"noun":"account","min":0,"suggested":3,"max":8},"ink":false},{"id":"territory","number":"04","eyebrow":"Territory","purpose":"The land acknowledgement that closes the footer on every page.","layout":"prose","fields":[{"id":"land-acknowledgement-text","label":"Your land acknowledgement","help":"One short paragraph of about 35 to 55 words, written in your own voice, naming the territories this part of southwestern Ontario sits on. Please confirm the wording and the spelling of every Nation named with a local Indigenous organisation before you send it — this is the one paragraph on the site where borrowed wording is most likely to be wrong. If you are still consulting, tell us and we will hold the space rather than publish a draft.","kind":"body","max":420,"req":true,"legal":false,"token":"","ph":"one paragraph, 35 to 55 words"}],"repeat":null,"ink":false},{"id":"smallprint","number":"05","eyebrow":"Small print","purpose":"Charitable status. This decides the wording on the donate page and whether the site may mention tax receipts at all.","layout":"contact","fields":[{"id":"registered-charity-status","label":"Are you a registered charity with the Canada Revenue Agency?","help":"Answer honestly and from the paperwork, not from memory. This single answer decides the wording on the giving page, in the footer, in confirmation emails and on the payment screen. Being a non-profit is not the same as being a registered charity, and only a registered charity may issue tax receipts. If the answer is no or not yet, nothing on the site will suggest a donation is tax-deductible.","kind":"choice","max":0,"req":true,"legal":true,"token":"{{IS_REGISTERED_CHARITY}}","ph":"","choices":["Yes — registered with the CRA, confirmation letter in hand","No — we are a non-profit but not a registered charity","Application in progress","Not sure — we need to check"]},{"id":"cra-registration-number","label":"CRA registration or business number","help":"Only if you answered yes above. Copy it digit for digit from your CRA confirmation letter, including the letters and the last four digits. Leave blank if you are not registered. We will never invent or reconstruct this number.","kind":"short","max":24,"req":false,"legal":true,"token":"{{CRA_REGISTRATION_NUMBER}}","ph":""},{"id":"charity-status-line","label":"Approved wording for your status line","help":"The exact sentence you want printed at the bottom of every page describing what kind of organisation you are. Whoever signs off your filings should approve this sentence word for word before you send it, because it is a legal claim, not marketing copy. If you are not a registered charity, it must not use the word 'charity' or mention tax receipts. Send us the approved sentence and we will print it unchanged.","kind":"short","max":160,"req":false,"legal":true,"token":"{{CHARITY_WORDING}}","ph":""},{"id":"rights-line","label":"Wording after the copyright symbol","help":"The short phrase that follows the year and your name at the bottom of the page. Three or four words is normal and you can keep the conventional wording.","kind":"short","max":40,"req":true,"legal":false,"token":"","ph":"3 to 4 words ending in a full stop"}],"repeat":null,"ink":false},{"id":"listing","number":"06","eyebrow":"Search listing","purpose":"What Google shows when someone searches for you.","layout":"meta","fields":[{"id":"site-description","label":"Description shown in search results","help":"Two sentences, about 25 to 30 words, that appear under your name in Google and in link previews when someone shares the site. Say what you do, who it is for, and that you are in London, Ontario. Write it as a sentence for a person, not a list of keywords. Avoid any claim about charitable status or tax receipts here.","kind":"longtext","max":160,"req":true,"legal":false,"token":"","ph":"2 sentences, 25 to 30 words, under 160 characters"}],"repeat":null,"ink":false}]},{"key":"home","label":"Home","route":"/","blurb":"The front page. The headline is the first thing anyone reads, so it is worth more time than its length suggests.","sections":[{"id":"hero","number":"01","eyebrow":"Welcome","purpose":"The opening screen: a small label, a two-line headline, a paragraph and two buttons.","layout":"hero","fields":[{"id":"hero-eyebrow","label":"Small label above the headline","help":"Two or three words, printed very small in capitals above the big headline. It names the moment, not the organisation - something like a greeting or an invitation. Avoid slogans.","kind":"eyebrow","max":24,"req":true,"legal":false,"token":"","ph":"One or two words, no full stop"},{"id":"hero-title","label":"Headline - first line","help":"The first line of the very large headline. One or two words only, ending in a full stop. It is set in heavy capitals, so long words will dominate the screen on a phone.","kind":"display-title","max":22,"req":true,"legal":false,"token":"","ph":"One or two words ending in a full stop"},{"id":"hero-accent","label":"Headline - second line (terracotta)","help":"The second line of the headline, printed in terracotta orange. One or two words ending in a full stop. Read both lines aloud together - they must form one short, complete thought.","kind":"display-accent","max":22,"req":true,"legal":false,"token":"","ph":"One or two words ending in a full stop"},{"id":"hero-lede","label":"Opening paragraph","help":"25 to 45 words. Warm, plain, first person plural (we). Say who you are, who you are for, and where you are. Do not claim charitable status, do not give numbers, and do not mention tax receipts here - those all need written confirmation first.","kind":"lede","max":300,"req":true,"legal":false,"token":"","ph":"Two or three sentences, 25 to 45 words"},{"id":"hero-cta-primary-label","label":"Main button - wording","help":"Two or three words in capitals telling people what happens when they click. Start with a verb. This is the single most important action on the page, so choose the one thing you most want a new visitor to do.","kind":"cta-label","max":22,"req":true,"legal":false,"token":"","ph":"Two or three words, verb first"},{"id":"hero-cta-secondary-label","label":"Second button - wording","help":"Two or three words in capitals for the quieter, secondary action - usually the one for people who are not ready to commit yet. It must not repeat the main button.","kind":"cta-label","max":22,"req":true,"legal":false,"token":"","ph":"Two or three words, verb first"}],"repeat":null,"ink":false},{"id":"mission","number":"02","eyebrow":"Mission","purpose":"Who you are and why you exist, set beside the mission statement itself.","layout":"split","fields":[{"id":"mission-eyebrow","label":"Small label above the headline","help":"One or two words in capitals naming this section - the subject, not a sentence.","kind":"eyebrow","max":24,"req":true,"legal":false,"token":"","ph":"One or two words, no full stop"},{"id":"mission-title","label":"Headline - first line","help":"One or two words, ending in a full stop. Set in large heavy capitals.","kind":"display-title","max":22,"req":true,"legal":false,"token":"","ph":"One or two words ending in a full stop"},{"id":"mission-accent","label":"Headline - second line (terracotta)","help":"The second line, printed in terracotta. One or two words ending in a full stop, completing the thought started by the first line.","kind":"display-accent","max":22,"req":true,"legal":false,"token":"","ph":"One or two words ending in a full stop"},{"id":"mission-statement","label":"Your mission, in one paragraph","help":"25 to 45 words. This must be the wording your board has actually approved - not a fresh paraphrase written for the website. Send it exactly as it appears in your own documents, and we will publish it exactly as sent.","kind":"lede","max":300,"req":true,"legal":true,"token":"{{MISSION_STATEMENT}}","ph":"Your board-approved mission wording, copied word for word"},{"id":"mission-body","label":"The story underneath","help":"40 to 90 words expanding on the mission: what the foundation actually does week to week and who it is for. Keep it to things you could describe to a neighbour. No participant numbers, no founding year and no charity wording here - those are collected separately because they need written confirmation.","kind":"body","max":650,"req":true,"legal":false,"token":"","ph":"One or two paragraphs, 40 to 90 words total"}],"repeat":null,"ink":false},{"id":"programs","number":"03","eyebrow":"Programs","purpose":"A short introduction, then three or four programme cards that link through to the full pages.","layout":"header","fields":[{"id":"programs-eyebrow","label":"Small label above the headline","help":"One or two words in capitals naming this section.","kind":"eyebrow","max":24,"req":true,"legal":false,"token":"","ph":"One or two words, no full stop"},{"id":"programs-title","label":"Headline - first line","help":"One or two words ending in a full stop.","kind":"display-title","max":22,"req":true,"legal":false,"token":"","ph":"One or two words ending in a full stop"},{"id":"programs-accent","label":"Headline - second line (terracotta)","help":"One or two words ending in a full stop, printed in terracotta, finishing the headline.","kind":"display-accent","max":22,"req":true,"legal":false,"token":"","ph":"One or two words ending in a full stop"},{"id":"programs-lede","label":"Short introduction","help":"25 to 45 words setting up the programmes below - who they are for and what they have in common. Do not list the programmes here; they appear as cards immediately underneath.","kind":"lede","max":300,"req":true,"legal":false,"token":"","ph":"Two or three sentences, 25 to 45 words"}],"repeat":null,"ink":false},{"id":"program-cards","number":"","eyebrow":"","purpose":"Each card is one programme. Keep the front page to four at most — the rest live on the programmes page.","layout":"cards","fields":[{"id":"program-eyebrow","label":"Category label","help":"One or two words in capitals at the top of the card saying what kind of programme this is - the family it belongs to, not its name.","kind":"eyebrow","max":24,"req":true,"legal":false,"token":"","ph":"One or two words, no full stop"},{"id":"program-title","label":"Programme name","help":"The programme's name, as short as you can make it - up to three words, ending in a full stop. It is printed in heavy capitals, so shorter is much stronger. If the full official name is longer, give the short name here; the long one lives on the programme's own page.","kind":"display-title","max":34,"req":true,"legal":false,"token":"","ph":"One to three words ending in a full stop"},{"id":"program-summary","label":"What it is, briefly","help":"30 to 50 words. Say what happens, who it is for, and what someone should expect the first time they come. This is a taster - the full description belongs on the programme's own page.","kind":"body","max":380,"req":true,"legal":false,"token":"","ph":"One paragraph, 30 to 50 words"},{"id":"program-meta","label":"When it runs (optional)","help":"A very short line in capitals at the foot of the card, such as how often it runs or the age group it serves. No attendance or participant numbers here - any figure like that has to be confirmed in writing first and belongs in the numbers section.","kind":"short","max":40,"req":false,"legal":false,"token":"","ph":"A handful of words, no sentence"}],"repeat":{"noun":"programme","min":1,"suggested":3,"max":6},"ink":false},{"id":"impact","number":"04","eyebrow":"Impact","purpose":"Four figures in large type. Leave this section empty if you do not yet have figures you can stand behind — an empty row is better than a soft number.","layout":"stats-head","fields":[{"id":"impact-eyebrow","label":"Small label above the numbers","help":"One or two words in capitals introducing the row of figures.","kind":"eyebrow","max":24,"req":true,"legal":false,"token":"","ph":"One or two words, no full stop"},{"id":"impact-note","label":"What the figures cover (optional)","help":"One short line printed under the numbers saying which period or season they describe, so nobody reads them as a running total. Only fill this in from your own records. If you cannot say precisely what the figures cover, leave it blank and we will leave the whole numbers row off the page.","kind":"short","max":90,"req":false,"legal":true,"token":"{{PROGRAM_STATS}}","ph":""}],"repeat":null,"ink":false},{"id":"impact-stats","number":"","eyebrow":"","purpose":"","layout":"stats","fields":[{"id":"stat-value","label":"The figure","help":"The number itself, written exactly as it should appear on screen, including any plus sign or word like thousand. Every figure here must be one you can evidence from your own records if asked - please do not estimate, round up for effect, or fill a gap. If you cannot evidence a figure, leave this whole entry blank and we will show three figures instead of four.","kind":"stat-value","max":12,"req":true,"legal":true,"token":"{{PROGRAM_STATS}}","ph":""},{"id":"stat-label","label":"What the figure counts","help":"One to three words in capitals under the number saying what it counts. Be specific about what is being counted - people, sessions, hours, families - because a vague label invites the wrong reading. If this figure is your membership number, it needs the board's written confirmation before it can go on the site.","kind":"stat-label","max":28,"req":true,"legal":true,"token":"{{MEMBER_COUNT}}","ph":""}],"repeat":{"noun":"figure","min":0,"suggested":4,"max":4},"ink":false},{"id":"event","number":"05","eyebrow":"Next event","purpose":"One upcoming event, pulled forward onto the front page.","layout":"split","fields":[{"id":"event-eyebrow","label":"Small label above the headline","help":"One or two words in capitals naming this section.","kind":"eyebrow","max":24,"req":true,"legal":false,"token":"","ph":"One or two words, no full stop"},{"id":"event-title","label":"Headline - first line","help":"One or two words ending in a full stop. This heads the section, not the event - the event's own name goes in the next field.","kind":"display-title","max":22,"req":true,"legal":false,"token":"","ph":"One or two words ending in a full stop"},{"id":"event-accent","label":"Headline - second line (terracotta)","help":"One or two words ending in a full stop, printed in terracotta.","kind":"display-accent","max":22,"req":true,"legal":false,"token":"","ph":"One or two words ending in a full stop"},{"id":"event-name","label":"Name of the event","help":"The event's real name as you would print it on a poster. Up to about six words.","kind":"short","max":70,"req":true,"legal":false,"token":"","ph":"A short event title, up to six words"},{"id":"event-date","label":"Date","help":"The date the event takes place. Give a date you have actually confirmed - this is the field visitors will plan around.","kind":"date","max":0,"req":true,"legal":false,"token":"","ph":"A confirmed date from your calendar"},{"id":"event-time","label":"Start time (optional)","help":"The start time, or a start and finish time, written the way you would say it out loud. Leave blank if the time is not settled yet.","kind":"short","max":30,"req":false,"legal":false,"token":"","ph":"A time, or a time range"},{"id":"event-location","label":"Where it is held","help":"The venue name and address people should travel to. Send it exactly as the venue writes it. If this is your own premises, we need the address confirmed in writing before it goes anywhere on the site - we will not guess it.","kind":"short","max":120,"req":true,"legal":true,"token":"{{STREET_ADDRESS}}","ph":""},{"id":"event-summary","label":"What happens at it","help":"40 to 90 words. What the event is, who is welcome, and whether people need to book or bring anything. Write it for somebody who has never been to one of your events before.","kind":"body","max":650,"req":true,"legal":false,"token":"","ph":"One paragraph, 40 to 90 words"},{"id":"event-cta-label","label":"Button wording","help":"Two or three words in capitals, starting with a verb - what you want people to do about this event.","kind":"cta-label","max":22,"req":true,"legal":false,"token":"","ph":"Two or three words, verb first"}],"repeat":null,"ink":false},{"id":"partners","number":"06","eyebrow":"Partners","purpose":"A moving strip of the organisations you work with.","layout":"header","fields":[{"id":"partners-eyebrow","label":"Small label above the headline","help":"One or two words in capitals naming this section.","kind":"eyebrow","max":24,"req":true,"legal":false,"token":"","ph":"One or two words, no full stop"},{"id":"partners-title","label":"Headline - first line","help":"One or two words ending in a full stop.","kind":"display-title","max":22,"req":true,"legal":false,"token":"","ph":"One or two words ending in a full stop"},{"id":"partners-accent","label":"Headline - second line (terracotta)","help":"One or two words ending in a full stop, printed in terracotta.","kind":"display-accent","max":22,"req":true,"legal":false,"token":"","ph":"One or two words ending in a full stop"},{"id":"partners-lede","label":"How to describe these relationships","help":"About 20 to 35 words describing what these organisations are to you in general terms. Be careful with the words you choose: sponsor, funder, partner and member all mean different things, and each organisation has to agree in writing to the word you use about them before it is published.","kind":"lede","max":260,"req":true,"legal":true,"token":"{{PARTNERS}}","ph":""}],"repeat":null,"ink":false},{"id":"partner-names","number":"","eyebrow":"","purpose":"","layout":"marquee","fields":[{"id":"partner-name","label":"Organisation name","help":"The organisation's full name, spelled and capitalised exactly as they spell it themselves. Only list organisations that have agreed in writing to appear here - being named on a website is a public claim about a relationship, and we cannot add anyone on the strength of a conversation.","kind":"short","max":70,"req":true,"legal":true,"token":"{{PARTNERS}}","ph":""},{"id":"partner-url","label":"Their website (optional)","help":"The web address of the organisation's own site, if they are happy for the name to link out to it. Leave blank if you are not sure.","kind":"url","max":0,"req":false,"legal":true,"token":"{{PARTNERS}}","ph":""}],"repeat":{"noun":"partner","min":0,"suggested":5,"max":12},"ink":false},{"id":"closing","number":"07","eyebrow":"Join us","purpose":"The dark band that closes the page.","layout":"band","fields":[{"id":"closing-eyebrow","label":"Small label above the headline","help":"One or two words in capitals. This band is dark, so everything on it is printed in pale bone rather than terracotta.","kind":"eyebrow","max":24,"req":true,"legal":false,"token":"","ph":"One or two words, no full stop"},{"id":"closing-title","label":"Headline - first line","help":"One or two words ending in a full stop. This is the last thing people read before the footer, so make it an invitation rather than a summary.","kind":"display-title","max":22,"req":true,"legal":false,"token":"","ph":"One or two words ending in a full stop"},{"id":"closing-accent","label":"Headline - second line","help":"One or two words ending in a full stop. On this dark band the second line prints in pale bone, not terracotta, so it reads as a quieter echo of the first line.","kind":"display-accent","max":22,"req":true,"legal":false,"token":"","ph":"One or two words ending in a full stop"},{"id":"closing-lede","label":"Closing paragraph","help":"25 to 45 words. Speak directly to the reader and give them a reason to act now. Do not mention tax receipts, tax deductions or charitable registration anywhere in this paragraph - none of that can appear on the site until it is confirmed in writing.","kind":"lede","max":300,"req":true,"legal":false,"token":"","ph":"Two or three sentences, 25 to 45 words"},{"id":"closing-cta-primary-label","label":"Main button - wording","help":"Two or three words in capitals, verb first. If this button is about giving money, keep the wording to the act of giving - say nothing about receipts or tax.","kind":"cta-label","max":22,"req":true,"legal":false,"token":"","ph":"Two or three words, verb first"},{"id":"closing-cta-secondary-label","label":"Second button - wording","help":"Two or three words in capitals for the alternative for people who want to give time or ask a question rather than give money.","kind":"cta-label","max":22,"req":true,"legal":false,"token":"","ph":"Two or three words, verb first"}],"repeat":null,"ink":true}]},{"key":"about","label":"About","route":"/about","blurb":"Mission, history, values and people. Names and biographies are only published with the person’s written agreement.","sections":[{"id":"hero","number":"01","eyebrow":"Page opening","purpose":"","layout":"hero","fields":[{"id":"hero-eyebrow","label":"Small label above the headline","help":"One or two plain words naming what this page is about. We print it very small in capitals with a number in front, so do not add a number yourself and do not add punctuation.","kind":"eyebrow","max":18,"req":true,"legal":false,"token":"","ph":"1 to 2 words, no punctuation"},{"id":"hero-title","label":"Headline, first line","help":"The first line of the big headline. One to three words only — it is set in enormous type, so a long line will not fit. Do not end this line with a full stop; the full stop goes at the end of the second line.","kind":"display-title","max":24,"req":true,"legal":false,"token":"","ph":"1 to 3 words, no ending punctuation"},{"id":"hero-title-accent","label":"Headline, second line","help":"The second line of the big headline, printed in the terracotta colour directly underneath the first. One to three words, ending in a full stop. Read both lines together out loud — they should make one short phrase.","kind":"display-accent","max":24,"req":true,"legal":false,"token":"","ph":"1 to 3 words ending in a full stop"},{"id":"hero-lede","label":"Opening paragraph","help":"The short paragraph under the headline. Say in plain, warm language who Harmony Circle is for and what this page will tell the reader. Aim for 25 to 45 words, about two sentences. No numbers, no founding year, no claims about charity status here — those have their own fields.","kind":"lede","max":320,"req":true,"legal":false,"token":"","ph":"25 to 45 words, 2 sentences"}],"repeat":null,"ink":false},{"id":"mission","number":"02","eyebrow":"Mission","purpose":"Your official wording, then what it means in practice.","layout":"split","fields":[{"id":"mission-eyebrow","label":"Small label above the headline","help":"One or two plain words for the small capitalised label on this section. We add the number in front.","kind":"eyebrow","max":18,"req":true,"legal":false,"token":"","ph":"1 to 2 words, no punctuation"},{"id":"mission-title","label":"Headline, first line","help":"One to three words, no full stop. Set in very large type.","kind":"display-title","max":24,"req":true,"legal":false,"token":"","ph":"1 to 3 words, no ending punctuation"},{"id":"mission-title-accent","label":"Headline, second line","help":"One to three words in terracotta on the line below, ending in a full stop.","kind":"display-accent","max":24,"req":true,"legal":false,"token":"","ph":"1 to 3 words ending in a full stop"},{"id":"mission-statement","label":"Your official mission statement","help":"Copy your mission wording in exactly as your board approved it, word for word — do not rewrite it for the website and do not improve it here. If your mission has never been written down and approved, leave this blank and tell us; we will not write one for you.","kind":"longtext","max":400,"req":true,"legal":true,"token":"{{MISSION_STATEMENT}}","ph":"your approved wording, copied exactly — usually 1 to 3 sentences"},{"id":"mission-body","label":"What that means day to day","help":"One paragraph, 40 to 90 words, putting the mission in everyday language: the kinds of things you actually do and who benefits. Keep it descriptive. Do not include participant numbers, funding figures, or anything about tax receipts or charity registration — those belong in other fields we handle separately.","kind":"body","max":600,"req":true,"legal":false,"token":"","ph":"one paragraph, 40 to 90 words"}],"repeat":null,"ink":false},{"id":"story","number":"03","eyebrow":"Story","purpose":"How the organisation started and where it is now.","layout":"prose-head","fields":[{"id":"story-eyebrow","label":"Small label above the headline","help":"One or two plain words for the small capitalised label on this section. We add the number in front.","kind":"eyebrow","max":18,"req":true,"legal":false,"token":"","ph":"1 to 2 words, no punctuation"},{"id":"story-title","label":"Headline, first line","help":"One to three words, no full stop.","kind":"display-title","max":24,"req":true,"legal":false,"token":"","ph":"1 to 3 words, no ending punctuation"},{"id":"story-title-accent","label":"Headline, second line","help":"One to three words in terracotta on the line below, ending in a full stop.","kind":"display-accent","max":24,"req":true,"legal":false,"token":"","ph":"1 to 3 words ending in a full stop"},{"id":"story-lede","label":"Opening paragraph of the story","help":"25 to 45 words introducing how Harmony Circle started — the need people saw and the first thing they did about it. Tell it like you would tell a new neighbour, not like a report.","kind":"lede","max":320,"req":true,"legal":false,"token":"","ph":"25 to 45 words, 2 sentences"},{"id":"founding-year","label":"Year the organisation was founded","help":"The year Harmony Circle was founded. We print it as a small caption reading EST. and then the year. Give only a year you can confirm from your own records — if there is any doubt about which year counts as the founding, leave this blank and say so. We will never guess a year for you.","kind":"date","max":4,"req":true,"legal":true,"token":"{{FOUNDING_DATE}}","ph":"a four-digit year, supplied by you from your records"},{"id":"story-body-early","label":"The early years","help":"One paragraph, 40 to 90 words, on the first stage: who gathered, where you met, what you ran first. Names of individual people only if they have agreed in writing to be named on the website — otherwise describe them by role, such as a group of parents.","kind":"body","max":600,"req":true,"legal":false,"token":"","ph":"one paragraph, 40 to 90 words"},{"id":"story-body-today","label":"Where you are now","help":"One paragraph, 40 to 90 words, on what the organisation looks like today and where it is heading. Keep any counts out of this paragraph — put every number in the figures section so we can check each one with you before it goes live.","kind":"body","max":600,"req":true,"legal":false,"token":"","ph":"one paragraph, 40 to 90 words"},{"id":"story-photo-caption","label":"Caption under the photo","help":"Optional. A short line printed under the photograph. Keep it factual — what it shows and roughly when. Do not put a date here that you are not sure of.","kind":"short","max":90,"req":false,"legal":false,"token":"","ph":"up to 12 words"}],"repeat":null,"ink":false},{"id":"milestones","number":"","eyebrow":"","purpose":"Dated moments, in order. Optional.","layout":"list","fields":[{"id":"milestone-year","label":"Year","help":"The year this moment happened. Only give a year you can confirm from your own records, minutes or photographs. If you are unsure, leave the entry out rather than estimating — we will not fill in a year for you.","kind":"date","max":4,"req":true,"legal":true,"token":"{{FOUNDING_DATE}}","ph":"a four-digit year, supplied by you from your records"},{"id":"milestone-title","label":"What happened, in a few words","help":"Two to four words naming the moment, like a small headline. No full stop needed.","kind":"short","max":40,"req":true,"legal":false,"token":"","ph":"2 to 4 words"},{"id":"milestone-body","label":"A little more detail","help":"25 to 45 words on why this moment mattered to the community. Leave out participant counts, dollar figures and partner organisation names — we collect those separately so they can be confirmed first.","kind":"body","max":320,"req":true,"legal":false,"token":"","ph":"25 to 45 words"}],"repeat":{"noun":"milestone","min":0,"suggested":3,"max":8},"ink":false},{"id":"stats","number":"","eyebrow":"","purpose":"Four figures about the organisation.","layout":"stats","fields":[{"id":"stat-value","label":"The figure","help":"The number itself, written exactly as you want it to appear. Every figure on this website has to come from something you can point to — a membership list, a registration sheet, an attendance record. If you cannot show where a number comes from, leave the whole entry out. We will never estimate or round a figure on your behalf, and we will hold this section back from launch until each number is confirmed in writing.","kind":"stat-value","max":12,"req":true,"legal":true,"token":"{{PROGRAM_STATS}}","ph":""},{"id":"stat-label","label":"What the figure counts","help":"One to three words naming what the number counts, printed very small in capitals underneath. Be precise about what is being counted, since the caption is what makes the number honest.","kind":"stat-label","max":28,"req":true,"legal":false,"token":"","ph":"1 to 3 words, no punctuation"}],"repeat":{"noun":"figure","min":0,"suggested":4,"max":4},"ink":false},{"id":"values","number":"04","eyebrow":"Values","purpose":"","layout":"header","fields":[{"id":"values-eyebrow","label":"Small label above the headline","help":"One or two plain words for the small capitalised label on this section. We add the number in front.","kind":"eyebrow","max":18,"req":true,"legal":false,"token":"","ph":"1 to 2 words, no punctuation"},{"id":"values-title","label":"Headline, first line","help":"One to three words, no full stop.","kind":"display-title","max":24,"req":true,"legal":false,"token":"","ph":"1 to 3 words, no ending punctuation"},{"id":"values-title-accent","label":"Headline, second line","help":"One to three words in terracotta on the line below, ending in a full stop.","kind":"display-accent","max":24,"req":true,"legal":false,"token":"","ph":"1 to 3 words ending in a full stop"},{"id":"values-lede","label":"Introduction to your values","help":"25 to 45 words explaining how these principles show up in the way you work, so they read as commitments rather than words on a wall.","kind":"lede","max":320,"req":true,"legal":false,"token":"","ph":"25 to 45 words, 2 sentences"}],"repeat":null,"ink":false},{"id":"value-items","number":"","eyebrow":"","purpose":"","layout":"cards","fields":[{"id":"value-title","label":"The value, in a word or two","help":"One to three words naming the principle, ending in a full stop. Short and concrete beats abstract — pick the word you would actually use in a meeting.","kind":"display-title","max":28,"req":true,"legal":false,"token":"","ph":"1 to 3 words ending in a full stop"},{"id":"value-body","label":"What it means in practice","help":"40 to 70 words describing what this principle makes you do, and what it stops you doing. Give the reader something they could hold you to. Avoid repeating the word itself back at them.","kind":"body","max":480,"req":true,"legal":false,"token":"","ph":"one paragraph, 40 to 70 words"}],"repeat":{"noun":"value","min":2,"suggested":4,"max":6},"ink":false},{"id":"people","number":"05","eyebrow":"People","purpose":"","layout":"header","fields":[{"id":"people-eyebrow","label":"Small label above the headline","help":"One or two plain words for the small capitalised label on this section. We add the number in front.","kind":"eyebrow","max":18,"req":true,"legal":false,"token":"","ph":"1 to 2 words, no punctuation"},{"id":"people-title","label":"Headline, first line","help":"One to three words, no full stop.","kind":"display-title","max":24,"req":true,"legal":false,"token":"","ph":"1 to 3 words, no ending punctuation"},{"id":"people-title-accent","label":"Headline, second line","help":"One to three words in terracotta on the line below, ending in a full stop.","kind":"display-accent","max":24,"req":true,"legal":false,"token":"","ph":"1 to 3 words ending in a full stop"},{"id":"people-lede","label":"Introduction to the people","help":"25 to 45 words on who runs Harmony Circle and how they came to it — volunteers, elected board, staff. Do not name anyone here; names go in the entries below, where we also record permission to publish them.","kind":"lede","max":320,"req":true,"legal":false,"token":"","ph":"25 to 45 words, 2 sentences"}],"repeat":null,"ink":false},{"id":"board","number":"","eyebrow":"","purpose":"Board members. Nothing here is published without written consent from the person named.","layout":"list","fields":[{"id":"board-name","label":"Name","help":"The person's name exactly as they want it published, including Turkish spelling and accents. Only add someone who has told you, in writing, that they agree to appear on the public website. We will never add, complete or guess a name.","kind":"short","max":60,"req":true,"legal":true,"token":"{{BOARD_MEMBERS}}","ph":""},{"id":"board-role","label":"Position on the board","help":"Their position, in the wording your own board documents use. Use the real position; do not invent a grander sounding one for the website.","kind":"short","max":48,"req":true,"legal":true,"token":"{{BOARD_MEMBERS}}","ph":""},{"id":"board-bio","label":"Short biography","help":"40 to 80 words, written in the third person, about what this person brings to Harmony Circle. Ask the person to write or approve their own wording. Do not list qualifications, employers or professional credentials unless the person has confirmed each one.","kind":"longtext","max":560,"req":true,"legal":true,"token":"{{BOARD_MEMBERS}}","ph":"one paragraph, 40 to 80 words, in the third person"},{"id":"board-photo-consent","label":"Has this person agreed in writing to their photo being published?","help":"Answer for this specific person. We only publish a headshot when the answer is yes and you hold that agreement — agreeing to be named is not the same as agreeing to a photo. If the answer is no or not yet, we show the card without a picture, which is fine.","kind":"choice","max":0,"req":true,"legal":true,"token":"{{BOARD_MEMBERS}}","ph":"","choices":["Yes, in writing","Not yet","No photo to publish"]}],"repeat":{"noun":"board member","min":0,"suggested":5,"max":15},"ink":false},{"id":"staff","number":"","eyebrow":"","purpose":"Staff, if you have any.","layout":"list","fields":[{"id":"staff-name","label":"Name","help":"The person's name exactly as they want it published. Only include someone who has agreed in writing to appear on the public website.","kind":"short","max":60,"req":true,"legal":true,"token":"{{STAFF}}","ph":""},{"id":"staff-role","label":"Job title","help":"Their actual job title, in the wording used in their letter of employment or volunteer agreement.","kind":"short","max":48,"req":true,"legal":true,"token":"{{STAFF}}","ph":""},{"id":"staff-bio","label":"Short biography","help":"40 to 80 words in the third person on what this person does at Harmony Circle and who they are the right person to contact about. Have the person approve the wording before you send it.","kind":"longtext","max":560,"req":true,"legal":true,"token":"{{STAFF}}","ph":"one paragraph, 40 to 80 words, in the third person"},{"id":"staff-photo-consent","label":"Has this person agreed in writing to their photo being published?","help":"Answer for this specific person. A photo only goes on the site when the answer is yes and you hold that agreement in writing.","kind":"choice","max":0,"req":true,"legal":true,"token":"{{STAFF}}","ph":"","choices":["Yes, in writing","Not yet","No photo to publish"]}],"repeat":{"noun":"staff member","min":0,"suggested":2,"max":10},"ink":false},{"id":"closing","number":"06","eyebrow":"Closing invitation","purpose":"","layout":"band","fields":[{"id":"cta-title","label":"Headline, first line","help":"One to three words, no full stop. This is the page's parting line, so make it an invitation rather than a summary.","kind":"display-title","max":24,"req":true,"legal":false,"token":"","ph":"1 to 3 words, no ending punctuation"},{"id":"cta-title-accent","label":"Headline, second line","help":"One to three words in terracotta on the line below, ending in a full stop.","kind":"display-accent","max":24,"req":true,"legal":false,"token":"","ph":"1 to 3 words ending in a full stop"},{"id":"cta-body","label":"Short invitation","help":"25 to 40 words telling the reader what to do next and what will happen when they do. Warm and specific. Do not mention donations being tax deductible or receipts anywhere here — that wording is handled on the donate page once your status is confirmed.","kind":"body","max":300,"req":true,"legal":false,"token":"","ph":"25 to 40 words, 2 sentences"},{"id":"cta-primary-label","label":"Main button text","help":"Two to four words telling the reader exactly what the button does. Start with a verb. It is printed in small capitals.","kind":"cta-label","max":28,"req":true,"legal":false,"token":"","ph":"2 to 4 words starting with a verb"},{"id":"cta-secondary-label","label":"Second button text","help":"Optional. Two to four words for a quieter second button, if there is an obvious alternative next step.","kind":"cta-label","max":28,"req":false,"legal":false,"token":"","ph":"2 to 4 words starting with a verb"}],"repeat":null,"ink":true},{"id":"listing","number":"07","eyebrow":"Search listing","purpose":"","layout":"meta","fields":[{"id":"search-description","label":"One-line summary for Google","help":"The sentence that appears under the page title in a search result. Say who you are and what this page covers. Write it as one plain sentence a stranger would understand, and avoid numbers or claims you have not confirmed.","kind":"short","max":155,"req":true,"legal":false,"token":"","ph":"one sentence, 20 to 25 words, ending in a full stop"}],"repeat":null,"ink":false}]},{"key":"programs","label":"Programs","route":"/programs","blurb":"The index page, then one full page per programme. Fill in the index first, then add a programme block for each thing you run.","sections":[{"id":"hero","number":"01","eyebrow":"Programs","purpose":"","layout":"hero","fields":[{"id":"index-hero-eyebrow","label":"Small label above the headline","help":"One or two words that name this page. It prints in small capitals above the big headline, next to an automatic number. Think of it as a signpost, not a sentence. Examples of the right shape: a single word like Programs, or two words like What We Run.","kind":"eyebrow","max":22,"req":true,"legal":false,"token":"","ph":"1 to 2 words, no punctuation"},{"id":"index-hero-title","label":"Headline, first line","help":"The big headline is printed in huge capitals and split over two lines. This is the first line. One or two words only, with no full stop — the full stop goes on the second line. Long lines look broken at this size, so keep it short and plain.","kind":"display-title","max":24,"req":true,"legal":false,"token":"","ph":"1 to 2 words, no full stop"},{"id":"index-hero-accent","label":"Headline, second line (printed in terracotta)","help":"The second line of the big headline, printed in the terracotta accent colour on its own line. One word, or two at the very most, ending in a full stop. Together with the first line it should read as one short phrase.","kind":"display-accent","max":18,"req":true,"legal":false,"token":"","ph":"1 to 2 words ending in a full stop"},{"id":"index-hero-lede","label":"Opening sentence under the headline","help":"Two or three sentences, about 25 to 45 words, saying what kind of programmes Harmony Circle runs and who they are for. Warm and concrete, no slogans. Do not mention numbers of members or participants here — those go in the numbers strip and need to be confirmed first.","kind":"lede","max":320,"req":true,"legal":false,"token":"","ph":"25 to 45 words, 2 to 3 sentences"}],"repeat":null,"ink":false},{"id":"intro","number":"02","eyebrow":"What to expect","purpose":"What every programme has in common.","layout":"split","fields":[{"id":"intro-eyebrow","label":"Small label above this section's heading","help":"One or two words in the same style as the page label, naming this section. Something like What To Expect or How It Works.","kind":"eyebrow","max":22,"req":true,"legal":false,"token":"","ph":"1 to 2 words, no punctuation"},{"id":"intro-title","label":"Section heading, first line","help":"A large heading split over two lines. This is the first line: one or two words, no full stop.","kind":"display-title","max":24,"req":true,"legal":false,"token":"","ph":"1 to 2 words, no full stop"},{"id":"intro-accent","label":"Section heading, second line (printed in terracotta)","help":"The closing word of the heading, printed in terracotta on its own line, ending in a full stop.","kind":"display-accent","max":18,"req":true,"legal":false,"token":"","ph":"1 to 2 words ending in a full stop"},{"id":"intro-body","label":"What all our programmes have in common","help":"One paragraph, about 40 to 90 words. Cover the things that are true of every programme: that newcomers are welcome, whether you need to speak Turkish, whether children can come along, whether you must book ahead. Write it as if answering a nervous first-time visitor. Avoid any claim about how many people attend until those figures are confirmed.","kind":"body","max":620,"req":true,"legal":false,"token":"","ph":"one paragraph, 40 to 90 words"}],"repeat":null,"ink":false},{"id":"stats","number":"","eyebrow":"","purpose":"","layout":"stats","fields":[{"id":"stat-value","label":"The figure","help":"A single short figure, shown very large. Only supply a number you can stand behind and evidence if asked — how many programmes run each week, how many sessions you held last year, and so on. If you are not certain of the number, leave this blank and we will leave the strip out rather than guess. We will never fill this in for you.","kind":"stat-value","max":12,"req":true,"legal":true,"token":"{{PROGRAM_STATS}}","ph":"a short figure only, supplied by you; leave blank if unconfirmed"},{"id":"stat-label","label":"What the figure counts","help":"Two or three words in small capitals saying what the number above counts. It must describe the figure exactly — if the number is sessions, do not label it people. Leave blank if the figure is blank.","kind":"stat-label","max":28,"req":true,"legal":true,"token":"{{PROGRAM_STATS}}","ph":"2 to 3 words describing what is counted; supplied by you"}],"repeat":{"noun":"figure","min":0,"suggested":4,"max":4},"ink":false},{"id":"program","number":"03","eyebrow":"Each programme","purpose":"Everything for one programme: the card on the index page and the full page behind it. Add one block per programme.","layout":"program","fields":[{"id":"p-eyebrow","label":"Card category label","help":"One or two words in small capitals at the top of the card, grouping the programme by type — language, youth, culture, support, and so on. Use the same wording across cards that belong to the same family so the page reads tidily.","kind":"eyebrow","max":22,"req":true,"legal":false,"token":"","ph":"1 to 2 words, no punctuation"},{"id":"p-title","label":"Programme name","help":"The name of the programme, one to three words. It is set in heavy capitals, so a long official name will wrap badly — give us the short everyday name people actually use and keep the full name for the programme's own page.","kind":"display-title","max":40,"req":true,"legal":false,"token":"","ph":"1 to 3 words"},{"id":"p-accent","label":"Programme headline, second line (terracotta)","help":"The second half of the headline on the programme’s own page, printed in terracotta. One or two words ending in a full stop. Together with the line above it should read as one phrase.","kind":"display-accent","max":24,"req":true,"legal":false,"token":"","ph":"One or two words ending in a full stop"},{"id":"p-summary","label":"One-line description on the card","help":"About 25 to 40 words saying what happens at this programme and who it suits. Plain language, present tense, no marketing adjectives. This is the only description a visitor reads before deciding whether to click.","kind":"body","max":260,"req":true,"legal":false,"token":"","ph":"25 to 40 words, 1 to 2 sentences"},{"id":"p-lede","label":"Opening sentence for this programme","help":"About 25 to 45 words, directly under the headline. Say what the programme is and who it is for, in the words a neighbour would use. This is also the sentence search engines are most likely to show, so make it stand on its own without the headline above it.","kind":"lede","max":320,"req":true,"legal":false,"token":"","ph":"25 to 45 words, 2 to 3 sentences"},{"id":"p-body","label":"The full description of the programme","help":"Two to four paragraphs, about 150 to 300 words in total. Walk a newcomer through a typical session from arrival to the end: what they will do, who leads it, what is provided, what they might bring. Concrete beats impressive. Leave out attendance figures, founding dates and anything about charity status or tax receipts — those are handled separately and cannot be written from memory.","kind":"longtext","max":2200,"req":true,"legal":false,"token":"","ph":"2 to 4 paragraphs, 150 to 300 words total"},{"id":"p-schedule","label":"When it runs","help":"One short line: the day, the time, and how often. Add the term or season if it only runs part of the year, and say plainly if it pauses over the summer or a holiday. Write it the way you would tell someone on the phone.","kind":"short","max":140,"req":true,"legal":false,"token":"","ph":"one line: day, time, how often, and the season if limited"},{"id":"p-location","label":"Where it takes place","help":"The name of the venue and its address. We will not write any address on the site until you send it to us in writing and confirm it is correct and may be published — a wrong address sends people to the wrong door. If the venue changes week to week, say so here instead and give us the place people should ask.","kind":"short","max":200,"req":true,"legal":true,"token":"{{STREET_ADDRESS}}","ph":""},{"id":"p-audience","label":"Who it is for","help":"About 40 to 70 words. Say who the programme suits — age range, experience level, whether you need to speak Turkish, whether parents stay, whether newcomers can join partway through. If anyone is genuinely not suited, say that kindly rather than leaving them to find out on the day.","kind":"body","max":480,"req":true,"legal":false,"token":"","ph":"one paragraph, 40 to 70 words"},{"id":"p-language","label":"Language it runs in","help":"Pick the language the sessions are actually run in. This matters to families deciding whether to bring a child who speaks only one of the two.","kind":"choice","max":0,"req":true,"legal":false,"token":"","ph":"","choices":["English","Turkish","Both English and Turkish"]},{"id":"p-cost","label":"Cost","help":"One short line. If it is free, write free in plain words. If there is a fee, give the amount and what it covers, and say what happens if someone cannot afford it. Do not describe any payment here as a donation or mention receipts — how donations and receipts work is a separate legal question still being confirmed.","kind":"short","max":140,"req":true,"legal":false,"token":"","ph":"one short line, e.g. free, or an amount and what it covers"},{"id":"p-join","label":"How to take part","help":"About 40 to 90 words setting out the steps in order: whether to register first or simply turn up, what you will be asked for, how long before someone replies, and what to do on a first visit. If places are limited or there is a waiting list, say so here rather than letting people find out after they write.","kind":"body","max":620,"req":true,"legal":false,"token":"","ph":"one paragraph, 40 to 90 words"},{"id":"p-cta-label","label":"Wording on the button","help":"Two to four words printed in capitals on the button, saying what it does — an instruction beginning with a verb, not click here.","kind":"cta-label","max":24,"req":true,"legal":false,"token":"","ph":"2 to 4 words beginning with a verb"},{"id":"p-contact-name","label":"Name of the person to ask for","help":"Only if that person has agreed in writing to have their name published on the website. If you would rather not name anyone, leave it blank and we will point people to the email address instead.","kind":"short","max":80,"req":false,"legal":true,"token":"{{STAFF}}","ph":""},{"id":"p-contact-email","label":"Email address for questions about this programme","help":"The address printed on the page for questions about this programme. Leave it blank until the address exists and someone has agreed to answer it. We will never write a plausible-looking address in place of the real one; the page will carry a marker until you supply it.","kind":"email","max":120,"req":false,"legal":true,"token":"{{EMAIL_GENERAL}}","ph":""},{"id":"p-contact-phone","label":"Phone number for questions about this programme","help":"Only fill this in if you want a number published and someone will answer it. Leave it blank otherwise — we will not put a number on the site unless you send us the real one in writing.","kind":"phone","max":40,"req":false,"legal":true,"token":"{{PHONE}}","ph":""}],"repeat":{"noun":"programme","min":1,"suggested":4,"max":12},"ink":false},{"id":"closing","number":"04","eyebrow":"Get in touch","purpose":"","layout":"band","fields":[{"id":"index-cta-eyebrow","label":"Small label above this section's heading","help":"One or two words in small capitals, such as Get In Touch or Still Looking.","kind":"eyebrow","max":22,"req":true,"legal":false,"token":"","ph":"1 to 2 words, no punctuation"},{"id":"index-cta-title","label":"Heading, first line","help":"First line of the large heading. One or two words, no full stop.","kind":"display-title","max":24,"req":true,"legal":false,"token":"","ph":"1 to 2 words, no full stop"},{"id":"index-cta-accent","label":"Heading, second line (printed in terracotta)","help":"Closing word of the heading, printed in terracotta on its own line, ending in a full stop.","kind":"display-accent","max":18,"req":true,"legal":false,"token":"","ph":"1 to 2 words ending in a full stop"},{"id":"index-cta-body","label":"Invitation to make contact","help":"About 40 to 70 words inviting people to ask about a programme, suggest a new one, or volunteer to help run one. Say plainly what happens when they write and roughly how long a reply takes, so the promise matches reality.","kind":"body","max":480,"req":true,"legal":false,"token":"","ph":"one paragraph, 40 to 70 words"},{"id":"index-cta-label","label":"Wording on the button","help":"The words printed on the button, two to four words, printed in capitals. Say what the button does rather than click here — for example an instruction beginning with a verb.","kind":"cta-label","max":24,"req":true,"legal":false,"token":"","ph":"2 to 4 words beginning with a verb"},{"id":"index-cta-email","label":"Email address shown beside the button","help":"The address people should write to about programmes. Leave this blank until the real address exists and someone has agreed to monitor it — we will never invent one, and the page will show a marker until you supply it.","kind":"email","max":120,"req":false,"legal":true,"token":"{{EMAIL_GENERAL}}","ph":""}],"repeat":null,"ink":true}]},{"key":"events","label":"Events","route":"/events","blurb":"The events list and one page per event. Add the events you already have dates for — more can be added at any time once the site is live.","sections":[{"id":"hero","number":"01","eyebrow":"Events","purpose":"","layout":"hero","fields":[{"id":"index-eyebrow","label":"Small label above the headline","help":"One or two words, printed very small in capitals above the big headline. It names the page. Keep it plain — a label, not a sentence.","kind":"eyebrow","max":18,"req":true,"legal":false,"token":"","ph":"1 to 2 words, no punctuation"},{"id":"index-display-title","label":"Headline — first line","help":"The big headline is printed on two lines. This is line one: one or two words, no full stop at the end. Together both lines should be at most three words.","kind":"display-title","max":24,"req":true,"legal":false,"token":"","ph":"1 to 2 words, no ending punctuation"},{"id":"index-display-accent","label":"Headline — second line (in colour)","help":"Line two of the big headline, printed in the terracotta accent colour. One or two words and it must end with a full stop. This is the word people remember, so pick the strongest one.","kind":"display-accent","max":24,"req":true,"legal":false,"token":"","ph":"1 to 2 words ending in a full stop"},{"id":"index-lede","label":"Welcome paragraph","help":"One short paragraph, about 25 to 45 words, sitting under the headline. Say what kind of gatherings you hold and who is welcome at them. Warm, direct, no marketing language. It is printed narrow, so long sentences will look cramped.","kind":"lede","max":300,"req":true,"legal":false,"token":"","ph":"one paragraph, 25 to 45 words"}],"repeat":null,"ink":false},{"id":"upcoming","number":"02","eyebrow":"Upcoming","purpose":"The heading over the list of events still to come, and what the page says when there are none.","layout":"header","fields":[{"id":"upcoming-eyebrow","label":"Small label above the heading","help":"One or two words in capitals, printed very small. It tells the reader this part of the page is what is coming next.","kind":"eyebrow","max":18,"req":true,"legal":false,"token":"","ph":"1 to 2 words"},{"id":"upcoming-display-title","label":"Heading — first line","help":"Line one of the section heading. One or two words, no full stop.","kind":"display-title","max":24,"req":true,"legal":false,"token":"","ph":"1 to 2 words, no ending punctuation"},{"id":"upcoming-display-accent","label":"Heading — second line (in colour)","help":"Line two of the section heading, printed in the accent colour, ending with a full stop. One or two words.","kind":"display-accent","max":24,"req":true,"legal":false,"token":"","ph":"1 to 2 words ending in a full stop"},{"id":"upcoming-empty-message","label":"Message when nothing is scheduled","help":"One or two sentences shown in place of the list whenever there is no upcoming event. It should still give the reader somewhere to go — for example, an invitation to check back or to get in touch. Write it once; it stays on the site permanently.","kind":"short","max":180,"req":true,"legal":false,"token":"","ph":"1 to 2 sentences, under 180 characters"}],"repeat":null,"ink":false},{"id":"event","number":"03","eyebrow":"Each event","purpose":"One block per event.","layout":"event","fields":[{"id":"event-name","label":"Event name","help":"The full name, written exactly as you will advertise it on posters and social media. Used in the listing, in the web address for this event, in calendar entries and in search results, so keep it consistent everywhere.","kind":"short","max":70,"req":true,"legal":false,"token":"","ph":"3 to 6 words"},{"id":"event-category","label":"Type of event","help":"One or two words printed in small capitals on the event card — the kind of gathering it is. Reuse the same words across events so the list looks tidy rather than inventing a new one each time.","kind":"eyebrow","max":20,"req":true,"legal":false,"token":"","ph":"1 to 2 words"},{"id":"event-date","label":"Date","help":"The day the event takes place. If it runs over more than one day, put the first day here and the last day in the next field.","kind":"date","max":0,"req":true,"legal":false,"token":"","ph":"a single calendar date"},{"id":"event-end-date","label":"Last day (only for multi-day events)","help":"Leave blank for a normal one-day event. Fill it in only when the event runs across several days.","kind":"date","max":0,"req":false,"legal":false,"token":"","ph":"a single calendar date"},{"id":"event-start-time","label":"Start time","help":"The time doors open or the programme begins, written the way you would say it out loud. Include am or pm so there is no confusion.","kind":"short","max":24,"req":true,"legal":false,"token":"","ph":"a clock time with am or pm"},{"id":"event-end-time","label":"Finish time","help":"Roughly when people can expect to leave. Leave blank if the finish is genuinely open-ended — do not guess a time, because people plan childcare and rides around it.","kind":"short","max":24,"req":false,"legal":false,"token":"","ph":"a clock time with am or pm"},{"id":"event-venue-name","label":"Venue name","help":"The name of the building, hall or room, written exactly as the venue itself writes it. We will not fill this in for you — send us the name only once the booking is confirmed, because a wrong venue sends people to the wrong door.","kind":"short","max":80,"req":true,"legal":true,"token":"{{STREET_ADDRESS}}","ph":""},{"id":"event-venue-address","label":"Venue address","help":"The full street address people will type into a map, including city, province and postal code. Copy it from the venue's own booking confirmation. We never write an address from memory, so this stays blank until you send it.","kind":"short","max":160,"req":true,"legal":true,"token":"{{STREET_ADDRESS}}","ph":""},{"id":"event-price","label":"Cost to attend","help":"What one person pays, in plain words — a single amount, a range, or say clearly that there is no charge. If there are different rates for members, students or children, write them all out in one short line so nobody is surprised at the door.","kind":"short","max":90,"req":true,"legal":false,"token":"","ph":"a short phrase naming amounts in Canadian dollars, or stating there is no charge"},{"id":"event-price-receipt-status","label":"Does this payment come with a tax receipt?","help":"Pick one. We cannot answer this for you and we will never write anything about tax receipts on the site until you have confirmed it in writing, because getting it wrong is a legal problem for the foundation, not a typo.","kind":"choice","max":0,"req":true,"legal":true,"token":"{{DONATION_TAX_RECEIPTABLE}}","ph":"","choices":["Not confirmed yet — say nothing about receipts on the page","No receipt is issued for this payment","A receipt is issued — we will send the exact approved wording separately"]},{"id":"event-language","label":"Language used at the event","help":"Pick one. It is printed in the event details so people know what to expect before they arrive.","kind":"choice","max":0,"req":true,"legal":false,"token":"","ph":"","choices":["English","Turkish","Both Turkish and English"]},{"id":"event-summary","label":"Short description for the list","help":"About 25 to 40 words. This is the paragraph on the event card in the list, so it has to work on its own: what happens, who it suits, why someone would come. Do not repeat the date, time or place — those are printed beside it automatically.","kind":"body","max":260,"req":true,"legal":false,"token":"","ph":"one paragraph, 25 to 40 words"},{"id":"event-description","label":"Full description for the event page","help":"Two or three short paragraphs, roughly 120 to 250 words in total. Cover what will actually happen, what to bring or wear, whether children are welcome, whether food is served, and what a first-time visitor should expect at the door. Write it as if speaking to someone who has never been to one of your events. Do not include numbers of past attendees or other statistics unless you can back them up.","kind":"longtext","max":1600,"req":true,"legal":false,"token":"","ph":"2 to 3 paragraphs, 120 to 250 words total"},{"id":"event-registration-required","label":"Do people need to reserve a spot?","help":"Pick one. This decides whether a reservation button appears on the event page, so answer it even when the answer is no.","kind":"choice","max":0,"req":true,"legal":false,"token":"","ph":"","choices":["Yes — a spot must be reserved in advance","No — anyone can simply turn up"]},{"id":"event-registration-label","label":"Wording on the reservation button","help":"Two to four words printed on the button, describing the action the visitor is about to take. Leave blank if no reservation is needed. Avoid the word 'click'.","kind":"cta-label","max":28,"req":false,"legal":false,"token":"","ph":"2 to 4 words, an action"},{"id":"event-registration-url","label":"Reservation link","help":"The web address the button opens — your booking form or ticket page. Paste it from your browser and open it once in a private window first to check it works for someone who is not signed in. Leave blank if no reservation is needed.","kind":"cta-url","max":0,"req":false,"legal":false,"token":"","ph":"a full web address starting with https://"},{"id":"event-capacity","label":"Number of spaces","help":"Optional. The number of people the room or the booking can take, if there is a firm limit. Printed as a short note so people know to reserve early. Leave blank rather than estimating — a wrong number turns people away.","kind":"short","max":40,"req":false,"legal":false,"token":"","ph":"a short phrase containing one number"},{"id":"event-registration-deadline","label":"Last day to reserve","help":"Optional. The final day you will accept reservations. Leave blank if reservations stay open until the event starts.","kind":"date","max":0,"req":false,"legal":false,"token":"","ph":"a single calendar date"},{"id":"event-accessibility-notes","label":"Access notes","help":"One or two sentences on getting in and getting around: step-free entry, lift, accessible washroom, parking, whether there is a quiet space. Only state what you have checked yourself at that venue. If you have not checked, say so plainly rather than leaving a guess on the page.","kind":"short","max":220,"req":false,"legal":false,"token":"","ph":"1 to 2 sentences"},{"id":"event-questions-email","label":"Email for questions about this event","help":"Where enquiries about this event should go. We leave this blank until you confirm the address in writing, because a mistyped address means questions vanish silently.","kind":"email","max":0,"req":false,"legal":true,"token":"{{EMAIL_GENERAL}}","ph":""}],"repeat":{"noun":"event","min":0,"suggested":3,"max":20},"ink":false},{"id":"past","number":"04","eyebrow":"Past","purpose":"The heading over the archive.","layout":"header","fields":[{"id":"past-eyebrow","label":"Small label above the heading","help":"One or two words in small capitals marking this as the archive of things already held.","kind":"eyebrow","max":18,"req":true,"legal":false,"token":"","ph":"1 to 2 words"},{"id":"past-display-title","label":"Heading — first line","help":"Line one of the section heading. One or two words, no full stop.","kind":"display-title","max":24,"req":true,"legal":false,"token":"","ph":"1 to 2 words, no ending punctuation"},{"id":"past-display-accent","label":"Heading — second line (in colour)","help":"Line two of the section heading, in the accent colour, ending with a full stop.","kind":"display-accent","max":24,"req":true,"legal":false,"token":"","ph":"1 to 2 words ending in a full stop"},{"id":"past-empty-message","label":"Message while the archive is empty","help":"One sentence shown until the first event has been and gone. Written once, and it disappears on its own afterwards.","kind":"short","max":140,"req":true,"legal":false,"token":"","ph":"one sentence"}],"repeat":null,"ink":false},{"id":"closing","number":"05","eyebrow":"Stay in touch","purpose":"","layout":"band","fields":[{"id":"closing-eyebrow","label":"Small label above the heading","help":"One or two words in small capitals introducing the invitation at the bottom of the page.","kind":"eyebrow","max":18,"req":true,"legal":false,"token":"","ph":"1 to 2 words"},{"id":"closing-display-title","label":"Heading — first line","help":"Line one of the closing heading. One or two words, no full stop.","kind":"display-title","max":24,"req":true,"legal":false,"token":"","ph":"1 to 2 words, no ending punctuation"},{"id":"closing-display-accent","label":"Heading — second line (in colour)","help":"Line two of the closing heading, in the accent colour, ending with a full stop.","kind":"display-accent","max":24,"req":true,"legal":false,"token":"","ph":"1 to 2 words ending in a full stop"},{"id":"closing-body","label":"Invitation paragraph","help":"About 40 to 70 words. Tell people how they hear about the next gathering and what they get if they sign up. Say plainly that signing up is not a commitment and costs nothing. Do not promise how often you will write unless you are sure you can keep to it.","kind":"body","max":420,"req":true,"legal":false,"token":"","ph":"one paragraph, 40 to 70 words"},{"id":"closing-cta-label","label":"Wording on the button","help":"Two to four words describing what happens when the button is pressed.","kind":"cta-label","max":28,"req":true,"legal":false,"token":"","ph":"2 to 4 words, an action"}],"repeat":null,"ink":true}]},{"key":"getinvolved","label":"Get involved","route":"/get-involved","blurb":"Volunteering and membership, plus the wording around the sign-up form.","sections":[{"id":"hero","number":"01","eyebrow":"Get involved","purpose":"","layout":"hero","fields":[{"id":"hero-eyebrow","label":"Small label above the headline","help":"Two or three words in capitals that name this section, such as the words you'd use on a signpost. It sits above the big headline next to a small number.","kind":"eyebrow","max":24,"req":true,"legal":false,"token":"","ph":"1 to 3 words, no full stop"},{"id":"hero-title-line-1","label":"Headline, first line","help":"The first line of the very large headline. One or two words only, and no full stop on this line — the sentence finishes on the second line. Think of it as the start of a short phrase, not a slogan.","kind":"display-title","max":24,"req":true,"legal":false,"token":"","ph":"1 to 2 words, no punctuation at the end"},{"id":"hero-title-line-2","label":"Headline, second line (coloured)","help":"The second line of the headline. This one prints in the terracotta accent colour and must end with a full stop. One or two words. Together both lines should read as a single short phrase of no more than three words.","kind":"display-accent","max":20,"req":true,"legal":false,"token":"","ph":"1 to 2 words ending in a full stop"},{"id":"hero-lede","label":"Opening paragraph","help":"One warm, plain paragraph of roughly 25 to 45 words telling a newcomer what they can actually do here — help at events, join as a member, or both. Write it as if you were speaking to one person who has just walked in the door. No jargon, no slogans.","kind":"lede","max":300,"req":true,"legal":false,"token":"","ph":"one paragraph, 25 to 45 words"},{"id":"hero-primary-cta-label","label":"Main button text","help":"The words on the main button, in capitals when displayed. Two to four words, starting with a verb, describing the single most useful next step (usually going to the volunteer form).","kind":"cta-label","max":28,"req":true,"legal":false,"token":"","ph":"2 to 4 words beginning with a verb"},{"id":"hero-secondary-cta-label","label":"Second button text (optional)","help":"Optional quieter second button, usually pointing at membership. Two to four words. Leave blank if one button is enough.","kind":"cta-label","max":28,"req":false,"legal":false,"token":"","ph":"2 to 4 words beginning with a verb"}],"repeat":null,"ink":false},{"id":"volunteer","number":"02","eyebrow":"Volunteering","purpose":"","layout":"split","fields":[{"id":"volunteer-eyebrow","label":"Small label above the headline","help":"Two or three words in capitals naming this section, such as the single word you'd use for this part of the page.","kind":"eyebrow","max":24,"req":true,"legal":false,"token":"","ph":"1 to 3 words, no full stop"},{"id":"volunteer-title-line-1","label":"Headline, first line","help":"First line of the large section headline. One or two words, no full stop — it continues on the coloured second line.","kind":"display-title","max":24,"req":true,"legal":false,"token":"","ph":"1 to 2 words, no punctuation at the end"},{"id":"volunteer-title-line-2","label":"Headline, second line (coloured)","help":"Second line of the headline, printed in the accent colour and ending with a full stop. One or two words.","kind":"display-accent","max":20,"req":true,"legal":false,"token":"","ph":"1 to 2 words ending in a full stop"},{"id":"volunteer-lede","label":"Short introduction","help":"Roughly 25 to 45 words saying what volunteering with Harmony Circle feels like and what kind of help is genuinely needed. Keep it honest and specific — 'setting up chairs and pouring tea' beats 'making a difference'.","kind":"lede","max":300,"req":true,"legal":false,"token":"","ph":"one paragraph, 25 to 45 words"},{"id":"volunteer-body","label":"Longer explanation","help":"Roughly 40 to 90 words. Explain who is welcome (all ages? Turkish speakers only, or anyone?), that no experience is needed if that's true, and what a volunteer can expect from you in return — training, a friendly contact person, a reference letter. Do not mention how many volunteers you have; numbers have to come from your records and we will add them separately.","kind":"body","max":650,"req":true,"legal":false,"token":"","ph":"one or two paragraphs, 40 to 90 words total"}],"repeat":null,"ink":false},{"id":"roles","number":"","eyebrow":"","purpose":"The specific things a volunteer could do.","layout":"cards","fields":[{"id":"role-eyebrow","label":"Role category","help":"One or two words in capitals grouping the role, for example the area of the organisation it belongs to. It appears as a tiny label at the top of the card.","kind":"eyebrow","max":24,"req":true,"legal":false,"token":"","ph":"1 to 2 words"},{"id":"role-name","label":"Role name","help":"What you'd call this role out loud, in two to four words. Plain and concrete — name the job, not a title. This is also the wording people will pick from in the form's dropdown.","kind":"short","max":60,"req":true,"legal":false,"token":"","ph":"2 to 4 words"},{"id":"role-description","label":"What the role involves","help":"About 40 to 70 words. Describe a typical shift in plain language: what the person does, who they work with, and where. Avoid promises you can't keep and avoid participant or attendance numbers — those come from your records.","kind":"body","max":550,"req":true,"legal":false,"token":"","ph":"one paragraph, 40 to 70 words"},{"id":"role-commitment","label":"Time commitment","help":"A short phrase showing at the bottom of the card telling people how much time this takes and how often. Keep it under about eight words and be realistic — people drop out when the real commitment turns out to be bigger than advertised.","kind":"short","max":70,"req":true,"legal":false,"token":"","ph":"a short phrase naming an amount of time and how often"},{"id":"role-requirement","label":"Anything needed before starting (optional)","help":"Only fill this in if there is a genuine requirement your board has agreed to, such as a background check, a minimum age, or a language. One short sentence. Leave blank if there is nothing — do not invent a requirement to make the role sound serious.","kind":"short","max":120,"req":false,"legal":false,"token":"","ph":"one short sentence, or blank"}],"repeat":{"noun":"role","min":0,"suggested":4,"max":10},"ink":false},{"id":"membership","number":"03","eyebrow":"Membership","purpose":"","layout":"split","fields":[{"id":"membership-eyebrow","label":"Small label above the headline","help":"Two or three words in capitals naming this section.","kind":"eyebrow","max":24,"req":true,"legal":false,"token":"","ph":"1 to 3 words, no full stop"},{"id":"membership-title-line-1","label":"Headline, first line","help":"First line of the large section headline. One or two words, no full stop — it continues on the coloured line below.","kind":"display-title","max":24,"req":true,"legal":false,"token":"","ph":"1 to 2 words, no punctuation at the end"},{"id":"membership-title-line-2","label":"Headline, second line (coloured)","help":"Second line of the headline, in the accent colour, ending with a full stop. One or two words.","kind":"display-accent","max":20,"req":true,"legal":false,"token":"","ph":"1 to 2 words ending in a full stop"},{"id":"membership-lede","label":"Short introduction","help":"Roughly 25 to 45 words on what membership actually is and why someone would take it up. Say plainly whether it is mainly about supporting the foundation, about taking part in decisions, or both.","kind":"lede","max":300,"req":true,"legal":false,"token":"","ph":"one paragraph, 25 to 45 words"},{"id":"membership-body","label":"What membership includes","help":"Roughly 40 to 90 words describing how membership works in practice — how long it lasts, how it renews, and what members are entitled to do. Only state rights (such as voting at a general meeting) that your constitution or bylaws actually grant. If you are unsure, leave that part out and tell us.","kind":"body","max":650,"req":true,"legal":false,"token":"","ph":"one or two paragraphs, 40 to 90 words total"},{"id":"membership-eligibility","label":"Who can join (optional)","help":"One short paragraph of about 25 to 50 words on who is eligible — any age limit, whether you must live in the London area, whether you need to be of Turkish background. Write only what your bylaws say. Leave blank if membership is open to anyone.","kind":"longtext","max":400,"req":false,"legal":false,"token":"","ph":"one paragraph, 25 to 50 words, or blank"},{"id":"membership-receipt-note","label":"Small print: are membership fees receiptable?","help":"LEAVE THIS BLANK until your board or accountant confirms it in writing. It is the one line on this page that says whether a membership fee gets a tax receipt. We will not write a guess for you, and the page will simply not show this line until the confirmed wording arrives.","kind":"longtext","max":300,"req":false,"legal":true,"token":"{{DONATION_TAX_RECEIPTABLE}}","ph":""}],"repeat":null,"ink":false},{"id":"tiers","number":"","eyebrow":"","purpose":"Membership levels and what each costs.","layout":"cards","fields":[{"id":"tier-name","label":"Membership level name","help":"What this level is called, in one to three words. Use the names already written in your bylaws or on your paper form so the website and your records match.","kind":"short","max":50,"req":true,"legal":false,"token":"","ph":"1 to 3 words"},{"id":"tier-fee-amount","label":"Fee amount","help":"The fee as a figure with the dollar sign, exactly as approved by the board — do not round it or estimate it. It prints large on the card. If a level is free, write the word for free instead of a figure.","kind":"stat-value","max":16,"req":true,"legal":false,"token":"","ph":"a dollar figure, or a single word if there is no fee"},{"id":"tier-fee-period","label":"How often the fee is paid","help":"The tiny label printed under the amount saying what period it covers, such as whether it is charged yearly or once. Two or three words.","kind":"stat-label","max":24,"req":true,"legal":false,"token":"","ph":"2 to 3 words"},{"id":"tier-description","label":"Who this level is for","help":"About 30 to 60 words describing the kind of person or household this level suits. Plain and friendly.","kind":"body","max":450,"req":true,"legal":false,"token":"","ph":"one paragraph, 30 to 60 words"},{"id":"tier-benefits","label":"What this level includes","help":"Three to five short lines, one benefit per line, each under about ten words. They print as a bulleted list. Only list things you will actually deliver every time — a newsletter you don't yet send is not a benefit.","kind":"longtext","max":500,"req":true,"legal":false,"token":"","ph":"3 to 5 lines, one benefit per line, under 10 words each"}],"repeat":{"noun":"level","min":0,"suggested":3,"max":6},"ink":false},{"id":"form","number":"04","eyebrow":"Sign up","purpose":"The wording around the volunteer form. The boxes themselves are already built — these are the sentences beside them.","layout":"prose-head","fields":[{"id":"form-eyebrow","label":"Small label above the headline","help":"Two or three words in capitals naming this section.","kind":"eyebrow","max":24,"req":true,"legal":false,"token":"","ph":"1 to 3 words, no full stop"},{"id":"form-title-line-1","label":"Headline, first line","help":"First line of the headline above the form. One or two words, no full stop.","kind":"display-title","max":24,"req":true,"legal":false,"token":"","ph":"1 to 2 words, no punctuation at the end"},{"id":"form-title-line-2","label":"Headline, second line (coloured)","help":"Second line of the headline, in the accent colour, ending with a full stop. One or two words.","kind":"display-accent","max":20,"req":true,"legal":false,"token":"","ph":"1 to 2 words ending in a full stop"},{"id":"form-lede","label":"Line above the form","help":"Roughly 25 to 45 words telling people this takes two minutes, that someone real will read it, and that filling it in does not commit them to anything yet.","kind":"lede","max":300,"req":true,"legal":false,"token":"","ph":"one paragraph, 25 to 45 words"},{"id":"form-consent-text","label":"Consent wording beside the tick box","help":"LEAVE THIS BLANK until your privacy policy is finished and signed off. This is the sentence someone agrees to when they tick the box, and it must match what the form really collects and where it is really kept. Nobody should guess at this wording, so we will not draft it for you — send us the approved sentence and we will drop it in.","kind":"longtext","max":400,"req":true,"legal":true,"token":"","ph":""},{"id":"form-submit-label","label":"Button text","help":"The words on the button that sends the form. Two to three words starting with a verb.","kind":"cta-label","max":28,"req":true,"legal":false,"token":"","ph":"2 to 3 words beginning with a verb"},{"id":"form-success-message","label":"Message shown after a successful send","help":"One or two warm sentences, under about 35 words, confirming you got it and saying roughly how long a reply takes. Only promise a timeframe you can actually meet.","kind":"longtext","max":250,"req":true,"legal":false,"token":"","ph":"1 to 2 sentences, under 35 words"},{"id":"form-what-happens-next","label":"What happens after someone applies","help":"About 40 to 70 words set beside the form: who reads the form, whether there is a phone call or a coffee chat, whether there is an orientation, and roughly how long the whole thing takes. Describe your real process, not an ideal one.","kind":"body","max":550,"req":true,"legal":false,"token":"","ph":"one paragraph, 40 to 70 words"}],"repeat":null,"ink":false},{"id":"faq","number":"05","eyebrow":"Questions","purpose":"Questions people actually ask you. Six is plenty.","layout":"faq","fields":[{"id":"faq-question","label":"Question","help":"Write it the way a real person would ask it, in their own words, ending in a question mark. Under about twelve words. Use questions you have genuinely been asked.","kind":"short","max":110,"req":true,"legal":false,"token":"","ph":"one question under 12 words, ending in a question mark"},{"id":"faq-answer","label":"Answer","help":"Roughly 30 to 80 words, direct and friendly, answering in the first sentence before adding detail. Important: if the question touches tax receipts, charitable registration, your address, phone number or membership numbers, write the part you are sure of and leave the rest blank — we will not fill those in with a guess, and the answer will wait for your confirmed wording.","kind":"longtext","max":600,"req":true,"legal":false,"token":"","ph":"one or two paragraphs, 30 to 80 words total"}],"repeat":{"noun":"question","min":0,"suggested":5,"max":12},"ink":false},{"id":"closing","number":"06","eyebrow":"Talk to us","purpose":"","layout":"band","fields":[{"id":"closing-eyebrow","label":"Small label above the headline","help":"Two or three words in capitals naming this closing section.","kind":"eyebrow","max":24,"req":true,"legal":false,"token":"","ph":"1 to 3 words, no full stop"},{"id":"closing-title-line-1","label":"Headline, first line","help":"First line of the closing headline. One or two words, no full stop — it continues on the line below.","kind":"display-title","max":24,"req":true,"legal":false,"token":"","ph":"1 to 2 words, no punctuation at the end"},{"id":"closing-title-line-2","label":"Headline, second line (highlighted)","help":"Second line of the closing headline, ending with a full stop. One or two words. On this dark band it prints in a lighter tone rather than terracotta, for readability.","kind":"display-accent","max":20,"req":true,"legal":false,"token":"","ph":"1 to 2 words ending in a full stop"},{"id":"closing-body","label":"Closing paragraph","help":"About 30 to 60 words for someone who is interested but not ready to fill in a form — invite them to come to an event, ask a question, or just say hello. Warm, not pushy.","kind":"body","max":450,"req":true,"legal":false,"token":"","ph":"one paragraph, 30 to 60 words"},{"id":"closing-cta-label","label":"Button text","help":"Two to four words starting with a verb, pointing at whatever you most want an undecided person to do next.","kind":"cta-label","max":28,"req":true,"legal":false,"token":"","ph":"2 to 4 words beginning with a verb"}],"repeat":null,"ink":true}]},{"key":"donate","label":"Donate","route":"/donate","blurb":"The highest-risk page on the site. Nothing about charitable status, tax receipts or refunds will be written for you or guessed at — every one of those answers has to come from your own records, in writing.","sections":[{"id":"hero","number":"01","eyebrow":"Donate","purpose":"","layout":"hero","fields":[{"id":"hero-eyebrow","label":"Small label above the headline","help":"Two or three words in small capitals that say what this section is. No full stop. It is a signpost, not a sentence.","kind":"eyebrow","max":24,"req":true,"legal":false,"token":"","ph":"Support"},{"id":"hero-title","label":"Headline, first line","help":"The first line of the headline. One or two words ending in a full stop. The design sets these very large, so short is not a limitation here — it is the point.","kind":"display-title","max":24,"req":true,"legal":false,"token":"","ph":"Give"},{"id":"hero-accent","label":"Headline, second line (terracotta)","help":"The second line, printed in terracotta underneath the first. One or two words ending in a full stop. Read the two lines together out loud: they should land as one phrase.","kind":"display-accent","max":24,"req":true,"legal":false,"token":"","ph":"once."},{"id":"hero-lede","label":"Opening paragraph","help":"Two or three sentences, 25 to 45 words. Say what a gift does, not how grateful you are. Concrete beats warm: name the thing the money buys.","kind":"lede","max":300,"req":true,"legal":false,"token":"","ph":"A short, direct ask."},{"id":"hero-cta-label","label":"Button wording","help":"Two or three words, starting with a verb, on the main giving button. \"Give now\" and \"Donate today\" both work. Avoid \"Submit\".","kind":"cta-label","max":22,"req":true,"legal":false,"token":"","ph":"Two or three words, verb first"}],"repeat":null,"ink":false},{"id":"status","number":"02","eyebrow":"Status","purpose":"Your charitable status. This single answer decides the wording on the whole page — with the wrong answer here the site could make a claim you are not entitled to make, so it is the one thing we will not proceed without.","layout":"contact","fields":[{"id":"is-charity","label":"Are you a registered charity with the Canada Revenue Agency?","help":"Answer from your CRA paperwork, not from memory. If an application is in progress the answer is still no until the registration is granted. If the answer is no, the site will say nothing anywhere about tax receipts or tax deductions — that is not a limitation we can design around, it is the law.","kind":"choice","max":0,"req":true,"legal":true,"token":"{{IS_REGISTERED_CHARITY}}","ph":"","choices":["Yes, registered","No","Application in progress","Not sure — need to check"]},{"id":"cra-number","label":"CRA registration or business number","help":"Copy it character for character from your CRA notice of registration. Leave this empty if you are not registered. We will never fill this in, and we will never format a number that looks plausible.","kind":"short","max":24,"req":false,"legal":true,"token":"{{CRA_REGISTRATION_NUMBER}}","ph":""},{"id":"receipt-status","label":"Do donations come with a tax receipt?","help":"Only a registered charity can issue an official donation receipt. If you are not registered, answer no and the page will describe gifts plainly, without any mention of receipts.","kind":"choice","max":0,"req":true,"legal":true,"token":"{{DONATION_TAX_RECEIPTABLE}}","ph":"","choices":["Yes, for every eligible gift","Yes, above a minimum amount","No","Not sure — need to check"]},{"id":"receipt-minimum","label":"Smallest gift that gets a receipt","help":"Only if receipts start at a threshold. An amount in Canadian dollars. Leave empty if there is no minimum, or if you do not issue receipts.","kind":"short","max":16,"req":false,"legal":true,"token":"{{RECEIPT_MINIMUM}}","ph":""},{"id":"receipt-process","label":"How and when receipts are issued","help":"In plain sentences: who sends the receipt, by email or by post, and roughly how long it takes. This becomes the small print under the giving form, so it has to match what actually happens.","kind":"longtext","max":420,"req":false,"legal":true,"token":"{{RECEIPT_PROCESS}}","ph":""},{"id":"charity-wording","label":"Approved wording for your status line","help":"The exact sentence you want printed about your status, word for word as your board or your accountant has approved it. It will be used unchanged. If no approved wording exists yet, leave this empty and tell us — that is a real answer.","kind":"longtext","max":240,"req":false,"legal":true,"token":"{{CHARITY_WORDING}}","ph":""},{"id":"refund-policy","label":"Refund policy","help":"Stripe requires a refund policy for card payments. A few sentences: whether a donation can be refunded, within what window, and who to contact. If you do not have one written yet, say so and we will flag it.","kind":"longtext","max":420,"req":false,"legal":true,"token":"{{REFUND_POLICY}}","ph":""}],"repeat":null,"ink":false},{"id":"why","number":"03","eyebrow":"Where it goes","purpose":"What the money actually pays for. This is the part that persuades people, and it is the part only you can write.","layout":"split","fields":[{"id":"why-eyebrow","label":"Small label above the headline","help":"Two or three words in small capitals that say what this section is. No full stop. It is a signpost, not a sentence.","kind":"eyebrow","max":24,"req":true,"legal":false,"token":"","ph":"Impact"},{"id":"why-title","label":"Headline, first line","help":"The first line of the headline. One or two words ending in a full stop. The design sets these very large, so short is not a limitation here — it is the point.","kind":"display-title","max":24,"req":true,"legal":false,"token":"","ph":"Your gift"},{"id":"why-accent","label":"Headline, second line (terracotta)","help":"The second line, printed in terracotta underneath the first. One or two words ending in a full stop. Read the two lines together out loud: they should land as one phrase.","kind":"display-accent","max":24,"req":true,"legal":false,"token":"","ph":"at work."},{"id":"why-body","label":"What donations pay for","help":"One or two paragraphs, 40 to 90 words. Name real things — a hall rental, a term of language classes, an interpreter for a newcomer appointment. Specifics persuade; \"supporting our mission\" does not.","kind":"body","max":650,"req":true,"legal":false,"token":"","ph":"One or two paragraphs, 40 to 90 words"}],"repeat":null,"ink":false},{"id":"amounts","number":"","eyebrow":"","purpose":"Suggested amounts. Each one needs a line saying what it buys — that line is what makes a suggested amount work at all.","layout":"cards","fields":[{"id":"amount-value","label":"Amount","help":"A figure in Canadian dollars, digits only, no dollar sign. Three or four suggestions is the sweet spot, with the middle one the amount you most want people to choose.","kind":"stat-value","max":10,"req":true,"legal":false,"token":"","ph":"A figure in Canadian dollars"},{"id":"amount-label","label":"What this amount pays for","help":"One short line, six to twelve words, naming a real thing this amount covers. This is the whole reason a suggested amount outperforms an empty box.","kind":"stat-label","max":80,"req":false,"legal":true,"token":"{{PROGRAM_STATS}}","ph":""}],"repeat":{"noun":"amount","min":0,"suggested":3,"max":6},"ink":false},{"id":"other","number":"04","eyebrow":"Other ways","purpose":"Ways to give that are not a card payment — a cheque, a bank transfer, a gift in kind. Optional.","layout":"prose","fields":[{"id":"other-ways","label":"Other ways to give","help":"One paragraph. If you accept cheques or transfers, say who the cheque is made out to and where it goes. Leave empty if card is the only way.","kind":"longtext","max":520,"req":false,"legal":true,"token":"{{MAILING_ADDRESS}}","ph":""}],"repeat":null,"ink":false},{"id":"faq","number":"05","eyebrow":"Questions","purpose":"Questions donors ask. Keep the answers short and factual.","layout":"faq","fields":[{"id":"faq-question","label":"Question","help":"Phrase it the way a donor would ask it, in the first person. Under fifteen words.","kind":"short","max":120,"req":true,"legal":false,"token":"","ph":"A question a donor would actually ask"},{"id":"faq-answer","label":"Answer","help":"Two to four sentences. If the answer touches receipts, charitable status or refunds, it has to match your answers in section 02 exactly.","kind":"longtext","max":600,"req":true,"legal":false,"token":"","ph":"Two to four sentences"}],"repeat":{"noun":"question","min":0,"suggested":4,"max":10},"ink":false},{"id":"closing","number":"06","eyebrow":"Thank you","purpose":"","layout":"band","fields":[{"id":"closing-eyebrow","label":"Small label above the headline","help":"Two or three words in small capitals that say what this section is. No full stop. It is a signpost, not a sentence.","kind":"eyebrow","max":24,"req":true,"legal":false,"token":"","ph":"Thank you"},{"id":"closing-title","label":"Headline, first line","help":"The first line of the headline. One or two words ending in a full stop. The design sets these very large, so short is not a limitation here — it is the point.","kind":"display-title","max":24,"req":true,"legal":false,"token":"","ph":"With"},{"id":"closing-accent","label":"Headline, second line (terracotta)","help":"The second line, printed in terracotta underneath the first. One or two words ending in a full stop. Read the two lines together out loud: they should land as one phrase.","kind":"display-accent","max":24,"req":true,"legal":false,"token":"","ph":"thanks."},{"id":"closing-lede","label":"Opening paragraph","help":"Two or three sentences. This runs under the dark closing band after someone has already decided. Warm is fine here.","kind":"lede","max":300,"req":true,"legal":false,"token":"","ph":"A closing line."},{"id":"closing-cta-label","label":"Button wording","help":"Two or three words, verb first.","kind":"cta-label","max":22,"req":true,"legal":false,"token":"","ph":"Two or three words, verb first"}],"repeat":null,"ink":true},{"id":"listing","number":"07","eyebrow":"Search listing","purpose":"","layout":"meta","fields":[{"id":"search-description","label":"Description shown in search results","help":"Two sentences, 25 to 30 words, under 160 characters. What someone sees on Google under the page title.","kind":"longtext","max":160,"req":false,"legal":false,"token":"","ph":"Two sentences, under 160 characters"}],"repeat":null,"ink":false}]},{"key":"partners","label":"Partners","route":"/partners","blurb":"Organisations you work with. Naming another organisation as a partner is a claim about them as much as about you, so each one needs their agreement before it is published — including ConnecTR.","sections":[{"id":"hero","number":"01","eyebrow":"Partners","purpose":"","layout":"hero","fields":[{"id":"hero-eyebrow","label":"Small label above the headline","help":"Two or three words in small capitals that say what this section is. No full stop. It is a signpost, not a sentence.","kind":"eyebrow","max":24,"req":true,"legal":false,"token":"","ph":"Together"},{"id":"hero-title","label":"Headline, first line","help":"The first line of the headline. One or two words ending in a full stop. The design sets these very large, so short is not a limitation here — it is the point.","kind":"display-title","max":24,"req":true,"legal":false,"token":"","ph":"In good"},{"id":"hero-accent","label":"Headline, second line (terracotta)","help":"The second line, printed in terracotta underneath the first. One or two words ending in a full stop. Read the two lines together out loud: they should land as one phrase.","kind":"display-accent","max":24,"req":true,"legal":false,"token":"","ph":"company."},{"id":"hero-lede","label":"Opening paragraph","help":"Two or three sentences, 25 to 45 words. What working together actually achieves that neither side manages alone.","kind":"lede","max":300,"req":true,"legal":false,"token":"","ph":"Why these relationships matter."}],"repeat":null,"ink":false},{"id":"partner","number":"02","eyebrow":"Each partner","purpose":"One block per organisation. The relationship wording is the sensitive part: \"partner\", \"funder\", \"supporter\" and \"member of\" mean different things, and the other organisation has to agree with the one you pick.","layout":"list","fields":[{"id":"partner-name","label":"Organisation name","help":"Their full name, spelled and capitalised the way they spell it themselves. Check their own website rather than typing it from memory.","kind":"short","max":90,"req":true,"legal":true,"token":"{{PARTNERS}}","ph":""},{"id":"partner-relationship","label":"What the relationship is","help":"One of the given words, or your own if none fit. Pick the one the other organisation would also use. If you are unsure, that is the answer to give us — we will leave it out rather than guess.","kind":"choice","max":0,"req":true,"legal":true,"token":"{{PARTNERS}}","ph":"","choices":["Programme partner","Funder","Community supporter","Venue host","Member organisation","Not yet confirmed"]},{"id":"partner-body","label":"What you do together","help":"Two or three sentences, 25 to 50 words. Name something concrete you have actually done together, not an aspiration.","kind":"body","max":380,"req":true,"legal":true,"token":"{{PARTNERS}}","ph":""},{"id":"partner-url","label":"Their website","help":"The full address of their own site, starting with https://. Optional.","kind":"url","max":200,"req":false,"legal":true,"token":"{{PARTNERS}}","ph":""},{"id":"partner-logo-permission","label":"Do you have written permission to use their logo?","help":"A logo is their trademark. Without written permission it does not go on the site — a verbal yes at a meeting is not enough, and we will leave the logo off rather than risk it.","kind":"choice","max":0,"req":true,"legal":true,"token":"{{PARTNERS}}","ph":"","choices":["Yes, in writing","Verbal agreement only","No","Not asked yet"]}],"repeat":{"noun":"partner","min":0,"suggested":4,"max":20},"ink":false},{"id":"become","number":"03","eyebrow":"Work with us","purpose":"An invitation to organisations that might want to work with you.","layout":"band","fields":[{"id":"become-eyebrow","label":"Small label above the headline","help":"Two or three words in small capitals that say what this section is. No full stop. It is a signpost, not a sentence.","kind":"eyebrow","max":24,"req":true,"legal":false,"token":"","ph":"Collaborate"},{"id":"become-title","label":"Headline, first line","help":"The first line of the headline. One or two words ending in a full stop. The design sets these very large, so short is not a limitation here — it is the point.","kind":"display-title","max":24,"req":true,"legal":false,"token":"","ph":"Work"},{"id":"become-accent","label":"Headline, second line (terracotta)","help":"The second line, printed in terracotta underneath the first. One or two words ending in a full stop. Read the two lines together out loud: they should land as one phrase.","kind":"display-accent","max":24,"req":true,"legal":false,"token":"","ph":"with us."},{"id":"become-lede","label":"Opening paragraph","help":"Two or three sentences aimed at another organisation, not at an individual. What kind of collaboration are you actually looking for?","kind":"lede","max":300,"req":true,"legal":false,"token":"","ph":"An invitation."},{"id":"become-cta-label","label":"Button wording","help":"Two or three words, verb first.","kind":"cta-label","max":22,"req":true,"legal":false,"token":"","ph":"Two or three words, verb first"}],"repeat":null,"ink":true},{"id":"listing","number":"04","eyebrow":"Search listing","purpose":"","layout":"meta","fields":[{"id":"search-description","label":"Description shown in search results","help":"Two sentences, under 160 characters.","kind":"longtext","max":160,"req":false,"legal":false,"token":"","ph":"Two sentences, under 160 characters"}],"repeat":null,"ink":false}]},{"key":"contact","label":"Contact","route":"/contact","blurb":"Where you are, how to reach you, and the wording around the contact form. The address, phone and email themselves are on the Site-wide page — they only need answering once.","sections":[{"id":"hero","number":"01","eyebrow":"Contact","purpose":"","layout":"hero","fields":[{"id":"hero-eyebrow","label":"Small label above the headline","help":"Two or three words in small capitals that say what this section is. No full stop. It is a signpost, not a sentence.","kind":"eyebrow","max":24,"req":true,"legal":false,"token":"","ph":"Contact"},{"id":"hero-title","label":"Headline, first line","help":"The first line of the headline. One or two words ending in a full stop. The design sets these very large, so short is not a limitation here — it is the point.","kind":"display-title","max":24,"req":true,"legal":false,"token":"","ph":"Say"},{"id":"hero-accent","label":"Headline, second line (terracotta)","help":"The second line, printed in terracotta underneath the first. One or two words ending in a full stop. Read the two lines together out loud: they should land as one phrase.","kind":"display-accent","max":24,"req":true,"legal":false,"token":"","ph":"hello."},{"id":"hero-lede","label":"Opening paragraph","help":"Two or three sentences, 25 to 45 words. Set the expectation: who reads these messages, and roughly when someone will get back.","kind":"lede","max":300,"req":true,"legal":false,"token":"","ph":"The opening line."}],"repeat":null,"ink":false},{"id":"detail","number":"02","eyebrow":"Finding us","purpose":"Extra detail that does not fit in the footer block.","layout":"contact","fields":[{"id":"directions","label":"Getting there","help":"Parking, the nearest bus route, which door to use, which floor. The small things a first-time visitor would otherwise have to guess. One paragraph. Leave empty if you have no public space.","kind":"longtext","max":520,"req":false,"legal":true,"token":"{{STREET_ADDRESS}}","ph":""},{"id":"accessibility-onsite","label":"Access at the building","help":"Step-free entry, accessible toilet, lift, hearing loop — whatever is genuinely there. Only list what you have actually checked; someone will rely on this to decide whether they can come.","kind":"longtext","max":420,"req":false,"legal":true,"token":"{{STREET_ADDRESS}}","ph":""},{"id":"response-time","label":"How quickly you reply","help":"A realistic window in plain words, such as a number of business days. Promise the slow version — being early is a nice surprise, being late is a complaint.","kind":"short","max":120,"req":false,"legal":false,"token":"","ph":"A realistic window, in plain words"},{"id":"urgent-note","label":"If it is urgent","help":"What someone should do if the matter cannot wait for an email reply. Optional. If you are not a crisis service, it is worth saying so plainly here.","kind":"longtext","max":320,"req":false,"legal":true,"token":"{{PHONE}}","ph":""}],"repeat":null,"ink":false},{"id":"form","number":"03","eyebrow":"Message us","purpose":"The wording around the contact form.","layout":"prose-head","fields":[{"id":"form-eyebrow","label":"Small label above the headline","help":"Two or three words in small capitals that say what this section is. No full stop. It is a signpost, not a sentence.","kind":"eyebrow","max":24,"req":true,"legal":false,"token":"","ph":"Write"},{"id":"form-title","label":"Headline, first line","help":"The first line of the headline. One or two words ending in a full stop. The design sets these very large, so short is not a limitation here — it is the point.","kind":"display-title","max":24,"req":true,"legal":false,"token":"","ph":"Send a"},{"id":"form-accent","label":"Headline, second line (terracotta)","help":"The second line, printed in terracotta underneath the first. One or two words ending in a full stop. Read the two lines together out loud: they should land as one phrase.","kind":"display-accent","max":24,"req":true,"legal":false,"token":"","ph":"message."},{"id":"form-lede","label":"Opening paragraph","help":"One or two sentences above the form. Tell people what to include so you can help them on the first reply.","kind":"lede","max":300,"req":true,"legal":false,"token":"","ph":"A line above the form."},{"id":"form-consent-text","label":"Consent wording beside the tick box","help":"The sentence next to the tick box explaining what you do with what they send: who sees it, how long you keep it, and that you will not pass it on. It has to match your privacy policy word for word — if the two disagree, the privacy policy is the one that counts legally.","kind":"longtext","max":420,"req":true,"legal":true,"token":"{{PRIVACY_POLICY}}","ph":""},{"id":"form-submit-label","label":"Button wording","help":"Two or three words, verb first.","kind":"cta-label","max":22,"req":true,"legal":false,"token":"","ph":"Two or three words, verb first"},{"id":"form-success-message","label":"Message after a message is sent","help":"One or two sentences confirming it arrived and saying what happens next. Repeat the reply window here — it is the moment people are most anxious about it.","kind":"longtext","max":300,"req":true,"legal":false,"token":"","ph":"One or two sentences"}],"repeat":null,"ink":false},{"id":"listing","number":"04","eyebrow":"Search listing","purpose":"","layout":"meta","fields":[{"id":"search-description","label":"Description shown in search results","help":"Two sentences, under 160 characters.","kind":"longtext","max":160,"req":false,"legal":false,"token":"","ph":"Two sentences, under 160 characters"}],"repeat":null,"ink":false}]},{"key":"legal","label":"Policies","route":"/privacy-policy, /accessibility","blurb":"Two required pages. Both have legal weight in Ontario and neither will be drafted for you — what goes here is text you or your lawyer have approved. If you do not have it yet, leave it empty and say so; that is a useful answer and it is what the launch checklist expects.","sections":[{"id":"privacy","number":"01","eyebrow":"Privacy","purpose":"What you do with the information people send through the forms. It has to describe what actually happens, not what sounds reassuring.","layout":"prose-head","fields":[{"id":"privacy-approved","label":"Do you have an approved privacy policy?","help":"If a lawyer or your board has signed off on wording, paste it below. If not, answer no — we will hold the page as a launch blocker rather than publish something invented.","kind":"choice","max":0,"req":true,"legal":true,"token":"{{PRIVACY_POLICY}}","ph":"","choices":["Yes, approved wording exists","Draft only, not approved","No, nothing written yet"]},{"id":"privacy-body","label":"Your privacy policy","help":"Paste the approved text in full. It has to cover what the forms collect, who inside the organisation can see it, how long you keep it, that it is stored with Supabase, and how someone asks for their data to be deleted.","kind":"longtext","max":0,"req":false,"legal":true,"token":"{{PRIVACY_POLICY}}","ph":""},{"id":"privacy-contact","label":"Who handles a privacy question","help":"The email address a privacy request goes to, and a role if there is one. This can be the general address if that is genuinely who reads it.","kind":"email","max":120,"req":false,"legal":true,"token":"{{EMAIL_GENERAL}}","ph":""}],"repeat":null,"ink":false},{"id":"accessibility","number":"02","eyebrow":"Accessibility","purpose":"Ontario’s AODA requires a public accessibility statement and a way to report a barrier. The conformance claim is a statement of fact about the built site, so it gets written after the accessibility audit, not before.","layout":"prose-head","fields":[{"id":"a11y-approved","label":"Do you have approved accessibility wording?","help":"Most organisations do not yet. Answering no is normal and is the right answer if nothing has been signed off.","kind":"choice","max":0,"req":true,"legal":true,"token":"{{A11Y_STATEMENT}}","ph":"","choices":["Yes, approved wording exists","Draft only, not approved","No, nothing written yet"]},{"id":"a11y-body","label":"Your accessibility statement","help":"Paste approved text if you have it. Leave empty otherwise — we will draft a statement from the audit results at the end of the build and send it to you to approve.","kind":"longtext","max":0,"req":false,"legal":true,"token":"{{A11Y_STATEMENT}}","ph":""},{"id":"a11y-barrier-process","label":"How someone reports a barrier","help":"What a person should do if part of the site does not work for them: who to contact, and how long before someone responds. The law requires this route to exist and to be findable.","kind":"longtext","max":420,"req":false,"legal":true,"token":"{{EMAIL_ACCESSIBILITY}}","ph":""},{"id":"a11y-alt-format","label":"Can you supply information in another format on request?","help":"Large print, plain text, or read aloud over the phone. AODA expects an organisation to accommodate a request like this, so answer honestly about what you can genuinely do.","kind":"choice","max":0,"req":false,"legal":true,"token":"{{A11Y_STATEMENT}}","ph":"","choices":["Yes, on request","Some formats only","No","Not sure — need to check"]}],"repeat":null,"ink":false},{"id":"anything","number":"03","eyebrow":"Anything else","purpose":"Room for anything the rest of this brief did not ask for.","layout":"prose","fields":[{"id":"notes","label":"Notes for the developer","help":"Corrections, things you want said differently, a page you think is missing, a sentence you are not sure about. Nothing here is too small, and a half-formed thought is more useful than silence.","kind":"longtext","max":0,"req":false,"legal":false,"token":"","ph":"Anything at all"}],"repeat":null,"ink":false}]}]</script>
+
+<script id="hc-content" type="application/json">{}</script>
+
+<script id="hc-app">
+/* ===========================================================================
+   Harmony Circle — content brief.
+
+   The page renders itself from two JSON islands: hc-schema (the questions,
+   fixed) and hc-content (the answers, replaced on every save). Nothing is
+   read back out of the live DOM, so a save is always a clean function of
+   state rather than a snapshot of whatever the browser happened to be
+   holding.
+
+   Answers are kept in localStorage as you type and only written back to the
+   page itself when Save is pressed, so a long afternoon of typing never
+   depends on the network and never reloads the page out from under you.
+   =========================================================================== */
+(function () {
+  "use strict";
+
+  var SCHEMA = JSON.parse(document.getElementById("hc-schema").textContent);
+  var SAVED = JSON.parse(document.getElementById("hc-content").textContent || "{}");
+  var LS_KEY = "harmony-circle-brief-v1";
+  var TITLE = "Harmony Circle Content Brief";
+  var FONTS =
+    '<link rel="preconnect" href="https://fonts.googleapis.com">' +
+    '<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' +
+    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,400..900&family=JetBrains+Mono:wght@400;500;700&display=swap">';
+
+  var NAV = [
+    { key: "about", label: "About" },
+    { key: "programs", label: "Programs" },
+    { key: "events", label: "Events" },
+    { key: "getinvolved", label: "Get involved" },
+    { key: "news", label: "News" },
+    { key: "partners", label: "Partners" },
+    { key: "contact", label: "Contact" },
+  ];
+
+  /* ---- state ------------------------------------------------------------ */
+  var state = normalise(SAVED);
+  var draft = null;
+  try {
+    var raw = localStorage.getItem(LS_KEY);
+    if (raw) draft = normalise(JSON.parse(raw));
+  } catch (e) {
+    draft = null;
+  }
+  // The draft wins only when it is genuinely ahead of what was last saved
+  // into the page, so opening a freshly saved copy never resurrects an old
+  // half-finished one from this browser.
+  if (draft && draft.rev > state.rev) state = draft;
+
+  var savedRev = SAVED && SAVED.rev ? SAVED.rev : 0;
+  var mode = "fill";
+  var current = SCHEMA[0].key;
+  var focused = null;
+
+  function normalise(o) {
+    o = o && typeof o === "object" ? o : {};
+    return {
+      rev: typeof o.rev === "number" ? o.rev : 0,
+      seq: typeof o.seq === "number" ? o.seq : 0,
+      v: o.v && typeof o.v === "object" ? o.v : {},
+      r: o.r && typeof o.r === "object" ? o.r : {},
+    };
+  }
+
+  function dirty() {
+    return state.rev > savedRev;
+  }
+
+  function persist() {
+    state.rev += 1;
+    try {
+      localStorage.setItem(LS_KEY, JSON.stringify(state));
+    } catch (e) {
+      /* private window, full quota — the answers stay in memory and Save
+         still works; there is nothing useful to tell the client here. */
+    }
+    refreshChrome();
+  }
+
+  /* ---- keys ------------------------------------------------------------- */
+  function keyOf(page, section, field, inst) {
+    return page + "." + section + (inst ? "#" + inst : "") + "." + field;
+  }
+  function repKey(page, section) {
+    return page + "." + section;
+  }
+  function instances(page, section) {
+    var k = repKey(page, section.id);
+    if (!state.r[k]) {
+      var n = Math.max(section.repeat.min, 1);
+      var list = [];
+      for (var i = 0; i < n; i++) list.push(newId());
+      state.r[k] = list;
+    }
+    return state.r[k];
+  }
+  function newId() {
+    state.seq += 1;
+    return "i" + state.seq;
+  }
+  function get(k) {
+    var val = state.v[k];
+    return typeof val === "string" ? val : "";
+  }
+  function set(k, val) {
+    if (val) state.v[k] = val;
+    else delete state.v[k];
+  }
+
+  /* ---- dom helper ------------------------------------------------------- */
+  function h(tag, props, kids) {
+    var el = document.createElement(tag);
+    if (props)
+      Object.keys(props).forEach(function (k) {
+        var v = props[k];
+        if (v === null || v === false || v === undefined) return;
+        if (k === "class") el.className = v;
+        else if (k === "text") el.textContent = v;
+        else if (k === "html") el.innerHTML = v;
+        else if (k.slice(0, 2) === "on") el.addEventListener(k.slice(2), v);
+        else el.setAttribute(k, v);
+      });
+    (kids || []).forEach(function (kid) {
+      if (kid === null || kid === undefined || kid === false) return;
+      el.appendChild(typeof kid === "string" ? document.createTextNode(kid) : kid);
+    });
+    return el;
+  }
+
+  /* ---- the ring, from src/components/Ring.astro ------------------------- */
+  var PX = { xs: 8, sm: 12, md: 16, lg: 24, xl: 40 };
+  var STROKE = { xs: 1, sm: 1, md: 1.5, lg: 2, xl: 2 };
+  function ring(size, variant, tone, cls) {
+    var px = PX[size] || 12;
+    var sw = ((STROKE[size] || 1) * 24) / px;
+    var r = 12 - sw / 2;
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("width", px);
+    svg.setAttribute("height", px);
+    svg.setAttribute("viewBox", "0 0 24 24");
+    svg.setAttribute("fill", "none");
+    svg.setAttribute("focusable", "false");
+    svg.setAttribute("aria-hidden", "true");
+    svg.setAttribute(
+      "class",
+      "ring ring--" + (tone || "accent") + " ring--" + variant + (cls ? " " + cls : "")
+    );
+    function circle(rr, fill) {
+      var c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      c.setAttribute("cx", "12");
+      c.setAttribute("cy", "12");
+      c.setAttribute("r", rr);
+      if (fill) c.setAttribute("fill", "currentColor");
+      else {
+        c.setAttribute("stroke", "currentColor");
+        c.setAttribute("stroke-width", sw);
+      }
+      return c;
+    }
+    if (variant === "solid") svg.appendChild(circle(12, true));
+    else svg.appendChild(circle(r, false));
+    if (variant === "dual") svg.appendChild(circle(r * 0.4, false));
+    if (variant === "dotted") svg.appendChild(circle(r * 0.32, true));
+    return svg;
+  }
+
+  /* ---- field classification --------------------------------------------- */
+  var HEAD_KINDS = { eyebrow: 1, "display-title": 1, "display-accent": 1, lede: 1 };
+  var MULTILINE = { body: 1, longtext: 1, lede: 1 };
+  var BTN_KINDS = { "cta-label": 1 };
+
+  function fieldClass(kind, big) {
+    switch (kind) {
+      case "display-title":
+        return (big ? "display-1" : "display-2") + " e e--display";
+      case "display-accent":
+        return (big ? "display-1" : "display-2") + " accent-line e e--display";
+      case "display-3":
+        return "display-3 e e--display";
+      case "eyebrow":
+        return "label e";
+      case "lede":
+        return "lede e";
+      case "body":
+      case "longtext":
+        return "body-copy e";
+      case "stat-value":
+        return "display-3 e e--display";
+      case "stat-label":
+        return "label e";
+      case "cta-label":
+        return "e";
+      default:
+        return "e e--short";
+    }
+  }
+
+  /* ---- one editable field ----------------------------------------------- */
+  function field(f, page, section, inst, opts) {
+    opts = opts || {};
+    var k = keyOf(page, section.id, f.id, inst);
+    var wrap = h("div", { class: "f" });
+
+    var chip = h("span", { class: "f__chip" }, [
+      ring("xs", f.legal ? "dotted" : "outline", opts.ink ? "paper" : "accent"),
+      h("b", { text: f.label }),
+    ]);
+    if (f.legal) chip.appendChild(h("span", { class: "tagl", text: "· official wording" }));
+    else if (!f.req) chip.appendChild(h("span", { class: "tagl", text: "· optional" }));
+    wrap.appendChild(chip);
+
+    var el;
+    if (f.kind === "choice") {
+      el = h("select", { class: "sel", id: "c-" + k });
+      el.appendChild(h("option", { value: "", text: "— choose —" }));
+      (f.choices || []).forEach(function (c) {
+        el.appendChild(h("option", { value: c, text: c }));
+      });
+      el.value = get(k);
+      el.addEventListener("change", function () {
+        set(k, el.value);
+        persist();
+        paint(el, f, k);
+      });
+      el.addEventListener("focus", function () {
+        showDock(f, k, el);
+      });
+    } else {
+      var cls = fieldClass(f.kind, opts.big);
+      el = h(MULTILINE[f.kind] ? "div" : "span", {
+        class: cls,
+        id: "e-" + k,
+        role: "textbox",
+        "aria-label": f.label,
+        "data-ph": placeholder(f),
+        spellcheck: "true",
+      });
+      if (MULTILINE[f.kind]) el.style.whiteSpace = "pre-wrap";
+      el.textContent = get(k);
+      el.setAttribute("contenteditable", "plaintext-only");
+      if (el.contentEditable !== "plaintext-only") el.setAttribute("contenteditable", "true");
+
+      el.addEventListener("input", function () {
+        set(k, el.textContent.trim() ? el.textContent : "");
+        paint(el, f, k);
+        countDock(f, k);
+        schedule();
+      });
+      el.addEventListener("paste", function (ev) {
+        // Keep pasted Word and Docs copy as plain text — the site owns the
+        // styling, and smuggled markup is the one thing that would break it.
+        ev.preventDefault();
+        var t = (ev.clipboardData || window.clipboardData).getData("text/plain") || "";
+        if (!MULTILINE[f.kind]) t = t.replace(/\s+/g, " ").trim();
+        document.execCommand("insertText", false, t);
+      });
+      el.addEventListener("keydown", function (ev) {
+        if (ev.key === "Enter" && !MULTILINE[f.kind]) {
+          ev.preventDefault();
+          el.blur();
+        }
+        if (ev.key === "Escape") el.blur();
+      });
+      el.addEventListener("focus", function () {
+        showDock(f, k, el);
+      });
+      el.addEventListener("blur", function () {
+        flush();
+      });
+    }
+
+    paint(el, f, k);
+
+    if (BTN_KINDS[f.kind]) {
+      var btn = h("span", { class: "btn " + (opts.btn || "btn--primary") }, [
+        h("span", { class: "btn__sheen", "aria-hidden": "true" }),
+        el,
+        ring("sm", "outline", opts.btn === "btn--outline" ? "accent" : "current"),
+      ]);
+      wrap.appendChild(btn);
+    } else {
+      wrap.appendChild(el);
+    }
+    return wrap;
+  }
+
+  function placeholder(f) {
+    // A prompt sitting inside a pill button or a one-word eyebrow has to fit
+    // that slot; the full guidance is a click away in the panel below.
+    if (f.kind === "cta-label") return "Button wording";
+    if (f.kind === "eyebrow") return "Section label";
+    if (f.ph) return f.ph;
+    if (f.legal) return "From your own records";
+    return f.label;
+  }
+
+  function paint(el, f, k) {
+    var empty = !get(k);
+    el.classList.toggle("is-empty", empty && f.kind !== "choice");
+    el.classList.toggle("is-legal", !!f.legal);
+    if (f.kind === "choice") el.classList.toggle("is-empty", empty);
+  }
+
+  /* ---- the inspector ----------------------------------------------------- */
+  var dock, dockLabel, dockHelp, dockShape, dockCount;
+
+  function showDock(f, k, el) {
+    focused = { f: f, k: k, el: el };
+    dockLabel.textContent = "";
+    dockLabel.appendChild(ring("xs", f.legal ? "dotted" : "outline", "paper"));
+    dockLabel.appendChild(h("span", { text: f.label }));
+    if (f.legal)
+      dockLabel.appendChild(h("span", { class: "pill pill--legal", text: "Never guessed" }));
+    else if (f.req) dockLabel.appendChild(h("span", { class: "pill pill--req", text: "Required" }));
+    else dockLabel.appendChild(h("span", { class: "pill pill--req", text: "Optional" }));
+
+    dockHelp.textContent = f.help;
+    dockShape.textContent = "";
+    if (f.legal) {
+      dockShape.appendChild(
+        h("b", { text: "This one is a launch blocker. " })
+      );
+      dockShape.appendChild(
+        document.createTextNode(
+          "It goes on the site exactly as you write it, and it will not be filled in for you or approximated. If you do not have the answer to hand, leave it empty rather than estimating."
+        )
+      );
+    } else if (f.ph) {
+      dockShape.appendChild(h("b", { text: "Shape: " }));
+      dockShape.appendChild(document.createTextNode(f.ph));
+    }
+    countDock(f, k);
+    dock.classList.add("is-open");
+    document.documentElement.style.setProperty("--dock", dock.offsetHeight + "px");
+  }
+
+  function countDock(f, k) {
+    var n = get(k).length;
+    dockCount.textContent = f.max ? n + " / " + f.max : String(n);
+    dockCount.classList.toggle("is-over", !!f.max && n > f.max);
+  }
+
+  function hideDock() {
+    dock.classList.remove("is-open");
+    document.documentElement.style.setProperty("--dock", "0px");
+    focused = null;
+  }
+
+  /* ---- debounced persistence --------------------------------------------- */
+  var timer = null;
+  function schedule() {
+    if (timer) clearTimeout(timer);
+    timer = setTimeout(flush, 600);
+  }
+  function flush() {
+    if (timer) clearTimeout(timer);
+    timer = null;
+    persist();
+  }
+
+  /* ---- section header ---------------------------------------------------- */
+  function sectionHead(page, section, fields, big, ink, purpose) {
+    var head = h("div", { class: "sechead" });
+    var eyebrowField = fields.filter(function (f) {
+      return f.kind === "eyebrow";
+    })[0];
+    var row = h("p", { class: "eyebrow label" }, [ring("xs", "dotted", ink ? "paper" : "accent")]);
+    if (section.number) row.appendChild(h("span", { class: "eyebrow__num", text: "(" + section.number + ")" }));
+    if (eyebrowField) {
+      var ef = field(eyebrowField, page, section, null, { ink: ink });
+      ef.classList.add("f--inline");
+      row.appendChild(ef);
+    } else if (section.eyebrow) {
+      row.appendChild(h("span", { class: "eyebrow__text", text: section.eyebrow }));
+    }
+    head.appendChild(row);
+    if (purpose) head.appendChild(h("p", { class: "purpose", text: purpose }));
+
+    var title = fields.filter(function (f) {
+      return f.kind === "display-title";
+    })[0];
+    var accent = fields.filter(function (f) {
+      return f.kind === "display-accent";
+    })[0];
+    if (title || accent) {
+      var hh = h(big ? "h1" : "h2", { class: "sechead__title" });
+      if (title) hh.appendChild(field(title, page, section, null, { big: big, ink: ink }));
+      if (accent) hh.appendChild(field(accent, page, section, null, { big: big, ink: ink }));
+      head.appendChild(hh);
+    }
+    var lede = fields.filter(function (f) {
+      return f.kind === "lede";
+    })[0];
+    if (lede) head.appendChild(field(lede, page, section, null, { ink: ink }));
+    return head;
+  }
+
+  /* ---- repeatable groups -------------------------------------------------- */
+  function repeatable(page, section) {
+    var list = instances(page, section);
+    var ink = section.ink;
+    var box = h("div", { class: "rep" });
+    var host;
+
+    if (section.layout === "stats") host = h("dl", { class: "statrow" });
+    else if (section.layout === "marquee") host = h("div", { class: "strip" });
+    else if (section.layout === "cards") host = h("div", { class: "grid grid--" + (section.layout === "stats" ? 4 : 3) });
+    else host = h("div", { class: "rep" });
+    box.appendChild(host);
+
+    list.forEach(function (inst, idx) {
+      host.appendChild(instanceNode(page, section, inst, idx, list.length));
+    });
+
+    if (list.length < section.repeat.max) {
+      var add = h(
+        "button",
+        {
+          class: "minib rep__add",
+          type: "button",
+          onclick: function () {
+            state.r[repKey(page, section.id)] = list.concat([newId()]);
+            persist();
+            renderStage();
+          },
+        },
+        [ring("xs", "dual", "accent"), "Add another " + section.repeat.noun]
+      );
+      box.appendChild(add);
+    }
+    if (section.repeat.suggested > list.length) {
+      box.appendChild(
+        h("p", {
+          class: "label",
+          style: "color:var(--ink-55)",
+          text: "Suggested: about " + section.repeat.suggested + " " + section.repeat.noun + "s",
+        })
+      );
+    }
+    return box;
+  }
+
+  function instanceNode(page, section, inst, idx, total) {
+    var ink = section.ink;
+    var fields = section.fields;
+    var headFields = fields.filter(function (f) {
+      return HEAD_KINDS[f.kind];
+    });
+    var rest = fields.filter(function (f) {
+      return !HEAD_KINDS[f.kind];
+    });
+
+    var tools = h("div", { class: "rep__tools" }, [
+      h("span", {
+        class: "label",
+        style: "color:var(--ink-40);margin-right:auto",
+        text: section.repeat.noun + " " + (idx + 1),
+      }),
+      h(
+        "button",
+        {
+          class: "minib",
+          type: "button",
+          disabled: total <= section.repeat.min,
+          onclick: function () {
+            var list = state.r[repKey(page, section.id)].slice();
+            list.splice(idx, 1);
+            state.r[repKey(page, section.id)] = list;
+            Object.keys(state.v).forEach(function (k) {
+              if (k.indexOf(page + "." + section.id + "#" + inst + ".") === 0) delete state.v[k];
+            });
+            persist();
+            renderStage();
+          },
+        },
+        ["Remove"]
+      ),
+    ]);
+
+    var body = h("div", { class: "stack" });
+    rest.forEach(function (f) {
+      body.appendChild(field(f, page, section, inst, { ink: ink, btn: "btn--outline" }));
+    });
+
+    var inner, node;
+    switch (section.layout) {
+      case "stats":
+        node = h("div", {});
+        headFields.concat(rest).forEach(function (f) {
+          node.appendChild(field(f, page, section, inst, { ink: ink }));
+        });
+        node.insertBefore(tools, node.firstChild);
+        return node;
+
+      case "marquee":
+        node = h("div", { class: "strip__item" }, [tools]);
+        fields.forEach(function (f) {
+          node.appendChild(field(f, page, section, inst, { ink: ink }));
+        });
+        return node;
+
+      case "cards":
+        inner = h("article", { class: "card" }, [
+          h("span", { class: "card__trace", "aria-hidden": "true" }, [
+            h("span", { class: "t" }),
+            h("span", { class: "r" }),
+            h("span", { class: "b" }),
+            h("span", { class: "l" }),
+          ]),
+        ]);
+        inner.appendChild(tools);
+        headFields.forEach(function (f) {
+          var w = field(f, page, section, inst, { ink: ink });
+          if (f.kind === "display-title") {
+            var t = h("h3", { class: "card__title" }, [w]);
+            inner.appendChild(t);
+          } else inner.appendChild(w);
+        });
+        inner.appendChild(body);
+        return inner;
+
+      case "faq":
+        var det = h("details", { class: "acc", open: idx === 0 ? "" : null });
+        var sum = h("summary", {});
+        var qf = fields[0];
+        sum.appendChild(field(qf, page, section, inst, { ink: ink }));
+        sum.appendChild(
+          h("span", { class: "acc__mark" }, [
+            ring("md", "outline", "accent"),
+            ring("md", "dual", "accent"),
+          ])
+        );
+        det.appendChild(sum);
+        var ab = h("div", { class: "acc__body" }, [tools]);
+        fields.slice(1).forEach(function (f) {
+          ab.appendChild(field(f, page, section, inst, { ink: ink }));
+        });
+        det.appendChild(ab);
+        return det;
+
+      default:
+        // list / event / program — a bordered block with its head fields on top
+        inner = h("div", { class: "repblock" });
+        inner.appendChild(tools);
+        var hd = h("div", { class: "stack-sm repblock__head" });
+        headFields.forEach(function (f) {
+          hd.appendChild(field(f, page, section, inst, { ink: ink }));
+        });
+        if (headFields.length) inner.appendChild(hd);
+        inner.appendChild(
+          section.layout === "event" || section.layout === "program"
+            ? gridBody(rest, page, section, inst, ink)
+            : body
+        );
+        return inner;
+    }
+  }
+
+  // Events and programmes carry a lot of short practical answers. A two-column
+  // grid keeps them scannable instead of running 20 one-line answers down the
+  // page; the long-form fields drop back to full width.
+  function gridBody(rest, page, section, inst, ink) {
+    var wrap = h("div", { class: "stack" });
+    var run = null;
+    rest.forEach(function (f) {
+      var long = MULTILINE[f.kind] || f.kind === "cta-label";
+      var node = field(f, page, section, inst, { ink: ink, btn: "btn--outline" });
+      if (long) {
+        run = null;
+        wrap.appendChild(node);
+      } else {
+        if (!run) {
+          run = h("div", { class: "minigrid" });
+          wrap.appendChild(run);
+        }
+        run.appendChild(node);
+      }
+    });
+    return wrap;
+  }
+
+  /* ---- a section --------------------------------------------------------- */
+  function renderSection(page, section, isFirst) {
+    var ink = section.ink;
+    var sec = h("section", {
+      class: "section" + (ink ? " on-ink" : ""),
+      id: "s-" + page + "-" + section.id,
+    });
+    if (ink) sec.style.background = "var(--ink)";
+    var wrap = h("div", { class: "wrap stack-lg" });
+
+    if (section.repeat) {
+      var head = h("div", { class: "sechead" });
+      var row = h("p", { class: "eyebrow label" }, [ring("xs", "dotted", ink ? "paper" : "accent")]);
+      if (section.number) row.appendChild(h("span", { class: "eyebrow__num", text: "(" + section.number + ")" }));
+      if (section.eyebrow) row.appendChild(h("span", { class: "eyebrow__text", text: section.eyebrow }));
+      if (section.number || section.eyebrow) head.appendChild(row);
+      if (section.purpose) head.appendChild(h("p", { class: "lede", text: section.purpose }));
+      if (head.childNodes.length) wrap.appendChild(head);
+      wrap.appendChild(repeatable(page, section));
+    } else {
+      var headFields = section.fields.filter(function (f) {
+        return HEAD_KINDS[f.kind];
+      });
+      var rest = section.fields.filter(function (f) {
+        return !HEAD_KINDS[f.kind];
+      });
+      var big = isFirst && section.layout === "hero";
+      var head2 = sectionHead(page, section, headFields, big, ink, section.purpose);
+
+      var body = h("div", { class: section.layout === "contact" ? "stack contactgrid" : "stack" });
+      var btnRow = null;
+      rest.forEach(function (f) {
+        if (BTN_KINDS[f.kind]) {
+          if (!btnRow) {
+            btnRow = h("div", { class: "btn-row" });
+            body.appendChild(btnRow);
+          }
+          btnRow.appendChild(
+            field(f, page, section, null, { ink: ink, btn: ink ? "btn--accent" : "btn--primary" })
+          );
+          return;
+        }
+        btnRow = null;
+        body.appendChild(field(f, page, section, null, { ink: ink }));
+      });
+
+      if (section.layout === "split" && rest.length) {
+        wrap.appendChild(h("div", { class: "split" }, [head2, body]));
+      } else {
+        wrap.appendChild(head2);
+        if (rest.length) wrap.appendChild(body);
+      }
+    }
+    sec.appendChild(wrap);
+    return sec;
+  }
+
+  /* ---- site chrome ------------------------------------------------------- */
+  function siteNav() {
+    var links = h("ul", {});
+    NAV.forEach(function (n) {
+      var a = h("a", {
+        href: "#",
+        "aria-current": n.key === current ? "page" : null,
+        class: "label",
+        onclick: function (ev) {
+          ev.preventDefault();
+          go(n.key);
+        },
+      });
+      a.appendChild(ring("xs", "solid", "accent"));
+      a.appendChild(document.createTextNode(n.label));
+      links.appendChild(h("li", {}, [a]));
+    });
+    var orgName = get("site.identity.org-name") || "Harmony Circle";
+    return h("header", { class: "sitenav" }, [
+      h("div", { class: "wrap" }, [
+        h("div", { class: "sitenav__in" }, [
+          h("a", { class: "brand", href: "#", onclick: function (e) { e.preventDefault(); go("site"); } }, [
+            ring("lg", "dual", "accent"),
+            h("span", { class: "label", text: orgName }),
+          ]),
+          h("nav", { class: "sitenav__links", "aria-label": "Site" }, [links]),
+          h("span", { class: "btn btn--accent btn--sm" }, [
+            h("span", { class: "btn__sheen", "aria-hidden": "true" }),
+            h("span", { text: "Donate" }),
+            ring("sm", "outline", "current"),
+          ]),
+        ]),
+      ]),
+    ]);
+  }
+
+  function siteFooter() {
+    var org = get("site.identity.org-name") || "Harmony Circle";
+    var tagline = get("site.identity.tagline") || "Your one-line description appears here.";
+    var land =
+      get("site.territory.land-acknowledgement-text") ||
+      "Your land acknowledgement appears here.";
+    var addr = get("site.reach.street-address");
+    var phone = get("site.reach.phone");
+    var email = get("site.reach.email-general");
+    var rights = get("site.smallprint.rights-line") || "All rights reserved.";
+
+    function col(title, items) {
+      return h("nav", { class: "foot__col", "aria-label": title }, [
+        h("h2", { class: "label", text: title }),
+        h(
+          "ul",
+          {},
+          items.map(function (i) {
+            return h("li", {}, [h("a", { href: "#", text: i, onclick: function (e) { e.preventDefault(); } })]);
+          })
+        ),
+      ]);
+    }
+
+    return h("footer", { class: "sitefoot on-ink" }, [
+      h("div", { class: "wrap" }, [
+        h("div", { class: "foot__grid" }, [
+          h("div", { class: "foot__col" }, [
+            h("div", { class: "brand" }, [ring("lg", "dual", "paper"), h("span", { class: "label", text: org })]),
+            h("p", { style: "max-inline-size:38ch;color:var(--paper-80);margin:0", text: tagline }),
+            h("address", { class: "foot__addr" }, [
+              h("span", { text: addr || "{{STREET_ADDRESS}}", class: addr ? "" : "tok" }),
+              h("span", { text: phone || "{{PHONE}}", class: phone ? "" : "tok" }),
+              h("span", { text: email || "{{EMAIL_GENERAL}}", class: email ? "" : "tok" }),
+            ]),
+          ]),
+          col("Explore", ["About", "Programs", "Events", "News"]),
+          col("Connect", ["Get involved", "Partners", "Contact", "Donate"]),
+          col("Legal", ["Privacy policy", "Accessibility"]),
+        ]),
+        h("div", { class: "foot__base" }, [
+          h("p", { style: "max-inline-size:60ch", text: land }),
+          h("p", { class: "label", text: "© 2026 " + org + ". " + rights }),
+        ]),
+      ]),
+    ]);
+  }
+
+  /* ---- progress ----------------------------------------------------------- */
+  function pageStats(page) {
+    var total = 0,
+      done = 0,
+      req = 0,
+      reqDone = 0,
+      legalOpen = 0;
+    page.sections.forEach(function (s) {
+      var list = s.repeat ? instances(page.key, s) : [null];
+      list.forEach(function (inst) {
+        s.fields.forEach(function (f) {
+          var v = get(keyOf(page.key, s.id, f.id, inst));
+          total += 1;
+          if (v) done += 1;
+          if (f.req) {
+            req += 1;
+            if (v) reqDone += 1;
+          }
+          if (f.legal && !v) legalOpen += 1;
+        });
+      });
+    });
+    return { total: total, done: done, req: req, reqDone: reqDone, legalOpen: legalOpen };
+  }
+
+  function allStats() {
+    var t = { total: 0, done: 0, req: 0, reqDone: 0, legalOpen: 0 };
+    SCHEMA.forEach(function (p) {
+      var s = pageStats(p);
+      t.total += s.total;
+      t.done += s.done;
+      t.req += s.req;
+      t.reqDone += s.reqDone;
+      t.legalOpen += s.legalOpen;
+    });
+    return t;
+  }
+
+  /* ---- export ------------------------------------------------------------- */
+  function exportObject() {
+    var out = { brief: "Harmony Circle website content", pages: {} };
+    SCHEMA.forEach(function (p) {
+      var pg = {};
+      p.sections.forEach(function (s) {
+        if (s.repeat) {
+          var arr = [];
+          instances(p.key, s).forEach(function (inst) {
+            var row = {};
+            var any = false;
+            s.fields.forEach(function (f) {
+              var v = get(keyOf(p.key, s.id, f.id, inst));
+              if (v) any = true;
+              row[f.id] = v;
+            });
+            if (any) arr.push(row);
+          });
+          if (arr.length) pg[s.id] = arr;
+        } else {
+          var o = {};
+          var any2 = false;
+          s.fields.forEach(function (f) {
+            var v = get(keyOf(p.key, s.id, f.id, null));
+            if (v) any2 = true;
+            o[f.id] = v;
+          });
+          if (any2) pg[s.id] = o;
+        }
+      });
+      if (Object.keys(pg).length) out.pages[p.key] = pg;
+    });
+    var st = allStats();
+    out.progress = { answered: st.done, of: st.total, requiredAnswered: st.reqDone, requiredOf: st.req };
+    return out;
+  }
+
+  function exportText() {
+    var lines = ["HARMONY CIRCLE — WEBSITE CONTENT", ""];
+    SCHEMA.forEach(function (p) {
+      var st = pageStats(p);
+      lines.push("=".repeat(60));
+      lines.push(p.label.toUpperCase() + "   (" + p.route + ")   " + st.done + "/" + st.total);
+      lines.push("=".repeat(60));
+      p.sections.forEach(function (s) {
+        var list = s.repeat ? instances(p.key, s) : [null];
+        var header = false;
+        list.forEach(function (inst, idx) {
+          s.fields.forEach(function (f) {
+            var v = get(keyOf(p.key, s.id, f.id, inst));
+            if (!v) return;
+            if (!header) {
+              lines.push("");
+              lines.push("-- " + (s.number ? "(" + s.number + ") " : "") + (s.eyebrow || s.id));
+              header = true;
+            }
+            var prefix = s.repeat ? "[" + s.repeat.noun + " " + (idx + 1) + "] " : "";
+            lines.push("");
+            lines.push(prefix + f.label + (f.legal ? "  [LAUNCH BLOCKER]" : "") + ":");
+            lines.push(v);
+          });
+        });
+      });
+      lines.push("");
+    });
+    var st2 = allStats();
+    lines.push("");
+    lines.push(
+      "Answered " + st2.done + " of " + st2.total + " · required " + st2.reqDone + " of " + st2.req +
+      " · launch-blocker answers still open: " + st2.legalOpen
+    );
+    return lines.join("\n");
+  }
+
+  /* ---- saving back into the page ------------------------------------------ */
+  function buildDoc() {
+    var esc = function (s) {
+      return String(s).replace(/</g, "\\u003c");
+    };
+    var styleText = document.getElementById("hc-style").textContent;
+    var schemaText = document.getElementById("hc-schema").textContent;
+    var appText = document.getElementById("hc-app").textContent;
+    var S = "<" + "/script>";
+    var head =
+      '<meta charset="utf-8">' +
+      '<meta name="viewport" content="width=device-width, initial-scale=1">' +
+      "<title>" + TITLE + "<" + "/title>" +
+      FONTS +
+      '<style id="hc-style">' + styleText + "<" + "/style>";
+    var body =
+      '<div id="root"><' + "/div>" +
+      '<script id="hc-schema" type="application/json">' + esc(schemaText) + S +
+      '<script id="hc-content" type="application/json">' + esc(JSON.stringify(state)) + S +
+      '<script id="hc-app">' + appText + S;
+    return (
+      "<!doctype html><html lang=\"en-CA\"><head>" + head + "<" + "/head><body>" + body +
+      "<" + "/body><" + "/html>"
+    );
+  }
+
+  var saving = false;
+  function save() {
+    if (saving) return;
+    flush();
+    saving = true;
+    refreshChrome();
+    toast("Saving…");
+    Promise.resolve(window.claude && window.claude.use ? window.claude.use("artifact") : null)
+      .then(function (artifact) {
+        if (!artifact) throw new Error("unavailable");
+        return artifact.publish(buildDoc());
+      })
+      .then(function () {
+        savedRev = state.rev;
+        saving = false;
+        toast("Saved. Your developer can see it now.");
+        refreshChrome();
+      })
+      .catch(function () {
+        saving = false;
+        refreshChrome();
+        toast("Could not save to the page — use Download instead.");
+        openHandoff(true);
+      });
+  }
+
+  function download() {
+    var text = JSON.stringify(exportObject(), null, 2);
+    Promise.resolve(window.claude && window.claude.use ? window.claude.use("downloads") : null)
+      .then(function (d) {
+        if (!d) throw new Error("unavailable");
+        return d.save({ filename: "harmony-circle-content.json", data: text });
+      })
+      .then(function () {
+        toast("Downloaded.");
+      })
+      .catch(function () {
+        copy(text, "JSON copied — paste it into an email.");
+      });
+  }
+
+  function copy(text, msg) {
+    var done = function () {
+      toast(msg);
+    };
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else fallback();
+    function fallback() {
+      var ta = h("textarea", {});
+      ta.value = text;
+      ta.style.cssText = "position:fixed;top:0;left:0;opacity:0";
+      document.body.appendChild(ta);
+      ta.select();
+      try {
+        document.execCommand("copy");
+        done();
+      } catch (e) {
+        toast("Copy failed — select the text manually.");
+      }
+      document.body.removeChild(ta);
+    }
+  }
+
+  var toastEl;
+  var toastTimer;
+  function toast(msg) {
+    toastEl.textContent = msg;
+    toastEl.classList.add("is-up");
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(function () {
+      toastEl.classList.remove("is-up");
+    }, 3200);
+  }
+
+  /* ---- panels -------------------------------------------------------------- */
+  function introPanel() {
+    var items = [
+      "Click any piece of text on the page and type over it. What you see is the real design at the real size — if a headline looks too long here, it will look too long on the site.",
+      "Your answers are kept in this browser as you type. Nothing is lost if you close the tab, and you do not have to finish in one sitting.",
+      "When you want to send work back, press Save at the top. That writes your answers into this page so your developer can read them.",
+      "Fields marked with a dotted ring are launch blockers — charitable status, addresses, people's names, figures. Those will never be written for you or approximated. Leave one empty rather than estimating it; empty is a useful answer, a guess is not.",
+      "Skip anything you are unsure about and come back. The counter at the top tracks what is left.",
+    ];
+    return h("section", { class: "section" }, [
+      h("div", { class: "wrap" }, [
+        h("div", { class: "panel" }, [
+          h("p", { class: "eyebrow label" }, [
+            ring("xs", "dotted", "accent"),
+            h("span", { class: "eyebrow__num", text: "(00)" }),
+            h("span", { class: "eyebrow__text", text: "How this works" }),
+          ]),
+          h("h2", { class: "display-3", text: "Type straight onto the page." }),
+          h(
+            "ul",
+            { class: "notelist" },
+            items.map(function (t) {
+              return h("li", {}, [ring("xs", "outline", "accent"), h("span", { text: t })]);
+            })
+          ),
+        ]),
+      ]),
+    ]);
+  }
+
+  function handoffPanel() {
+    var st = allStats();
+    return h("section", { class: "section" }, [
+      h("div", { class: "wrap" }, [
+        h("div", { class: "panel panel--ink" }, [
+          h("p", { class: "eyebrow label" }, [
+            ring("xs", "dotted", "paper"),
+            h("span", { class: "eyebrow__text", style: "color:var(--paper-70)", text: "Sending it back" }),
+          ]),
+          h("h3", { class: "display-3", style: "color:var(--paper)", text: "Done for now?" }),
+          h("p", {
+            style: "margin:0;color:var(--paper-80);max-inline-size:60ch",
+            text:
+              "Save writes your answers into this page, so the link you were sent is also the way the work comes back — there is nothing to attach or upload. Download gives you a copy for your own records, or to email if you would rather.",
+          }),
+          h("p", {
+            class: "label",
+            style: "margin:0;color:var(--paper-60)",
+            text:
+              st.done + " of " + st.total + " answered · " + st.reqDone + " of " + st.req +
+              " required · " + st.legalOpen + " launch-blocker answers still open",
+          }),
+          h("div", { class: "btn-row" }, [
+            h("button", { class: "tbtn tbtn--accent", type: "button", onclick: save }, ["Save and send"]),
+            h("button", { class: "tbtn", type: "button", onclick: download }, ["Download a copy"]),
+            h(
+              "button",
+              {
+                class: "tbtn",
+                type: "button",
+                onclick: function () {
+                  copy(exportText(), "Copied — paste into an email.");
+                },
+              },
+              ["Copy as text"]
+            ),
+          ]),
+        ]),
+      ]),
+    ]);
+  }
+
+  function openHandoff() {
+    var el = document.querySelector(".panel--ink");
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
+  }
+
+  /* ---- shell --------------------------------------------------------------- */
+  var tabsEl, progArc, progTxt, saveBtn, modeBtns;
+
+  function buildShell() {
+    var C = 2 * Math.PI * 10;
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    svg.setAttribute("class", "prog__dial");
+    svg.setAttribute("viewBox", "0 0 24 24");
+    svg.setAttribute("aria-hidden", "true");
+    function arc(cls) {
+      var c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+      c.setAttribute("cx", "12");
+      c.setAttribute("cy", "12");
+      c.setAttribute("r", "10");
+      c.setAttribute("fill", "none");
+      c.setAttribute("stroke-width", "3");
+      c.setAttribute("class", cls);
+      return c;
+    }
+    svg.appendChild(arc("prog__track"));
+    progArc = arc("prog__arc");
+    progArc.setAttribute("stroke-linecap", "round");
+    progArc.setAttribute("stroke-dasharray", C.toFixed(2));
+    progArc.setAttribute("stroke-dashoffset", C.toFixed(2));
+    svg.appendChild(progArc);
+    progTxt = h("span", { class: "prog__txt", text: "0 / 0" });
+
+    modeBtns = {
+      fill: h(
+        "button",
+        { class: "tbtn", type: "button", "aria-pressed": "true", onclick: function () { setMode("fill"); } },
+        ["Fill in"]
+      ),
+      preview: h(
+        "button",
+        { class: "tbtn", type: "button", "aria-pressed": "false", onclick: function () { setMode("preview"); } },
+        ["Preview"]
+      ),
+    };
+
+    saveBtn = h("button", { class: "tbtn tbtn--accent", type: "button", onclick: save }, ["Save"]);
+
+    var bar = h("div", { class: "shell__bar" }, [
+      h("div", { class: "shell__brand" }, [
+        ring("md", "dual", "paper"),
+        h("span", { class: "label" }, [
+          "Harmony Circle ",
+          h("span", { class: "shell__sub", text: "· content brief" }),
+        ]),
+      ]),
+      h("span", { class: "shell__spacer" }),
+      h("div", { class: "prog" }, [svg, progTxt]),
+      h("div", { class: "seg" }, [modeBtns.fill, modeBtns.preview]),
+      h("div", { class: "shell__actions" }, [saveBtn]),
+    ]);
+
+    tabsEl = h("div", { class: "tabs__scroll", role: "tablist", "aria-label": "Pages" });
+    return h("div", { class: "shell", id: "hc-shell" }, [bar, h("div", { class: "tabs" }, [tabsEl])]);
+  }
+
+  function buildTabs() {
+    tabsEl.textContent = "";
+    SCHEMA.forEach(function (p) {
+      var st = pageStats(p);
+      var complete = st.done === st.total && st.total > 0;
+      var tab = h(
+        "button",
+        {
+          class: "tab",
+          type: "button",
+          role: "tab",
+          "aria-selected": p.key === current ? "true" : "false",
+          onclick: function () {
+            go(p.key);
+          },
+        },
+        [
+          complete ? ring("xs", "solid", "accent") : null,
+          h("span", { text: p.label }),
+          h("span", { class: "tab__count", text: st.done + "/" + st.total }),
+        ]
+      );
+      tabsEl.appendChild(tab);
+    });
+  }
+
+  function refreshChrome() {
+    var st = allStats();
+    var C = 2 * Math.PI * 10;
+    var pct = st.total ? st.done / st.total : 0;
+    progArc.setAttribute("stroke-dashoffset", (C * (1 - pct)).toFixed(2));
+    progTxt.textContent = st.done + " / " + st.total;
+    saveBtn.textContent = saving ? "Saving…" : dirty() ? "Save" : "Saved";
+    saveBtn.setAttribute("data-dirty", dirty() && !saving ? "true" : "false");
+    saveBtn.disabled = saving;
+    buildTabs();
+  }
+
+  function setMode(m) {
+    mode = m;
+    document.documentElement.setAttribute("data-mode", m);
+    modeBtns.fill.setAttribute("aria-pressed", m === "fill" ? "true" : "false");
+    modeBtns.preview.setAttribute("aria-pressed", m === "preview" ? "true" : "false");
+    if (m === "preview") hideDock();
+  }
+
+  /* ---- stage ---------------------------------------------------------------- */
+  var stage;
+
+  function go(key) {
+    if (!SCHEMA.some(function (p) { return p.key === key; })) return;
+    current = key;
+    hideDock();
+    renderStage();
+    window.scrollTo({ top: 0, behavior: "auto" });
+  }
+
+  function renderStage() {
+    var page = SCHEMA.filter(function (p) { return p.key === current; })[0];
+    stage.textContent = "";
+    stage.appendChild(siteNav());
+
+    var intro = h("section", { class: "section" }, [
+      h("div", { class: "wrap stack" }, [
+        h("p", { class: "eyebrow label" }, [
+          ring("xs", "dotted", "accent"),
+          h("span", { class: "eyebrow__text", text: page.route }),
+        ]),
+        h("h1", { class: "display-2", text: page.label + "." }),
+        h("p", { class: "lede", text: page.blurb }),
+      ]),
+    ]);
+    stage.appendChild(intro);
+
+    if (page.key === "site") stage.appendChild(introPanel());
+
+    page.sections.forEach(function (s, i) {
+      stage.appendChild(renderSection(page.key, s, i === 0));
+    });
+
+    stage.appendChild(handoffPanel());
+    stage.appendChild(siteFooter());
+    refreshChrome();
+  }
+
+  /* ---- boot ------------------------------------------------------------------ */
+  var root = document.getElementById("root");
+  root.textContent = "";
+  document.documentElement.setAttribute("data-mode", "fill");
+
+  root.appendChild(buildShell());
+
+  // The toolbar is two stacked rows whose height depends on the font actually
+  // loading, so it is measured rather than assumed — the sticky site header
+  // below it has to sit exactly underneath.
+  function measure() {
+    var el = document.getElementById("hc-shell");
+    if (el) document.documentElement.style.setProperty("--shell-total", el.offsetHeight + "px");
+  }
+  window.addEventListener("resize", measure, { passive: true });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(measure);
+
+  dockLabel = h("div", { class: "dock__label" });
+  dockHelp = h("p", { class: "dock__help" });
+  dockShape = h("p", { class: "dock__shape" });
+  dockCount = h("span", { class: "dock__count" });
+  dock = h("div", { class: "dock" }, [
+    h("div", { class: "dock__in" }, [
+      h("div", { class: "dock__body" }, [dockLabel, dockHelp, dockShape]),
+      h("div", { class: "dock__side" }, [
+        dockCount,
+        h(
+          "button",
+          { class: "dock__close", type: "button", "aria-label": "Close guidance", onclick: hideDock },
+          [ring("md", "dual", "paper")]
+        ),
+      ]),
+    ]),
+  ]);
+
+  stage = h("div", { class: "stage" });
+  root.appendChild(stage);
+  root.appendChild(dock);
+  toastEl = h("div", { class: "toast", role: "status", "aria-live": "polite" });
+  root.appendChild(toastEl);
+
+  renderStage();
+  measure();
+  setTimeout(measure, 300);
+
+  window.addEventListener("beforeunload", function (e) {
+    if (!dirty()) return;
+    e.preventDefault();
+    e.returnValue = "";
+  });
+})();
+
+</script>
