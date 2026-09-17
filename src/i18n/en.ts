@@ -7,7 +7,8 @@ import type { Strings } from "./types";
  */
 export const en: Strings = {
   siteName: "Harmony Circle",
-  tagline: "A Turkish community foundation in London, Ontario.",
+  tagline:
+    "A movement for good that develops and oversees social responsibility projects for the benefit of the community.",
 
   nav: {
     label: "Main",
